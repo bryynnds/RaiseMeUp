@@ -47,7 +47,7 @@
       <div class="flex justify-center mb-6">
         <img src="https://via.placeholder.com/80x80?text=R" alt="RaiseMeUp Logo" class="w-20 h-20 rounded-full shadow-md" />
       </div>
-      <h1 class="text-2xl font-bold text-center text-gray-700 mb-4">Masuk Ke Akun Mu</h1>
+      <h1 class="text-2xl font-bold text-center text-gray-700 mb-4">RaiseMeUP</h1>
       <p class="text-center text-gray-600 text-sm mb-6">Dukung kreator favoritmu dengan mudah~</p>
 
       <form class="space-y-4">
