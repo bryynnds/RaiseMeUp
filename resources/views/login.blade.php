@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RaiseMeUp - Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body {
@@ -70,6 +71,13 @@
         Belum punya akun?
         <a href="#" class="text-blue-500 hover:underline">Daftar sekarang</a>
       </p>
+
+      <div class="mt-4">
+        <button class="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-md hover:bg-gray-100 transition duration-300">
+          <i class="fab fa-google text-red-500"></i>
+          <span class="text-gray-700 font-medium">Login dengan Google</span>
+        </button>
+      </div>
     </div>
 
   </body>
