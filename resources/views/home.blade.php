@@ -83,14 +83,24 @@
       </div>
     </div>
 
-    <div class="h-[43%] w-full flex items-center justify-center">
-      Ini Div Bawah
+    <div class="h-[43vh] flex items-end justify-between">
+      <img src="/assets/bg/awankiri.png" alt="Gambar Kiri" class="h-64 object-cover object-bottom" />
+
+      <div class="flex items-center justify-center">
+        A
+      </div>
+
+      <img src="/assets/bg/awankanan.png" alt="Gambar Kanan" class="h-64 object-cover object-bottom" />
     </div>
+
+
+
+
   </div>
 
 
 
-  <div class="w-full h-screen bg-white flex items-center justify-center text-gray-800 text-3xl font-bold">
+  <div class="w-full h-screen bg-gray-400 flex items-center justify-center text-gray-800 text-3xl font-bold">
     Section 2
   </div>
 
@@ -119,6 +129,18 @@
       const rect = section.getBoundingClientRect();
       if (rect.top <= 80 && rect.bottom >= 80) {
         masukPutih = true;
+      }
+    });
+
+    const gambarPutihKiri = document.querySelector('img[alt="Gambar Kiri"]');
+    const gambarPutihKanan = document.querySelector('img[alt="Gambar Kanan"]');
+
+    [gambarPutihKiri, gambarPutihKanan].forEach(img => {
+      if (img) {
+        const rect = img.getBoundingClientRect();
+        if (rect.top <= 80 && rect.bottom >= 80) {
+          masukPutih = true;
+        }
       }
     });
 
