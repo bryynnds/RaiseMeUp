@@ -6,26 +6,43 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class GoogleController extends Controller
 {
+    // Redirect user ke Google OAuth page
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
+    // Callback dari Google setelah login berhasil
     public function handleGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        try {
+            // Ambil data user dari Google
+            $googleUser = Socialite::driver('google')->stateless()->user();
 
-        $user = User::firstOrCreate(
-            ['email' => $googleUser->getEmail()],
-            ['name' => $googleUser->getName()]
-        );
+            // Cari user berdasarkan email, kalau belum ada buat baru
+            $user = User::firstOrCreate(
+                ['email' => $googleUser->getEmail()],
+                [
+                    'name' => $googleUser->getName(),
+                    'google_id' => $googleUser->getId(),
+                    // Buat password random karena login pakai Google, password tidak dipakai
+                    'password' => bcrypt(Str::random(16)),
+                ]
+            );
 
-        Auth::login($user);
+            // Login user tersebut ke aplikasi kita
+            Auth::login($user);
 
-        return redirect('/home');
+            // Redirect ke halaman home setelah login
+            return redirect('/home');
+
+        } catch (\Exception $e) {
+            // Kalau ada error, redirect ke login dengan pesan error
+            return redirect('/login')->with('error', 'Login dengan Google gagal: ' . $e->getMessage());
+        }
     }
 }
-
