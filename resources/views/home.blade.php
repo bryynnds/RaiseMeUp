@@ -93,9 +93,6 @@
       <img src="/assets/bg/awankanan.png" alt="Gambar Kanan" class="h-64 object-cover object-bottom" />
     </div>
 
-
-
-
   </div>
 
 
