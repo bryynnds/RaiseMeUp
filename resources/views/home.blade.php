@@ -106,7 +106,7 @@
   </div>
   <div class="fixed bottom-4 right-4 z-50 space-x-2">
     <button onclick="fakeLogin()" class="px-4 py-2 bg-green-500 text-white rounded-md">Login</button>
-    <button onclick="fakeLogout()" class="px-4 py-2 bg-red-500 text-white rounded-md">Logout</button>
+    <a href="{{ route('logout') }}" class="px-4 py-2 bg-red-500 text-white rounded-md">Logout</a>
   </div>
 
 </body>
