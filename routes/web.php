@@ -14,7 +14,11 @@ Route::get('/login', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('supporter.landing');
+});
+
+Route::get('/home-public', function () {
+    return view('public.landing');
 });
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);

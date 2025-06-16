@@ -49,7 +49,7 @@
           <button id="loginBtn" class="w-full text-center text-sm font-bold rounded-md px-3 py-2 bg-white text-gray-700">
             Log In
           </button>
-          <button id="userIcon" class="hidden w-full px-1 py-3 bg-white rounded-md flex items-center justify-center">
+          <button id="userIcon" class="hidden w-full px-1 py-3 bg-white rounded-md items-center justify-center">
             <img src="/assets/icon/user.png" alt="User" class="w-4 h-4" />
           </button>
 
@@ -76,8 +76,8 @@
           <input
             type="text"
             placeholder="Kobo Kanaeru"
-            class="bg-transparent text-sm text-base text-gray-200 placeholder-gray-300 font-semibold w-full focus:outline-none px-2" />
-          <span class="bg-[#4B98F5] text-sm text-base px-4 py-2 rounded-full text-white font-bold cursor-pointer">Cari</span>
+            class="bg-transparent text-sm text-gray-200 placeholder-gray-300 font-semibold w-full focus:outline-none px-2" />
+          <span class="bg-[#4B98F5] text-sm px-4 py-2 rounded-full text-white font-bold cursor-pointer">Cari</span>
         </div>
 
       </div>
@@ -87,13 +87,16 @@
       <img src="/assets/bg/awankiri.png" alt="Gambar Kiri" class="h-64 object-cover object-bottom" />
 
       <div class="flex items-center justify-center">
-        A
+        <div class="px-10 py-6 rounded-t-2xl bg-amber-50">
+
+        </div>
       </div>
 
       <img src="/assets/bg/awankanan.png" alt="Gambar Kanan" class="h-64 object-cover object-bottom" />
     </div>
 
   </div>
+  
 
 
 
