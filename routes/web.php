@@ -13,12 +13,20 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/home', function () {
+Route::get('/home-supporter', function () {
     return view('supporter.landing');
+});
+
+Route::get('/home-creator', function () {
+    return view('creator.landing');
 });
 
 Route::get('/home-public', function () {
     return view('public.landing');
+});
+
+Route::get('/login', function () {
+    return view('public.login');
 });
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);

@@ -46,12 +46,13 @@
               Explore
             </div>
           </a>
-          <button id="loginBtn" class="w-full text-center text-sm font-bold rounded-md px-3 py-2 bg-white text-gray-700">
-            Log In
+
+          <button id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center border border-blue-400">
+            <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
           </button>
-          <button id="userIcon" class="hidden w-full px-1 py-3 bg-white rounded-md items-center justify-center">
-            <img src="/assets/icon/user.png" alt="User" class="w-4 h-4" />
-          </button>
+
+
+
 
         </div>
       </div>
@@ -96,7 +97,7 @@
     </div>
 
   </div>
-  
+
 
 
 
@@ -107,104 +108,78 @@
   <div class="w-full h-screen bg-gray-100 flex items-center justify-center text-gray-900 text-3xl font-bold">
     Section 3
   </div>
-  <div class="fixed bottom-4 right-4 z-50 space-x-2">
-    <button onclick="fakeLogin()" class="px-4 py-2 bg-green-500 text-white rounded-md">Login</button>
-    <a href="{{ route('logout') }}" class="px-4 py-2 bg-red-500 text-white rounded-md">Logout</a>
-  </div>
 
-</body>
+  <script>
+    const navbar = document.getElementById('navbar');
+    const loginBtn = document.getElementById('loginBtn');
+    const whiteSections = document.querySelectorAll('.bg-white, .bg-gray-100');
+    let isLoggedIn = false;
 
-<script>
-  const navbar = document.getElementById('navbar');
-  const loginBtn = document.getElementById('loginBtn');
-  const whiteSections = document.querySelectorAll('.bg-white, .bg-gray-100');
-  const iconExplore = document.querySelector('#navbar img[src*="launch"]');
+    window.addEventListener('scroll', () => {
+      let masukPutih = false;
 
-  let isLoggedIn = false;
-
-  window.addEventListener('scroll', () => {
-    let masukPutih = false;
-
-    whiteSections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 80 && rect.bottom >= 80) {
-        masukPutih = true;
-      }
-    });
-
-    const gambarPutihKiri = document.querySelector('img[alt="Gambar Kiri"]');
-    const gambarPutihKanan = document.querySelector('img[alt="Gambar Kanan"]');
-
-    [gambarPutihKiri, gambarPutihKanan].forEach(img => {
-      if (img) {
-        const rect = img.getBoundingClientRect();
+      whiteSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
         if (rect.top <= 80 && rect.bottom >= 80) {
           masukPutih = true;
         }
+      });
+
+      const gambarPutihKiri = document.querySelector('img[alt="Gambar Kiri"]');
+      const gambarPutihKanan = document.querySelector('img[alt="Gambar Kanan"]');
+
+      [gambarPutihKiri, gambarPutihKanan].forEach(img => {
+        if (img) {
+          const rect = img.getBoundingClientRect();
+          if (rect.top <= 80 && rect.bottom >= 80) {
+            masukPutih = true;
+          }
+        }
+      });
+
+      if (masukPutih) {
+        navbar.classList.remove('text-white');
+        navbar.classList.add('text-gray-800');
+
+        document.querySelectorAll('#navbar a, #navbar span').forEach(el => {
+          el.classList.remove('text-white');
+          el.classList.add('text-gray-800');
+        });
+
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+          icon.style.filter = 'invert(1)';
+        });
+
+        if (!isLoggedIn) {
+          loginBtn.classList.remove('bg-white', 'text-gray-700');
+          loginBtn.classList.add('bg-blue-600', 'text-white');
+        }
+
+      } else {
+        navbar.classList.add('text-white');
+        navbar.classList.remove('text-gray-800');
+
+        document.querySelectorAll('#navbar a, #navbar span').forEach(el => {
+          el.classList.add('text-white');
+          el.classList.remove('text-gray-800');
+        });
+
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+          icon.style.filter = 'invert(0)';
+        });
+
+        if (!isLoggedIn) {
+          loginBtn.classList.remove('bg-blue-600', 'text-white');
+          loginBtn.classList.add('bg-white', 'text-gray-700');
+        }
       }
     });
+  </script>
 
-    if (masukPutih) {
-      navbar.classList.remove('text-white');
-      navbar.classList.add('text-gray-800');
 
-      document.querySelectorAll('#navbar a, #navbar span').forEach(el => {
-        el.classList.remove('text-white');
-        el.classList.add('text-gray-800');
-      });
 
-      if (iconExplore) {
-        iconExplore.style.filter = 'invert(1)';
-      }
+</body>
 
-      if (!isLoggedIn) {
-        loginBtn.className = 'w-full text-center text-sm font-bold rounded-md px-3 py-2 bg-blue-600 text-white';
-      }
 
-    } else {
-      navbar.classList.add('text-white');
-      navbar.classList.remove('text-gray-800');
-
-      document.querySelectorAll('#navbar a, #navbar span').forEach(el => {
-        el.classList.add('text-white');
-        el.classList.remove('text-gray-800');
-      });
-
-      if (iconExplore) {
-        iconExplore.style.filter = 'invert(0)';
-      }
-
-      if (!isLoggedIn) {
-        loginBtn.className = 'w-full text-center text-sm font-bold rounded-md px-3 py-2 bg-white text-gray-700';
-      }
-    }
-  });
-</script>
-
-<script>
-  function updateNavbar() {
-    const userIcon = document.getElementById('userIcon');
-
-    if (isLoggedIn) {
-      loginBtn.classList.add('hidden');
-      userIcon.classList.remove('hidden');
-    } else {
-      loginBtn.classList.remove('hidden');
-      userIcon.classList.add('hidden');
-    }
-  }
-
-  function fakeLogin() {
-    isLoggedIn = true;
-    updateNavbar();
-  }
-
-  function fakeLogout() {
-    isLoggedIn = false;
-    updateNavbar();
-  }
-
-  window.addEventListener('DOMContentLoaded', updateNavbar);
-</script>
 
 </html>

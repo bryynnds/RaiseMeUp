@@ -47,9 +47,10 @@
             </div>
           </a>
 
-          <button id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center shadow-[0_5px_18px_rgba(0,0,0,0.10)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.2)] transition-shadow">
+          <button id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center border border-blue-400">
             <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
           </button>
+
 
 
 
