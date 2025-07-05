@@ -48,7 +48,7 @@
 </head>
 
 <body class="bg-cover bg-center min-h-screen flex items-center justify-center px-4 sm:px-6"
-    style="background-image: url('/assets/bg/bg.jpg');">
+    style="background-image: url('/assets/bg/bg-creator.jpg');">
 
 
     <div id="overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden"></div>
@@ -82,7 +82,7 @@
         </h1>
 
         <p class="text-center text-white text-sm sm:text-base font-medium mb-6">
-            Daftar sebagai <span class="font-semibold text-blue-200">Creator</span>
+            Daftar sebagai <span class="font-semibold text-blue-500">Creator</span>
         </p>
 
         <form class="space-y-4" autocomplete="off">

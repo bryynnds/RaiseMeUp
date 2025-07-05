@@ -16,6 +16,22 @@
             overflow-x: hidden;
         }
 
+        .form-container {
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .input-focus:focus {
             outline: none;
             border-color: #3b82f6;
@@ -29,10 +45,11 @@
             transition: all 0.3s ease;
         }
     </style>
+
 </head>
 
 <body class="bg-cover bg-center min-h-screen flex items-center justify-center px-4 sm:px-6"
-    style="background-image: url('/assets/bg/bg.jpg');">
+    style="background-image: url('/assets/bg/bg-supporter.jpg');">
 
     <div
         class="bg-white/10 backdrop-blur-md shadow-xl rounded-3xl w-full max-w-md p-6 sm:p-8 form-container border border-white/30 relative z-10">

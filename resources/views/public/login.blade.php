@@ -93,7 +93,7 @@
     <!-- Link Daftar -->
     <p class="text-sm text-center mt-6 text-white/80">
       Belum punya akun?
-      <a href="#" class="text-white underline hover:text-blue-200">Daftar sekarang</a>
+      <a href="/role" class="text-white underline hover:text-blue-200">Daftar sekarang</a>
     </p>
 
     <!-- Login dengan Google -->
