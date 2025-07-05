@@ -47,7 +47,7 @@
             </div>
           </a>
 
-          <button id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center border border-blue-400">
+          <button id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center">
             <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
           </button>
 
