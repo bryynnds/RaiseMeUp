@@ -45,53 +45,52 @@
             transition: all 0.3s ease;
         }
     </style>
-
 </head>
 
-<body class="bg-cover bg-center min-h-screen flex items-center justify-center px-4 sm:px-6"
+<body class="bg-cover bg-center min-h-screen flex items-center justify-center px-4 py-8"
     style="background-image: url('/assets/bg/bg-supporter.jpg');">
 
     <div
-        class="bg-white/10 backdrop-blur-md shadow-xl rounded-3xl w-full max-w-md p-6 sm:p-8 form-container border border-white/30 relative z-10">
+        class="bg-white/10 backdrop-blur-md shadow-xl rounded-2xl w-full max-w-sm p-5 sm:p-6 form-container border border-white/30 relative z-10 scale-[0.97] sm:scale-100">
 
         <!-- Logo -->
-        <div class="flex justify-center mb-6">
-            <img src="https://via.placeholder.com/80x80?text=S" alt="RaiseMeUp Logo"
-                class="w-16 sm:w-20 h-16 sm:h-20 rounded-full shadow-lg ring-4 ring-white/40" />
+        <div class="flex justify-center mb-4">
+            <img src="https://via.placeholder.com/70x70?text=S" alt="RaiseMeUp Logo"
+                class="w-16 h-16 rounded-full shadow-lg ring-4 ring-white/40" />
         </div>
 
         <!-- Judul -->
         <h1 style="font-family: 'Protest Riot', cursive;"
-            class="text-2xl sm:text-3xl font-medium text-center text-white mb-2">
+            class="text-xl font-medium text-center text-white mb-1">
             RaiseMeUP
         </h1>
 
-        <p class="text-center text-white text-sm sm:text-base font-medium mb-6">
-            Daftar sebagai <span class="font-semibold text-blue-200">Supporter</span>
+        <p class="text-center text-white text-sm font-medium mb-4">
+            Daftar sebagai <span class="font-semibold text-blue-300">Supporter</span>
         </p>
 
         <!-- Form Registrasi -->
-        <form class="space-y-4" autocomplete="off">
+        <form class="space-y-3" autocomplete="off">
             <input type="text" name="username" placeholder="Username"
-                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus transition duration-300" />
+                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
             <input type="email" name="email" placeholder="Email"
-                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus transition duration-300" />
+                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
             <input type="password" name="password" placeholder="Password"
-                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus transition duration-300" />
+                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
             <input type="password" name="confirm_password" placeholder="Konfirmasi Password"
-                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus transition duration-300" />
+                class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
             <button type="submit"
-                class="w-full bg-blue-500 text-white font-semibold py-2 rounded-md button-hover transition duration-300">
+                class="w-full bg-blue-500 text-white font-semibold py-2 rounded-md button-hover transition duration-300 text-sm">
                 Daftar
             </button>
         </form>
 
         <!-- Link ke login -->
-        <p class="text-sm text-center mt-6 text-white/80">
+        <p class="text-xs text-center mt-4 text-white/80">
             Sudah punya akun?
             <a href="/login" class="text-white underline hover:text-blue-200">Login di sini</a>
         </p>
