@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,11 +13,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
+    /* --- kolom yang dapat diisi mass‑assignment --- */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'google_id'
+        'google_id',
+        'role',           // enum: admin | kreator | supporter
     ];
 
     protected $hidden = [
@@ -25,24 +27,19 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
-    // 🔗 Relasi tambahan
+    /* --- relasi Eloquent --- */
+    public function creatorProfile(): HasOne
+    {
+        return $this->hasOne(CreatorProfile::class, 'creator_id');
+    }
 
     public function supporterProfile(): HasOne
     {
         return $this->hasOne(SupporterProfile::class, 'supporter_id');
-    }
-
-    public function creatorProfile(): HasOne
-    {
-        return $this->hasOne(CreatorProfile::class, 'creator_id');
     }
 
     public function donationsMade(): HasMany

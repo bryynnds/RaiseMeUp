@@ -7,8 +7,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CreatorProfile extends Model
 {
-    protected $fillable = ['creator_id', 'display_name', 'bio'];
+    /* --- kolom yang dapat diisi --- */
+    protected $fillable = [
+        'creator_id',
+        'nickname',
+        'bio',
+        'deskripsi',
+        'pp_url',
+        'fotosampul_url',
+        'job',
+        'portfolio_url',
+        'post_image',
+        'youtube_url',
+        'facebook_url',
+        'twitter_url',
+        'instagram_url',
+        'goal_amount',
+        'current_amount',
+    ];
 
+    /* --- relasi ke tabel users --- */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id');
