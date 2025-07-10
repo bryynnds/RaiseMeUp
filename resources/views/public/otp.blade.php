@@ -66,7 +66,7 @@
     </div>
 
     <script>
-        // auto-focus antar input
+
         const inputs = document.querySelectorAll(".otp-input");
         inputs.forEach((input, i) => {
             input.addEventListener("input", () => {
@@ -77,7 +77,7 @@
             });
         });
 
-        // submit OTP
+
         function submitOTP() {
             const otpCode = [...inputs].map(i => i.value).join("");
             if (otpCode.length < 6) {
@@ -103,7 +103,7 @@
         // resend OTP handler
         function resendOTP() {
             alert("Kode OTP dikirim ulang ke email kamu ✨");
-            // tinggal call API di sini kalau udah connect backend
+
         }
     </script>
 </body>
