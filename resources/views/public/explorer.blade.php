@@ -143,7 +143,7 @@
             <input
                 type="text"
                 placeholder="Cari Kreator Favoritmu"
-                class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none shadow-md" />
+                class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none" />
         </div>
 
         <!-- Filter Buttons -->
@@ -176,6 +176,8 @@
             <!-- Card akan dirender otomatis di bawah -->
         </div>
     </section>
+
+    <x-footer />
 
 
     <script>
