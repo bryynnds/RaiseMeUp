@@ -47,6 +47,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/explorer', function () {
+    return view('public.explorer');
+});
+
 // routes/web.php
 
 Route::get('/home-supporter', function () {
