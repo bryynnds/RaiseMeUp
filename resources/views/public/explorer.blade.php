@@ -134,7 +134,7 @@
         </h1>
 
         <div class="mt-3 text-gray-600 font-medium text-xs sm:text-sm">
-            Wi Wok De Tok, Not Onle Tok De Tok – Hidup Fisalia!
+            Failure 99% hanyalah angka, Ragumu Rugimu – Hashire HASHIREE~
         </div>
 
 
@@ -175,7 +175,20 @@
         <div id="creatorContainer" class="max-w-4xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8 md:gap-x-4">
             <!-- Card akan dirender otomatis di bawah -->
         </div>
+
+        <div class="flex justify-center mt-10">
+            <button id="loadMoreBtn" class="flex items-center gap-2 px-4 py-3 bg-white text-blue-600 border border-blue-500 hover:bg-blue-600 hover:text-white transition-all duration-300 rounded-xl shadow-sm hover:shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+                <span class="font-semibold text-xs">Load More</span>
+            </button>
+        </div>
+
+
     </section>
+
+
 
     <x-footer />
 
