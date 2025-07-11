@@ -99,8 +99,7 @@
         <div class="inner transition-all duration-300 max-w-7xl mx-auto px-8 sm:px-6 lg:px-14">
             <div class="navbar-content flex justify-between items-center h-20 transition-all duration-300">
                 <div class="flex items-center">
-                    <img src="https://via.placeholder.com/32x32?text=R"
-                        alt="Logo"
+                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
                         class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
                     <span class="brand-text text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
                         RaiseMeUp
@@ -108,7 +107,8 @@
                 </div>
 
                 <div class="flex space-x-6 items-center">
-                    <a href="#explore" class="explore-link font-bold px-2 lg:px-4 text-gray-800 transition-all duration-300">
+                    <a href="#explore"
+                        class="explore-link font-bold px-2 lg:px-4 text-gray-800 transition-all duration-300">
                         <div class="explore-wrapper flex items-center gap-2 transition-all duration-300">
                             <img src="/assets/icon/launch.png" alt="icon"
                                 class="explore-icon w-5 h-5 nav-icon filter invert-0 brightness-0 saturate-0 transition-all duration-300" />
@@ -140,10 +140,8 @@
 
         <!-- Searchbar -->
         <div class="mt-6 max-w-xl mx-auto">
-            <input
-                type="text"
-                placeholder="Cari Kreator Favoritmu"
-                class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none" />
+            <input type="text" id="searchInput" placeholder="Cari Kreator Favoritmu"
+            class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none" />
         </div>
 
         <!-- Filter Buttons -->
@@ -153,32 +151,40 @@
                 All
             </button>
             <button
-                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300">
-                Illustrator
+                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300"
+                data-role="Artist">
+                Artist
             </button>
             <button
-                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300">
+                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300"
+                data-role="Streamer">
                 Streamer
             </button>
             <button
-                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300">
-                Writer
+                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300"
+                data-role="Penulis">
+                Penulis
             </button>
             <button
-                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300">
-                Musician
+                class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300"
+                data-role="Musisi">
+                Musisi
             </button>
         </div>
     </section>
 
     <section class="px-4 pb-20">
-        <div id="creatorContainer" class="max-w-4xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8 md:gap-x-4">
-            <!-- Card akan dirender otomatis di bawah -->
+        <div id="creatorContainer"
+            class="max-w-4xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8 md:gap-x-4">
+            @include('components.creator-cards', ['creators' => $creators])
         </div>
 
         <div class="flex justify-center mt-10">
-            <button id="loadMoreBtn" class="flex items-center gap-2 px-4 py-3 bg-white text-blue-600 border border-blue-500 hover:bg-blue-600 hover:text-white transition-all duration-300 rounded-xl shadow-sm hover:shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button id="loadMoreBtn"
+                class="flex items-center gap-2 px-4 py-3 bg-white text-blue-600 border border-blue-500 hover:bg-blue-600 hover:text-white transition-all duration-300 rounded-xl shadow-sm hover:shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
                 <span class="font-semibold text-xs">Load More</span>
@@ -193,7 +199,7 @@
     <x-footer />
 
 
-    <script>
+    {{-- <script>
         const buttons = document.querySelectorAll('.filter-btn');
 
         buttons.forEach(btn => {
@@ -209,9 +215,9 @@
                 btn.classList.add('active', 'bg-blue-600', 'text-white', 'shadow-lg');
             });
         });
-    </script>
+    </script> --}}
 
-    <script>
+    {{-- <script>
         const creators = [{
                 name: "Nayla Evelyn",
                 role: "Artist",
@@ -260,7 +266,8 @@
 
         creators.forEach(creator => {
             const card = document.createElement("div");
-            card.className = `rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300`;
+            card.className =
+                `rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300`;
 
             card.innerHTML = `
       <div class="${creator.color} h-20 relative">
@@ -279,6 +286,86 @@
     `;
 
             container.appendChild(card);
+        });
+    </script> --}}
+
+    <script>
+        let currentPage = 1;
+        let currentJob = 'all';
+        let currentSearch = '';
+
+        const container = document.getElementById("creatorContainer");
+        const loadMoreBtn = document.getElementById("loadMoreBtn");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const searchInput = document.getElementById("searchInput");
+
+        function fetchCreators(page = 1, job = 'all', search = '') {
+            const params = new URLSearchParams({
+                page,
+                job,
+                search
+            });
+
+            fetch(`/explorer?${params.toString()}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (page === 1) {
+                        container.innerHTML = data.html;
+                    } else {
+                        container.insertAdjacentHTML('beforeend', data.html);
+                    }
+
+                    if (!data.hasMore) {
+                        loadMoreBtn.style.display = "none";
+                    } else {
+                        loadMoreBtn.style.display = "inline-flex";
+                    }
+                });
+        }
+
+        let searchTimeout;
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    currentSearch = searchInput.value;
+                    currentPage = 1;
+                    fetchCreators(currentPage, currentJob, currentSearch);
+                }, 300); // debounce delay
+            });
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Filter button click
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active', 'bg-blue-600',
+                        'text-white', 'shadow-lg'));
+                    btn.classList.add('active', 'bg-blue-600', 'text-white', 'shadow-lg');
+
+                    currentPage = 1;
+                    currentJob = btn.dataset.role || 'all';
+                    fetchCreators(currentPage, currentJob);
+                });
+            });
+
+            // Load More click
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', () => {
+                    currentPage++;
+                    fetchCreators(currentPage, currentJob, currentSearch);
+                });
+            }
+
+            // Init state for Load More
+            @if (!$creators->hasMorePages())
+                loadMoreBtn.style.display = "none";
+            @endif
         });
     </script>
 
