@@ -68,13 +68,21 @@
             Dukung kreator favoritmu dengan mudah~
         </p>
 
+        @if ($errors->any())
+            <div class="text-red-300 text-sm mb-2">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
         <!-- Form Login -->
-        <form class="space-y-3" autocomplete="off">
-            <input type="email" name="never_email" placeholder="Email" autocomplete="off"
+        <form method="POST" action="{{ route('login.submit') }}" class="space-y-3" autocomplete="off">
+            @csrf
+            <input type="email" name="email" placeholder="Email" autocomplete="off"
                 class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
             <div class="relative">
-                <input id="passwordInput" type="password" name="never_password" placeholder="Password" autocomplete="new-password"
+                <input id="passwordInput" type="password" name="password" placeholder="Password"
+                    autocomplete="new-password"
                     class="w-full px-4 py-2 pr-10 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
                 <button type="button" id="togglePassword"
                     class="absolute inset-y-0 right-3 flex items-center text-white/70 focus:outline-none text-sm">

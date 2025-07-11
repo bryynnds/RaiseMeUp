@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CreatorRegisterController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LoginController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -64,6 +65,8 @@ Route::get('/home-creator', function () {
 Route::get('/home-public', function () {
     return view('public.landing');
 });
+
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 Route::get('/login', function () {
     return view('public.login');

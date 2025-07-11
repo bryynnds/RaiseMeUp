@@ -38,7 +38,7 @@ class GoogleController extends Controller
             Auth::login($user);
 
             // Redirect ke halaman home setelah login
-            return redirect('/home');
+            return redirect('/home-creator');
 
         } catch (\Exception $e) {
             // Kalau ada error, redirect ke login dengan pesan error
