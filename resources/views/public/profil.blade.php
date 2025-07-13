@@ -220,20 +220,33 @@
 
                     <!-- Kanan: Tombol -->
                     <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
-
+                        <!-- Like Button -->
                         <button
-                            class="flex items-center gap-2 px-10 py-3 rounded-full text-gray-700 bg-[#F2F4FC] hover:bg-[#e6e9f6] transition">
-                            <img src="/assets/icon/like.png" alt="Like Icon" class="w-6 h-6" />
-                            Like Me
+                            class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
+               rounded-full px-8 py-3 text-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
+               hover:-translate-y-1 flex items-center gap-2">
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-200/10 to-indigo-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                            <div class="relative z-10 flex items-center gap-2 text-sm">
+                                <img src="/assets/icon/like.png" alt="Like Icon" class="w-6 h-6" />
+                                Like Me
+                            </div>
                         </button>
 
+                        <!-- Donate Button -->
                         <button id="donateBtn"
-                            class="flex items-center gap-2 px-10 py-3 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition font-semibold">
-                            <img src="/assets/icon/donate.png" alt="Donate Icon" class="w-6 h-6" />
-                            Donate
+                            class="group relative overflow-hidden bg-indigo-500 hover:bg-indigo-600 
+               rounded-full px-8 py-3 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 
+               hover:-translate-y-1 flex items-center gap-2">
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                            <div class="relative z-10 flex items-center gap-2 text-sm">
+                                <img src="/assets/icon/donate.png" alt="Donate Icon" class="w-6 h-6" />
+                                Donate
+                            </div>
                         </button>
-
                     </div>
+
                 </div>
 
                 <!-- Bio -->
