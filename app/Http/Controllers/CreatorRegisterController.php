@@ -115,6 +115,8 @@ class CreatorRegisterController extends Controller
             'role'     => 'kreator',
         ]);
 
+        $user->assignRole('kreator');
+
         CreatorProfile::create([
             'creator_id' => $user->id,
             'job'        => $data['job'],
