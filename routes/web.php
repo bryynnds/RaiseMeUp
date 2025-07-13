@@ -65,6 +65,10 @@ Route::get('/home-creator', function () {
     return view('creator.landing');
 });
 
+Route::get('/profile', function () {
+    return view('public.profil');
+});
+
 Route::get('/home-public', function () {
     return view('public.landing');
 });
