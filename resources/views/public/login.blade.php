@@ -54,15 +54,27 @@
         class="bg-white/10 backdrop-blur-md shadow-xl rounded-2xl w-full max-w-sm p-5 sm:p-6 form-container border border-white/30">
 
         <!-- Logo -->
-        <div class="flex justify-center mb-4">
+        {{-- <div class="flex justify-center mb-4">
             <img src="https://via.placeholder.com/70x70?text=R" alt="RaiseMeUp Logo"
                 class="w-16 h-16 rounded-full shadow-lg ring-4 ring-white/40" />
-        </div>
+        </div> --}}
+
+        <a href="{{ route('landing') }}" class="flex justify-center mb-4">
+            <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
+                class="w-16 h-16 rounded-full shadow-lg ring-4 ring-white/40" />
+        </a>
 
         <!-- Judul -->
-        <h1 style="font-family: 'Protest Riot', cursive;" class="text-xl font-medium text-center text-white mb-1">
+        {{-- <h1 style="font-family: 'Protest Riot', cursive;" class="text-xl font-medium text-center text-white mb-1">
             RaiseMeUP
-        </h1>
+        </h1> --}}
+
+        <a href="{{ route('landing') }}">
+            <h1 style="font-family: 'Protest Riot', cursive;" class="text-xl font-medium text-center text-white mb-1">
+                RaiseMeUp
+            </h1>
+        </a>
+
 
         <p class="text-center text-white text-sm font-medium mb-4">
             Dukung kreator favoritmu dengan mudah~
