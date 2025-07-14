@@ -79,8 +79,19 @@
             Daftar sebagai <span class="font-semibold text-blue-300">Supporter</span>
         </p>
 
+        @if ($errors->any())
+            <div class="bg-red-600/80 text-white text-xs rounded px-3 py-2 mb-2">
+                @foreach ($errors->all() as $error)
+                    <div>- {{ $error }}</div>
+                @endforeach
+            </div>
+        @endif
+
+
         <!-- Form Registrasi -->
-        <form class="space-y-3" autocomplete="off">
+        <form class="space-y-3" id="registerForm" method="POST" autocomplete="off"
+            action="{{ route('supporter.register.otp') }}" onsubmit="return showOtpAlert();">
+            @csrf
             <input type="text" name="username" placeholder="Username"
                 class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
@@ -90,7 +101,7 @@
             <input type="password" name="password" placeholder="Password"
                 class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
-            <input type="password" name="confirm_password" placeholder="Konfirmasi Password"
+            <input type="password" name="password_confirmation" placeholder="Konfirmasi Password"
                 class="w-full px-4 py-2 border border-white/30 rounded-md bg-white/10 text-white placeholder-white/70 input-focus text-sm" />
 
             <button type="submit"
@@ -105,6 +116,16 @@
             <a href="/login" class="text-white underline hover:text-blue-200">Login di sini</a>
         </p>
     </div>
+
+    <script>
+        function showOtpAlert() {
+            alert('Mendaftarkan akun dan mengirim OTP ke email…');
+            return true;
+        }
+        
+    </script>
+
+
 
 </body>
 

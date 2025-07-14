@@ -30,7 +30,11 @@ class CreatorRegisterController extends Controller
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
             'job'      => 'nullable|string|max:255',
+            
         ]);
+        
+        $data['role'] = 'kreator'; // tambahkan
+
 
         /* generate 6‑digit OTP */
         // semula
@@ -48,7 +52,7 @@ class CreatorRegisterController extends Controller
             'otp_expires'  => now()->addMinutes(5),
         ]);
 
-        return redirect()->route('otp.form')
+        return redirect()->route('creator.otp.form')
             ->with('status', 'OTP telah dikirim ke email Anda.');
     }
 

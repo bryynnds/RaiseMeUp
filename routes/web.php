@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CreatorRegisterController;
+use App\Http\Controllers\SupporterRegisterController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ExplorerController;
@@ -45,9 +46,24 @@ Route::get('/home-supporter', function () {
 });
 
 // Route Register Supporter
-Route::get('/register/supporter', function () {
-    return view('public.supporter');
-});
+// Route::get('/register/supporter', function () {
+//     return view('public.supporter');
+// });
+
+Route::get('/register/supporter', [SupporterRegisterController::class, 'showForm'])
+    ->name('supporter.register.form');
+
+Route::post('/register/supporter', [SupporterRegisterController::class, 'sendOtp'])
+    ->name('supporter.register.otp');
+
+Route::get('/register/otp/supporter', [SupporterRegisterController::class, 'showOtpForm'])
+    ->name('supporter.otp.form');
+
+Route::post('/register/otp/supporter', [SupporterRegisterController::class, 'verifyOtp'])
+    ->name('supporter.otp.verify');
+
+Route::post('/register/otp/supporter/resend', [SupporterRegisterController::class, 'resendOtp'])
+    ->name('supporter.otp.resend');
 
 
 // Route Creator
@@ -62,15 +78,14 @@ Route::get('/register/creator', [CreatorRegisterController::class, 'showForm'])
 Route::post('/register/creator', [CreatorRegisterController::class, 'sendOtp'])
     ->name('creator.register.otp');
 
-Route::get('/register/otp', [CreatorRegisterController::class, 'showOtpForm'])
-    ->name('otp.form');
+Route::get('/register/otp/creator', [CreatorRegisterController::class, 'showOtpForm'])
+    ->name('creator.otp.form');
 
-/* LANGKAH 2 → verifikasi otp & simpan user (POST) */
-Route::post('/register/otp', [CreatorRegisterController::class, 'verifyOtp'])
-    ->name('otp.verify');
+Route::post('/register/otp/creator', [CreatorRegisterController::class, 'verifyOtp'])
+    ->name('creator.otp.verify');
 
-Route::post('/register/otp/resend', [CreatorRegisterController::class, 'resendOtp'])
-    ->name('otp.resend');
+Route::post('/register/otp/creator/resend', [CreatorRegisterController::class, 'resendOtp'])
+    ->name('creator.otp.resend');
 
 
 

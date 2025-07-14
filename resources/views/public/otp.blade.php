@@ -46,7 +46,12 @@
         <p class="text-sm mb-6 text-white/80">Kode verifikasi telah dikirim ke email kamu. Masukkan 6 digit kode di
             bawah ini:</p>
 
-        <form id="otpForm" method="POST" action="{{ route('otp.verify') }}"
+        @php
+            $role = session('pending_user.role');
+            $verifyRoute = $role === 'supporter' ? route('supporter.otp.verify') : route('creator.otp.verify');
+        @endphp
+
+        <form id="otpForm" method="POST" action="{{ $verifyRoute }}"
             class="flex justify-between max-w-xs mx-auto gap-2 mb-6">
             @csrf
             <input type="text" maxlength="1" class="otp-input" />
@@ -74,7 +79,6 @@
     </div>
 
     <script>
-
         const inputs = document.querySelectorAll(".otp-input");
         inputs.forEach((input, i) => {
             input.addEventListener("input", () => {
@@ -89,7 +93,11 @@
             const otpCode = [...inputs].map(i => i.value).join("");
             if (otpCode.length < 6) return alert("Kode OTP belum lengkap 😢");
 
-            const res = await fetch("{{ route('otp.verify') }}", {
+            @php
+                $otpRoute = request()->session()->get('pending_user.role') === 'supporter' ? route('supporter.otp.verify') : route('creator.otp.verify');
+            @endphp
+
+            const res = await fetch("{{ $otpRoute }}", {
                 method: "POST",
                 credentials: "same-origin", // ⬅️ LINE BARU
                 headers: {
@@ -135,7 +143,12 @@
             resendLink.textContent = "Mengirim…";
 
             try {
-                const r = await fetch("{{ route('otp.resend') }}", {
+                @php
+                    $resendRoute = request()->session()->get('pending_user.role') === 'supporter' ? route('supporter.otp.resend') : route('creator.otp.resend');
+                @endphp
+
+                const r = await fetch("{{ $resendRoute }}", {
+
                     method: "POST",
                     credentials: "same-origin",
                     headers: {
