@@ -94,7 +94,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 Route::get('/login', function () {
     return view('public.login');
-})->name('login');
+})->middleware('redirect.role')->name('login'); // Ini pake middleware, biar kalo udah login kaga bisa masuk ke halaman login via url lagi. Tombol Logout ada di Section 2
 
 Route::get('/role', function () {
     return view('public.role');

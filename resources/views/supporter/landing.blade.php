@@ -102,6 +102,10 @@
 
 
   <div class="w-full h-screen bg-gray-400 flex items-center justify-center text-gray-800 text-3xl font-bold">
+    <a href="{{ route('logout') }}"
+            class="inline-block px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+            Logout
+        </a>
     Section 2
   </div>
 
