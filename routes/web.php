@@ -20,18 +20,47 @@ Route::get('/preview/{folder}/{file}', function ($folder, $file) {
     return view($viewPath);
 });
 
+//Route Landing Page dan Halaman Public
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Menampilkan form
+Route::get('/home-public', function () {
+    return view('public.landing');
+})->name('landing');;
+
+Route::get('/explorer', function () {
+    return view('public.explorer');
+});
+Route::get('/explorer', [ExplorerController::class, 'index'])->name('explorer');
+
+Route::get('/profile', function () {
+    return view('public.profil');
+});
+
+
+// Route Supporter
+Route::get('/home-supporter', function () {
+    return view('supporter.landing');
+});
+
+// Route Register Supporter
+Route::get('/register/supporter', function () {
+    return view('public.supporter');
+});
+
+
+// Route Creator
+Route::get('/home-creator', function () {
+    return view('creator.landing');
+});
+
+//Route Register Creator
 Route::get('/register/creator', [CreatorRegisterController::class, 'showForm'])
     ->name('creator.register.form');
 
 Route::post('/register/creator', [CreatorRegisterController::class, 'sendOtp'])
     ->name('creator.register.otp');
-
-Route::get('/register/supporter', function () {
-    return view('public.supporter');
-});
-
 
 Route::get('/register/otp', [CreatorRegisterController::class, 'showOtpForm'])
     ->name('otp.form');
@@ -40,39 +69,12 @@ Route::get('/register/otp', [CreatorRegisterController::class, 'showOtpForm'])
 Route::post('/register/otp', [CreatorRegisterController::class, 'verifyOtp'])
     ->name('otp.verify');
 
-// routes/web.php
 Route::post('/register/otp/resend', [CreatorRegisterController::class, 'resendOtp'])
     ->name('otp.resend');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/explorer', function () {
-    return view('public.explorer');
-});
-
-Route::get('/explorer', [ExplorerController::class, 'index'])->name('explorer');
-
-// routes/web.php
-
-Route::get('/home-supporter', function () {
-    return view('supporter.landing');
-});
-
-Route::get('/home-creator', function () {
-    return view('creator.landing');
-});
-
-Route::get('/profile', function () {
-    return view('public.profil');
-});
-
-Route::get('/home-public', function () {
-    return view('public.landing');
-});
-
+// Route Login logic
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 Route::get('/login', function () {

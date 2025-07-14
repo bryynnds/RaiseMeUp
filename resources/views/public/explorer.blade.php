@@ -98,13 +98,19 @@
     <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-gray-800">
         <div class="inner transition-all duration-300 max-w-7xl mx-auto px-8 sm:px-6 lg:px-14">
             <div class="navbar-content flex justify-between items-center h-20 transition-all duration-300">
-                <div class="flex items-center">
+                {{-- <div class="flex items-center">
                     <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
                         class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
                     <span class="brand-text text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
                         RaiseMeUp
                     </span>
-                </div>
+                </div> --}}
+
+                <a href="{{ route('landing') }}" class="flex items-center">
+                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
+                        class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
+                    <span class="brand-text text-2xl lg:px-12 font-protest font-medium transition-all duration-300">RaiseMeUp</span>
+                </a>
 
                 <div class="flex space-x-6 items-center">
                     <a href="#explore"
@@ -380,6 +386,17 @@
                 navbar.classList.remove("bg-white", "border", "backdrop-blur-sm", "shrink");
             }
         });
+
+        // Fungsi tombol login
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            window.location.href = "{{ route('login') }}";
+        });
+
+        // Fungsi tombol explore (ganti href-nya)
+        const exploreLink = document.querySelector('#navbar a[href="#explore"]');
+        if (exploreLink) {
+            exploreLink.setAttribute('href', "{{ route('explorer') }}");
+        }
     </script>
 
 
