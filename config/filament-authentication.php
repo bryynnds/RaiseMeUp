@@ -26,7 +26,7 @@ return [
             'icon'     => 'heroicon-o-user-group'
         ],
         'permission'         => [
-            'register' => true,
+            'register' => false,
             'sort'     => 4,
             'icon'     => 'heroicon-o-lock-closed'
         ],

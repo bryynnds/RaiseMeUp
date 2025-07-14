@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Donation::class, 'creator_id');
     }
+
+    public function getRoleNameAttribute()
+    {
+        return $this->attributes['role'];
+    }
 }
