@@ -155,16 +155,16 @@
     <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-gray-800">
         <div class="inner transition-all duration-300 max-w-7xl mx-auto px-4 sm:px-6 lg:px-14">
             <div class="navbar-content flex justify-between items-center h-20 transition-all duration-300">
-                <div class="flex items-center">
+                <a href="{{ route('home_supporter') }}" class="flex items-center">
                     <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
                         class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
                     <span class="brand-text text-xl sm:text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
                         RaiseMeUp
                     </span>
-                </div>
+                </a>
 
                 <div class="flex space-x-3 sm:space-x-6 items-center">
-                    <a href="#explore"
+                    <a href="{{ route('explorer_supporter') }}"
                         class="explore-link font-bold px-2 lg:px-4 text-gray-800 transition-all duration-300">
                         <div class="explore-wrapper flex items-center gap-1 sm:gap-2 transition-all duration-300">
                             <img src="/assets/icon/launch.png" alt="icon"
@@ -173,9 +173,9 @@
                         </div>
                     </a>
 
-                    <button id="loginBtn"
-                        class="w-full text-center text-xs sm:text-sm font-bold rounded-md px-2 sm:px-3 py-2 sm:py-3 bg-white text-gray-700">
-                        Log In
+                    <button onclick="window.location.href='{{ route('profile_supporter') }}'" id="userIcon"
+                        class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center">
+                        <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
                     </button>
                 </div>
             </div>

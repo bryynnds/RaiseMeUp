@@ -43,7 +43,15 @@ Route::get('/profile', function () {
 // Route Supporter
 Route::get('/home-supporter', function () {
     return view('supporter.landing');
-});
+})->name('home_supporter');
+
+Route::get('/explorer-supporter', function () {
+    return view('supporter.explorer');
+})->name('explorer_supporter');
+
+Route::get('/profile-supporter', function () {
+    return view('supporter.profile');
+})->name('profile_supporter');
 
 // Route Register Supporter
 // Route::get('/register/supporter', function () {
@@ -69,7 +77,7 @@ Route::post('/register/otp/supporter/resend', [SupporterRegisterController::clas
 // Route Creator
 Route::get('/home-creator', function () {
     return view('creator.landing');
-});
+})->name('home_creator');
 
 //Route Register Creator
 Route::get('/register/creator', [CreatorRegisterController::class, 'showForm'])

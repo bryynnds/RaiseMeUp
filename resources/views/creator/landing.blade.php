@@ -34,11 +34,11 @@
     <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-white">
         <div class="max-w-7xl py-4 mx-auto px-8 sm:px-6 lg:px-14">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
+                <a href="{{ route('home_creator') }}" class="flex items-center">
                     <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
                         class="w-8 h-8 mr-2 hidden md:block" />
                     <span class="text-2xl lg:px-12 font-protest font-medium">RaiseMeUp</span>
-                </div>
+                </a>
 
                 <div class="flex space-x-6 items-center">
                     <a href="#explore" class="font-bold px-2 lg:px-4">
