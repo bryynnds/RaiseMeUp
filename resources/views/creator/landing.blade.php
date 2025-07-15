@@ -41,14 +41,14 @@
                 </a>
 
                 <div class="flex space-x-6 items-center">
-                    <a href="#explore" class="font-bold px-2 lg:px-4">
+                    <a href="{{ route('explorer_creator') }}" class="font-bold px-2 lg:px-4">
                         <div class="flex items-center gap-2">
                             <img src="/assets/icon/launch.png" alt="icon" class="w-5 h-5 nav-icon" />
                             Explore
                         </div>
                     </a>
 
-                    <button id="userIcon"
+                    <button onclick="window.location.href='{{ route('profile_creator') }}'" id="userIcon"
                         class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center border border-blue-400">
                         <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
                     </button>

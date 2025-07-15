@@ -79,6 +79,14 @@ Route::get('/home-creator', function () {
     return view('creator.landing');
 })->name('home_creator');
 
+Route::get('/explorer-creator', function () {
+    return view('creator.explorer');
+})->name('explorer_creator');
+
+Route::get('/profile-creator', function () {
+    return view('creator.profile');
+})->name('profile_creator');
+
 //Route Register Creator
 Route::get('/register/creator', [CreatorRegisterController::class, 'showForm'])
     ->name('creator.register.form');

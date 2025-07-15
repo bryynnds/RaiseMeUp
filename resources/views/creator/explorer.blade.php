@@ -37,20 +37,23 @@
     <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-white">
         <div class="max-w-7xl py-4 mx-auto px-8 sm:px-6 lg:px-14">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
-                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo" class="w-8 h-8 mr-2 hidden md:block" />
+                <a href="{{ route('home_creator') }}" class="flex items-center">
+                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
+                        class="w-8 h-8 mr-2 hidden md:block" />
                     <span class="text-2xl lg:px-12 font-protest font-medium">RaiseMeUp</span>
-                </div>
+                </a>
+
+                
 
                 <div class="flex space-x-6 items-center">
-                    <a href="#explore" class="font-bold px-2 lg:px-4">
+                    <a href="{{ route('explorer_creator') }}" class="font-bold px-2 lg:px-4">
                         <div class="flex items-center gap-2">
                             <img src="/assets/icon/launch.png" alt="icon" class="w-5 h-5 nav-icon" />
                             Explore
                         </div>
                     </a>
 
-                    <button id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center border border-blue-400">
+                    <button onclick="window.location.href='{{ route('profile_creator') }}'" id="userIcon" class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center border border-blue-400">
                         <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
                     </button>
                 </div>
