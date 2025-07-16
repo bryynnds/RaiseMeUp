@@ -158,7 +158,8 @@
                 <a href="{{ route('home_supporter') }}" class="flex items-center">
                     <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
                         class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
-                    <span class="brand-text text-xl sm:text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
+                    <span
+                        class="brand-text text-xl sm:text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
                         RaiseMeUp
                     </span>
                 </a>
@@ -185,13 +186,15 @@
     <!-- Sampul -->
     <section class="relative">
         <div class="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] bg-gray-300">
-            <img src="{{ asset('assets/sampul.jpg') }}" alt="Cover Image" class="w-full h-full object-cover" />
+            <img src="{{ $creator->fotosampul_url ? asset('storage/' . $creator->fotosampul_url) : asset('assets/sampul.jpg') }}"
+                alt="Cover Image" class="w-full h-full object-cover" />
         </div>
     </section>
 
     <!-- Konten Profil -->
     <section class="relative z-20 -mt-6 sm:-mt-10 md:-mt-20">
-        <div class="bg-white border-b border-gray-300 w-full px-4 sm:px-6 md:px-10 lg:px-32 py-4 sm:py-6 md:py-8 rounded-none">
+        <div
+            class="bg-white border-b border-gray-300 w-full px-4 sm:px-6 md:px-10 lg:px-32 py-4 sm:py-6 md:py-8 rounded-none">
 
             <!-- Desktop Layout -->
             <div class="hidden md:block">
@@ -201,17 +204,18 @@
                     <!-- Kiri: Foto & Identitas -->
                     <div class="flex items-start gap-5">
                         <!-- Foto Profil -->
-                        <img src="/assets/pp.png" alt="Profile Picture"
+                        <img src="{{ $creator->pp_url ? asset('storage/' . $creator->pp_url) : asset('assets/pp.png') }}"
+                            alt="Profile Picture"
                             class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
 
                         <div class="flex flex-col -mt-4 gap-1">
                             <!-- Username -->
-                            <span class="text-gray-700 text-xs">@Nayla_Cutelyn</span>
+                            <span class="text-gray-700 text-xs"><span>@</span>{{ $user->name }}</span>
                             <!-- Nama -->
-                            <h1 class="text-2xl font-bold text-gray-900">Nayla Evelyn</h1>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                             <!-- Stats -->
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
-                                <span>2k Like</span>
+                                <span id="likeCount">{{ $likeCount }} Like</span>
                                 <span>&bull;</span>
                                 <span>278 Supports</span>
                             </div>
@@ -221,12 +225,14 @@
                     <!-- Kanan: Tombol -->
                     <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
                         <!-- Like Button -->
-                        <button
+                        <button id="likeBtn"
                             class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
                rounded-full px-8 py-3 text-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
                hover:-translate-y-1 flex items-center gap-2">
                             <!-- Gradient Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-200/10 to-indigo-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-indigo-200/10 to-indigo-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full">
+                            </div>
                             <div class="relative z-10 flex items-center gap-2 text-sm">
                                 <img src="/assets/icon/like.png" alt="Like Icon" class="w-6 h-6" />
                                 Like Me
@@ -239,7 +245,9 @@
                rounded-full px-8 py-3 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 
                hover:-translate-y-1 flex items-center gap-2">
                             <!-- Gradient Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full">
+                            </div>
                             <div class="relative z-10 flex items-center gap-2 text-sm">
                                 <img src="/assets/icon/donate.png" alt="Donate Icon" class="w-6 h-6" />
                                 Donate
@@ -252,10 +260,11 @@
                 <!-- Bio -->
                 <div class="mt-2">
                     <div class="flex items-center gap-3">
-                        <button class="px-4 py-1 border rounded-full text-sm font-medium bg-gray-100 text-gray-600">Bio</button>
+                        <button
+                            class="px-4 py-1 border rounded-full text-sm font-medium bg-gray-100 text-gray-600">Bio</button>
                         <p class="text-sm text-gray-500">
-                            "I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ<)♡"
-                                </p>
+                            "{{ $creator->bio }}"
+                        </p>
                     </div>
                 </div>
 
@@ -271,7 +280,8 @@
                 <!-- Profile Section -->
                 <div class="flex flex-col items-center text-center">
                     <!-- Foto Profil -->
-                    <img src="/assets/pp.png" alt="Profile Picture"
+                    <img src="{{ $creator->pp_url ? asset('storage/' . $creator->pp_url) : asset('assets/pp.png') }}"
+                        alt="Profile Picture"
                         class="profile-image-mobile rounded-full border-4 border-white object-cover mb-3" />
 
                     <!-- Identitas -->
@@ -282,7 +292,7 @@
                         <h1 class="text-xl font-bold text-gray-900">Nayla Evelyn</h1>
                         <!-- Stats -->
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
-                            <span>2k Like</span>
+                            <span id="likeCountMobile">{{ $likeCount }}</span>
                             <span>&bull;</span>
                             <span>278 Supports</span>
                         </div>
@@ -306,15 +316,17 @@
                     <!-- Bio -->
                     <div class="w-full">
                         <div class="flex flex-col gap-2 text-center">
-                            <button class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
+                            <button
+                                class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
                             <p class="text-sm text-gray-500 px-2">
-                                "I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ<)♡"
-                                    </p>
+                                "I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ
+                                <)♡" </p>
                         </div>
                     </div>
 
                     <!-- Tab Navigasi -->
-                    <div class="mt-6 border-b border-gray-300 flex gap-8 text-sm font-medium text-gray-500 w-full justify-center">
+                    <div
+                        class="mt-6 border-b border-gray-300 flex gap-8 text-sm font-medium text-gray-500 w-full justify-center">
                         <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Portofolio</button>
                         <button class="hover:text-indigo-600 transition">About</button>
                     </div>
@@ -365,6 +377,56 @@
             }
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const likeBtn = document.getElementById('likeBtn');
+
+            if (likeBtn) {
+                likeBtn.addEventListener('click', function() {
+                    const creatorId = {{ $creator->creator_id }};
+
+                    fetch(`/like/${creatorId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json'
+                            },
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message === 'Liked') {
+                                alert('Berhasil menyukai kreator!');
+                            } else if (data.message === 'Unliked') {
+                                alert('Kamu membatalkan like.');
+                            } else {
+                                alert('Terjadi sesuatu yang tidak terduga.');
+                            }
+
+                            // Setelah sukses like/unlike, update jumlah like
+                            fetch(`/api/like-count/${creatorId}`)
+                                .then(res => res.json())
+                                .then(countData => {
+                                    document.getElementById('likeCount').innerText =
+                                        `${countData.count} Like`;
+                                    const mobileLike = document.getElementById('likeCountMobile');
+                                    if (mobileLike) mobileLike.innerText =
+                                    `${countData.count} Like`;
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Terjadi kesalahan saat menyukai.');
+                                });
+                        });
+                });
+            }
+        });
+    </script>
+
+
+
+
 
 </body>
 
