@@ -1,52 +1,63 @@
 <?php
 
+// app/Http/Controllers/DonationController.php
+
 namespace App\Http\Controllers;
 
-use App\Models\Donation;
 use Illuminate\Http\Request;
+use App\Models\Donation;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
+use Midtrans\Snap;
+use Midtrans\Config;
 
 class DonationController extends Controller
 {
-    public function index()
+    public function getSnapToken(Request $request)
     {
-        return Donation::all();
-    }
+        try {
+            Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+            Config::$isProduction = false;
+            Config::$isSanitized = true;
+            Config::$is3ds = true;
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'supporter_id' => 'required|exists:users,id',
-            'creator_id' => 'required|exists:users,id',
-            'amount' => 'required|numeric',
-            'message' => 'nullable|string',
-        ]);
+            $amount = (int) str_replace(',', '', $request->amount);
+            $message = $request->message;
+            $creator_id = $request->creator_id;
+            $supporter_id = Auth::id(); // ✅ FIXED
 
-        $donation = Donation::create($validated);
-        return response()->json($donation, 201);
-    }
+            $donation = Donation::create([
+                'supporter_id' => $supporter_id,
+                'creator_id' => $creator_id,
+                'message' => $message,
+                'amount' => $amount,
+            ]);
 
-    public function show($id)
-    {
-        return Donation::findOrFail($id);
-    }
+            $transactionDetails = [
+                'transaction_details' => [
+                    'order_id' => 'DONATE-' . $donation->id . '-' . time(),
+                    'gross_amount' => $amount,
+                ],
+                'customer_details' => [
+                    'first_name' => $request->user()->name,
+                    'email' => $request->user()->email,
+                ],
+            ];
 
-    public function update(Request $request, $id)
-    {
-        $donation = Donation::findOrFail($id);
+            $snapToken = Snap::getSnapToken($transactionDetails);
 
-        $validated = $request->validate([
-            'amount' => 'sometimes|required|numeric',
-            'message' => 'nullable|string',
-        ]);
+            Transaction::create([
+                'donation_id' => $donation->id,
+                'snap_token' => $snapToken,
+                'status' => 'pending'
+            ]);
 
-        $donation->update($validated);
-        return response()->json($donation);
-    }
-
-    public function destroy($id)
-    {
-        $donation = Donation::findOrFail($id);
-        $donation->delete();
-        return response()->json(['message' => 'Deleted successfully']);
+            return response()->json(['token' => $snapToken]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

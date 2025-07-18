@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ExplorerController;
 use App\Http\Controllers\Supporter\CreatorProfileController;
+use App\Http\Controllers\DonationController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -116,6 +117,9 @@ Route::get('/api/like-count/{creatorId}', function ($creatorId) {
     $count = \App\Models\Like::where('creator_id', $creatorId)->count();
     return response()->json(['count' => $count]);
 });
+
+//Route Donate Logic
+Route::post('/donate/snap-token', [\App\Http\Controllers\DonationController::class, 'getSnapToken'])->middleware('auth');
 
 
 // Route Login logic

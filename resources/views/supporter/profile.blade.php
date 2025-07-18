@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
         body {
@@ -340,7 +341,7 @@
 
     </div>
 
-    <x-donate />
+    <x-donate :creator="$creator" />
 
     <x-footer />
 
