@@ -10,6 +10,8 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Snap;
 use Midtrans\Config;
+use Midtrans\Transaction as MidtransTransaction;
+
 
 class DonationController extends Controller
 {
@@ -58,6 +60,43 @@ class DonationController extends Controller
                 'error' => true,
                 'message' => $e->getMessage(),
             ], 500);
+        }
+    }
+
+    public function handleSuccessTransaction(Request $request)
+    {
+        $orderId = $request->input('order_id');
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-1poqHyxFVvvR7tbuDBbhK95z';
+        \Midtrans\Config::$isProduction = false;
+
+        try {
+            // Ambil status dari Midtrans berdasarkan order_id
+            $status = MidtransTransaction::status($orderId);
+
+            // Ambil donation_id dari order_id (asumsikan order_id = 'DONATE-{donation_id}-{timestamp}')
+            preg_match('/^DONATE-(\d+)-/', $orderId, $matches);
+            $donationId = $matches[1] ?? null;
+
+            if (!$donationId) {
+                return response()->json(['error' => true, 'message' => 'Invalid order_id format']);
+            }
+
+            // Temukan record transaksi
+            $transaction = Transaction::where('donation_id', $donationId)->first();
+
+            if (!$transaction) {
+                return response()->json(['error' => true, 'message' => 'Transaksi tidak ditemukan']);
+            }
+
+            // Update kolom dari data Midtrans
+            $transaction->midtrans_transaction_id = $status->transaction_id;
+            $transaction->payment_method = $status->payment_type;
+            $transaction->status = $status->transaction_status;
+            $transaction->save();
+
+            return response()->json(['success' => true, 'message' => 'Transaksi berhasil diupdate']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => 'Gagal mengambil status Midtrans']);
         }
     }
 }

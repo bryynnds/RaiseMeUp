@@ -373,6 +373,22 @@
                             onSuccess: function(result) {
                                 console.log('Success:', result);
                                 // (Opsional) Fetch ke backend untuk update status
+                                fetch("/donate/confirm-payment", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "X-CSRF-TOKEN": document.querySelector(
+                                                    'meta[name="csrf-token"]')
+                                                .content
+                                        },
+                                        body: JSON.stringify({
+                                            order_id: result.order_id
+                                        })
+                                    }).then(res => res.json())
+                                    .then(data => {
+                                        console.log("Update status:", data);
+                                        alert("Donasi berhasil!");
+                                    });
                             },
                             onPending: function(result) {
                                 console.log('Pending:', result);

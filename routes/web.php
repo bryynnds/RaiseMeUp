@@ -121,6 +121,10 @@ Route::get('/api/like-count/{creatorId}', function ($creatorId) {
 //Route Donate Logic
 Route::post('/donate/snap-token', [\App\Http\Controllers\DonationController::class, 'getSnapToken'])->middleware('auth');
 
+Route::post('/donate/confirm-payment', [DonationController::class, 'handleSuccessTransaction']);
+
+
+
 
 // Route Login logic
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
