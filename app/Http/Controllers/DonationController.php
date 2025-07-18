@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Donation;
 use App\Models\Transaction;
+use App\Models\CreatorProfile;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Snap;
 use Midtrans\Config;
@@ -94,9 +95,31 @@ class DonationController extends Controller
             $transaction->status = $status->transaction_status;
             $transaction->save();
 
+            $this->updateTotalIncome($transaction->donation->creator_id);
+
+
             return response()->json(['success' => true, 'message' => 'Transaksi berhasil diupdate']);
         } catch (\Exception $e) {
             return response()->json(['error' => true, 'message' => 'Gagal mengambil status Midtrans']);
         }
     }
+
+    public function updateTotalIncome($creator_id)
+{
+    // Ambil semua transaksi yang sudah settlement berdasarkan creator_id
+    $total = Transaction::where('status', 'settlement')
+        ->whereHas('donation', function ($query) use ($creator_id) {
+            $query->where('creator_id', $creator_id);
+        })
+        ->with('donation')
+        ->get()
+        ->sum(function ($transaction) {
+            return $transaction->donation->amount ?? 0;
+        });
+
+    // Update ke kolom total_income di tabel creator_profiles
+    CreatorProfile::where('creator_id', $creator_id)->update([
+        'total_income' => $total
+    ]);
+}
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Supporter;
 use App\Http\Controllers\Controller;
 use App\Models\CreatorProfile;
 use App\Models\User;
+use App\Models\Donation;
 
 class CreatorProfileController extends Controller
 {
@@ -16,10 +17,17 @@ class CreatorProfileController extends Controller
         // Hitung jumlah like berdasarkan creator_id
         $likeCount = \App\Models\Like::where('creator_id', $id)->count();
 
+        $jumlahSupport = Donation::where('creator_id', $id)
+        ->whereHas('transactions', function ($query) {
+            $query->where('status', 'settlement');
+        })
+        ->count();
+
         return view('supporter.profile', [
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini
+            'jumlahSupport' => $jumlahSupport
         ]);
     }
 }
