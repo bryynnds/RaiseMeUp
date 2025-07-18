@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-PI0l6oWsyS6KgZGR"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
 
 <input type="hidden" id="creator_id" value="{{ $creator->creator_id }}">
 
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <h2 class="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2">
-                Support Nayla Evelyn
+                Support {{ $creator->nickname }}
             </h2>
             <p class="text-gray-600 text-sm leading-relaxed">
                 Bantu dia terus berkarya dengan donasi kecilmu ✨<br>

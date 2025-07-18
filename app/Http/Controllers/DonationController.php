@@ -66,7 +66,7 @@ class DonationController extends Controller
     public function handleSuccessTransaction(Request $request)
     {
         $orderId = $request->input('order_id');
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-1poqHyxFVvvR7tbuDBbhK95z';
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
         \Midtrans\Config::$isProduction = false;
 
         try {
