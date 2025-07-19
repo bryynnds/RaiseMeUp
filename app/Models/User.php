@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->hasMany(Donation::class, 'creator_id');
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'creator_id'); // jika like ditujukan ke user
+    }
+
     public function getRoleNameAttribute()
     {
         return $this->attributes['role'];

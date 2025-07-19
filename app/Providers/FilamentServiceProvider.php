@@ -3,6 +3,7 @@
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Filament\Resources\CreatorAdminResource;
 
 class FilamentServiceProvider extends ServiceProvider
 {

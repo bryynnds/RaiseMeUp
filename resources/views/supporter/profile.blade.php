@@ -86,7 +86,7 @@
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
                                 <span>2K Like</span>
                                 <span>&bull;</span>
-                                <span>278 Supports</span>
+                                <span>{{ $jumlahSupport }} Supports</span>
                             </div>
                         </div>
                     </div>
@@ -156,14 +156,14 @@
                     <!-- Identitas -->
                     <div class="flex flex-col gap-1 mb-4">
                         <!-- Username -->
-                        <span class="text-gray-700 text-xs">@Nayla_Cutelyn</span>
+                        <span class="text-gray-700 text-xs"><span>@</span>{{ $user->name }}</span>
                         <!-- Nama -->
-                        <h1 class="text-xl font-bold text-gray-900">Nayla Evelyn</h1>
+                        <h1 class="text-xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                         <!-- Stats -->
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
                             <span>2k Like</span>
                             <span>&bull;</span>
-                            <span>278 Supports</span>
+                            <span>{{ $jumlahSupport }} Supports</span>
                         </div>
                     </div>
 
