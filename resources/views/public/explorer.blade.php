@@ -31,7 +31,7 @@
 
 <body class="scroll-smooth min-h-screen bg-gradient-to-br from-white to-indigo-100">
     <!-- Include Navbar Component -->
-    <x-navbar-explorer />
+    <x-navbar-public-explorer />
 
     <!-- Hero Section -->
     <section class="pt-28 pb-14 text-center px-4">
