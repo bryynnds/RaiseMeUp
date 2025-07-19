@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CreatorRegisterController;
 use App\Http\Controllers\SupporterRegisterController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ExplorerController;
+use App\Http\Controllers\Supporter\CreatorProfileController;
+use App\Http\Controllers\DonationController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -30,10 +33,7 @@ Route::get('/home-public', function () {
     return view('public.landing');
 })->name('landing');;
 
-Route::get('/explorer-public', function () {
-    return view('public.explorer');
-});
-Route::get('/explorer', [ExplorerController::class, 'index'])->name('explorer');
+
 
 Route::get('/profile', function () {
     return view('public.profil');
@@ -102,6 +102,24 @@ Route::post('/register/otp/creator', [CreatorRegisterController::class, 'verifyO
 
 Route::post('/register/otp/creator/resend', [CreatorRegisterController::class, 'resendOtp'])
     ->name('creator.otp.resend');
+
+
+//Route ngambil data ke profile creator
+Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'show'])->name('supporter.creator.profile');
+
+//Route Like Logic
+Route::post('/like/{creatorId}', [LikeController::class, 'store'])->name('like.creator')->middleware('auth');
+
+Route::get('/api/like-count/{creatorId}', function ($creatorId) {
+    $count = \App\Models\Like::where('creator_id', $creatorId)->count();
+    return response()->json(['count' => $count]);
+});
+
+//Route Donate Logic
+Route::post('/donate/snap-token', [\App\Http\Controllers\DonationController::class, 'getSnapToken'])->middleware('auth');
+
+Route::post('/donate/confirm-payment', [DonationController::class, 'handleSuccessTransaction']);
+
 
 
 
