@@ -72,14 +72,13 @@
                             <span class="text-gray-700 text-xs">@Nayla_Cutelyn</span>
                             <h1 class="text-2xl font-bold text-gray-900">Rania Arunika</h1>
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
-                                <span>2K Like</span>
-                                <span>&bull;</span>
-                                <span>278 Supports</span>
+                                <span>Supporter</span>
+                                
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
+                    <div class="flex flex-col -mt-12 gap-3 items-start md:items-end ml-auto">
                         <button class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
         rounded-full px-8 py-3 text-gray-700 font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
         hover:-translate-y-1 flex items-center gap-2">
@@ -92,17 +91,7 @@
                             </div>
                         </button>
 
-                        <button id="withdrawalBtn" class="group relative overflow-hidden bg-indigo-500 hover:bg-indigo-600 
-        rounded-full px-6 py-3.5 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 
-        hover:-translate-y-1 flex items-center gap-2">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-                            <div class="relative z-10 flex items-center gap-2 text-sm">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                                </svg>
-                                Withdrawal
-                            </div>
-                        </button>
+                        
                     </div>
                 </div>
 
@@ -166,7 +155,7 @@
         </div>
     </section>
 
-    <div class="w-full h-56 bg-blue-50 py-4 text-center"></div>
+    <x-portfolio-card />
 
     {{-- Komponen dummy biar ga error --}}
     <div id="donateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
