@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
         body {
@@ -21,126 +20,24 @@
             font-family: 'Protest Riot', cursive;
         }
 
-        #navbar .explore-text,
-        #navbar .brand-text,
-        #navbar a,
-        #navbar span {
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        #navbar .nav-icon {
-            filter: brightness(0) invert(1);
-            transition: filter 0.3s ease;
-        }
-
-        #navbar.shrink {
-            box-shadow: none;
-            color: black;
-        }
-
-        #navbar.shrink .explore-text,
-        #navbar.shrink .brand-text,
-        #navbar.shrink a,
-        #navbar.shrink span {
-            color: black;
-        }
-
-        #navbar.shrink .nav-icon {
-            filter: brightness(0) invert(0);
-        }
-
-        #navbar .inner {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            transition: padding 0.3s ease;
-        }
-
-        #navbar.shrink .inner {
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-        }
-
-        #navbar .navbar-content {
-            height: 5rem;
-            transition: height 0.3s ease;
-        }
-
-        #navbar.shrink .navbar-content {
-            height: 3.5rem;
-        }
-
-        #navbar.shrink .logo {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        #navbar.shrink .brand-text {
-            font-size: 1.125rem;
-        }
-
-        .explore-text {
-            font-size: 0.875rem;
-        }
-
-        .explore-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        #navbar.shrink .explore-text {
-            font-size: 0.75rem;
-        }
-
-        #navbar.shrink .explore-icon {
-            width: 1rem;
-            height: 1rem;
-        }
-
         .filter-btn.active {
             background-color: #2563eb;
             color: white;
             box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
         }
 
-        /* Mobile specific styles */
-        @media (max-width: 768px) {
-            #navbar .navbar-content {
-                height: 4rem;
-            }
+        /* Profile specific styles */
+        .profile-image-mobile {
+            width: 7rem;
+            height: 7rem;
+            margin-top: -3rem;
+        }
 
-            #navbar.shrink .navbar-content {
-                height: 3rem;
-            }
-
-            #navbar .brand-text {
-                font-size: 1.25rem;
-            }
-
-            #navbar.shrink .brand-text {
-                font-size: 1rem;
-            }
-
-            .profile-image-mobile {
-                width: 7rem;
-                height: 7rem;
-                margin-top: -3rem;
-            }
-
-            .profile-content-mobile {
-                margin-top: -1rem;
-            }
+        .profile-content-mobile {
+            margin-top: -1rem;
         }
 
         @media (max-width: 640px) {
-            #navbar .brand-text {
-                font-size: 1.125rem;
-            }
-
-            #navbar.shrink .brand-text {
-                font-size: 0.875rem;
-            }
-
             .profile-image-mobile {
                 width: 6rem;
                 height: 6rem;
@@ -152,38 +49,8 @@
 
 <body class="scroll-smooth min-h-screen bg-gradient-to-br from-white to-indigo-100">
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-gray-800">
-        <div class="inner transition-all duration-300 max-w-7xl mx-auto px-4 sm:px-6 lg:px-14">
-            <div class="navbar-content flex justify-between items-center h-20 transition-all duration-300">
-                <a href="{{ route('home_supporter') }}" class="flex items-center">
-                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
-                        class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
-                    <span
-                        class="brand-text text-xl sm:text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
-                        RaiseMeUp
-                    </span>
-                </a>
-
-                <div class="flex space-x-3 sm:space-x-6 items-center">
-                    <a href="{{ route('explorer_supporter') }}"
-                        class="explore-link font-bold px-2 lg:px-4 text-gray-800 transition-all duration-300">
-                        <div class="explore-wrapper flex items-center gap-1 sm:gap-2 transition-all duration-300">
-                            <img src="/assets/icon/launch.png" alt="icon"
-                                class="explore-icon w-4 h-4 sm:w-5 sm:h-5 nav-icon transition-all duration-300" />
-                            <span class="explore-text text-xs sm:text-sm transition-all duration-300">Explore</span>
-                        </div>
-                    </a>
-
-                    <button data-route="{{ route('profile_supporter') }}" id="userIcon"
-                        class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center">
-                        <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
-                    </button>
-
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Include Navbar Component -->
+    @include('components.navbar-public-profile')
 
     <!-- Sampul -->
     <section class="relative">
@@ -217,7 +84,7 @@
                             <h1 class="text-2xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                             <!-- Stats -->
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
-                                <span id="likeCount">{{ $likeCount }} Like</span>
+                                <span>2K Like</span>
                                 <span>&bull;</span>
                                 <span>278 Supports</span>
                             </div>
@@ -227,7 +94,7 @@
                     <!-- Kanan: Tombol -->
                     <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
                         <!-- Like Button -->
-                        <button id="likeBtn"
+                        <button
                             class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
                rounded-full px-8 py-3 text-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
                hover:-translate-y-1 flex items-center gap-2">
@@ -294,7 +161,7 @@
                         <h1 class="text-xl font-bold text-gray-900">Nayla Evelyn</h1>
                         <!-- Stats -->
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
-                            <span id="likeCountMobile">{{ $likeCount }}</span>
+                            <span>2k Like</span>
                             <span>&bull;</span>
                             <span>278 Supports</span>
                         </div>
@@ -346,26 +213,8 @@
 
     <x-footer />
 
-
+    <!-- Donate Modal Script -->
     <script>
-        document.getElementById('userIcon').addEventListener('click', function() {
-            window.location.href = this.dataset.route;
-        });
-    </script>
-
-    <!-- Script Scroll Navbar -->
-    <script>
-        const navbar = document.getElementById("navbar");
-
-        window.addEventListener("scroll", () => {
-            const scrollY = window.scrollY;
-            if (scrollY > 10) {
-                navbar.classList.add("bg-white", "border", "backdrop-blur-sm", "shrink");
-            } else {
-                navbar.classList.remove("bg-white", "border", "backdrop-blur-sm", "shrink");
-            }
-        });
-
         // Open donate modal
         document.addEventListener('DOMContentLoaded', function() {
             const donateBtn = document.getElementById('donateBtn');
@@ -386,56 +235,6 @@
             }
         });
     </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const likeBtn = document.getElementById('likeBtn');
-
-            if (likeBtn) {
-                likeBtn.addEventListener('click', function() {
-                    const creatorId = {{ $creator->creator_id }};
-
-                    fetch(`/like/${creatorId}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Accept': 'application/json'
-                            },
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.message === 'Liked') {
-                                alert('Berhasil menyukai kreator!');
-                            } else if (data.message === 'Unliked') {
-                                alert('Kamu membatalkan like.');
-                            } else {
-                                alert('Terjadi sesuatu yang tidak terduga.');
-                            }
-
-                            // Setelah sukses like/unlike, update jumlah like
-                            fetch(`/api/like-count/${creatorId}`)
-                                .then(res => res.json())
-                                .then(countData => {
-                                    document.getElementById('likeCount').innerText =
-                                        `${countData.count} Like`;
-                                    const mobileLike = document.getElementById('likeCountMobile');
-                                    if (mobileLike) mobileLike.innerText =
-                                    `${countData.count} Like`;
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                    alert('Terjadi kesalahan saat menyukai.');
-                                });
-                        });
-                });
-            }
-        });
-    </script>
-
-
-
-
 
 </body>
 

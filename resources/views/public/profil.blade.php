@@ -20,126 +20,24 @@
             font-family: 'Protest Riot', cursive;
         }
 
-        #navbar .explore-text,
-        #navbar .brand-text,
-        #navbar a,
-        #navbar span {
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        #navbar .nav-icon {
-            filter: brightness(0) invert(1);
-            transition: filter 0.3s ease;
-        }
-
-        #navbar.shrink {
-            box-shadow: none;
-            color: black;
-        }
-
-        #navbar.shrink .explore-text,
-        #navbar.shrink .brand-text,
-        #navbar.shrink a,
-        #navbar.shrink span {
-            color: black;
-        }
-
-        #navbar.shrink .nav-icon {
-            filter: brightness(0) invert(0);
-        }
-
-        #navbar .inner {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            transition: padding 0.3s ease;
-        }
-
-        #navbar.shrink .inner {
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-        }
-
-        #navbar .navbar-content {
-            height: 5rem;
-            transition: height 0.3s ease;
-        }
-
-        #navbar.shrink .navbar-content {
-            height: 3.5rem;
-        }
-
-        #navbar.shrink .logo {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        #navbar.shrink .brand-text {
-            font-size: 1.125rem;
-        }
-
-        .explore-text {
-            font-size: 0.875rem;
-        }
-
-        .explore-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        #navbar.shrink .explore-text {
-            font-size: 0.75rem;
-        }
-
-        #navbar.shrink .explore-icon {
-            width: 1rem;
-            height: 1rem;
-        }
-
         .filter-btn.active {
             background-color: #2563eb;
             color: white;
             box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
         }
 
-        /* Mobile specific styles */
-        @media (max-width: 768px) {
-            #navbar .navbar-content {
-                height: 4rem;
-            }
+        /* Profile specific styles */
+        .profile-image-mobile {
+            width: 7rem;
+            height: 7rem;
+            margin-top: -3rem;
+        }
 
-            #navbar.shrink .navbar-content {
-                height: 3rem;
-            }
-
-            #navbar .brand-text {
-                font-size: 1.25rem;
-            }
-
-            #navbar.shrink .brand-text {
-                font-size: 1rem;
-            }
-
-            .profile-image-mobile {
-                width: 7rem;
-                height: 7rem;
-                margin-top: -3rem;
-            }
-
-            .profile-content-mobile {
-                margin-top: -1rem;
-            }
+        .profile-content-mobile {
+            margin-top: -1rem;
         }
 
         @media (max-width: 640px) {
-            #navbar .brand-text {
-                font-size: 1.125rem;
-            }
-
-            #navbar.shrink .brand-text {
-                font-size: 0.875rem;
-            }
-
             .profile-image-mobile {
                 width: 6rem;
                 height: 6rem;
@@ -151,37 +49,8 @@
 
 <body class="scroll-smooth min-h-screen bg-gradient-to-br from-white to-indigo-100">
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-gray-800">
-        <div class="inner transition-all duration-300 max-w-7xl mx-auto px-4 sm:px-6 lg:px-14">
-            <div class="navbar-content flex justify-between items-center h-20 transition-all duration-300">
-                <div class="flex items-center">
-                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
-                        class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
-                    <span
-                        class="brand-text text-xl sm:text-2xl lg:px-12 font-protest font-medium transition-all duration-300">
-                        RaiseMeUp
-                    </span>
-                </div>
-
-                <div class="flex space-x-3 sm:space-x-6 items-center">
-                    <a href="#explore"
-                        class="explore-link font-bold px-2 lg:px-4 text-gray-800 transition-all duration-300">
-                        <div class="explore-wrapper flex items-center gap-1 sm:gap-2 transition-all duration-300">
-                            <img src="/assets/icon/launch.png" alt="icon"
-                                class="explore-icon w-4 h-4 sm:w-5 sm:h-5 nav-icon transition-all duration-300" />
-                            <span class="explore-text text-xs sm:text-sm transition-all duration-300">Explore</span>
-                        </div>
-                    </a>
-
-                    <button id="loginBtn"
-                        class="w-full text-center text-xs sm:text-sm font-bold rounded-md px-2 sm:px-3 py-2 sm:py-3 bg-white text-gray-700">
-                        Log In
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Include Navbar Component -->
+    @include('components.navbar-public-profile')
 
     <!-- Sampul -->
     <section class="relative">
@@ -344,19 +213,8 @@
 
     <x-footer />
 
-    <!-- Script Scroll Navbar -->
+    <!-- Donate Modal Script -->
     <script>
-        const navbar = document.getElementById("navbar");
-
-        window.addEventListener("scroll", () => {
-            const scrollY = window.scrollY;
-            if (scrollY > 10) {
-                navbar.classList.add("bg-white", "border", "backdrop-blur-sm", "shrink");
-            } else {
-                navbar.classList.remove("bg-white", "border", "backdrop-blur-sm", "shrink");
-            }
-        });
-
         // Open donate modal
         document.addEventListener('DOMContentLoaded', function() {
             const donateBtn = document.getElementById('donateBtn');
