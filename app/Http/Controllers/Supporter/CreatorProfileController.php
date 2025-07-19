@@ -17,13 +17,14 @@ class CreatorProfileController extends Controller
         // Hitung jumlah like berdasarkan creator_id
         $likeCount = \App\Models\Like::where('creator_id', $id)->count();
 
+
         $jumlahSupport = Donation::where('creator_id', $id)
         ->whereHas('transactions', function ($query) {
             $query->where('status', 'settlement');
         })
         ->count();
 
-        return view('supporter.profile', [
+        return view('public.profile', [
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini

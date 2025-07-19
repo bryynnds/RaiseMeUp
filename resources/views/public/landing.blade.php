@@ -274,7 +274,7 @@
         // Fungsi tombol explore (ganti href-nya)
         const exploreLink = document.querySelector('#navbar a[href="#explore"]');
         if (exploreLink) {
-            exploreLink.setAttribute('href', "{{ route('explorer') }}");
+            exploreLink.setAttribute('href', "{{ route('explorer-public') }}");
         }
     </script>
 
