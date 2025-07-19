@@ -24,7 +24,7 @@ class CreatorProfileController extends Controller
         })
         ->count();
 
-        return view('public.profile', [
+        return view('public.profil', [
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini
