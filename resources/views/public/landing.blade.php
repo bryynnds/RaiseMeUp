@@ -83,7 +83,7 @@
                     <span class="text-2xl lg:px-12 font-protest font-medium">RaiseMeUp</span>
                 </a>
                 <div class="flex space-x-6 items-center">
-                    <a href="#explore" class="font-bold px-2 lg:px-4">
+                    <a href="{{ route('explorer-public') }}" class="font-bold px-2 lg:px-4">
                         <div class="flex items-center gap-2">
                             <img src="/assets/icon/launch.png" alt="icon" class="w-5 h-5 nav-icon" />
                             Explore
@@ -101,29 +101,21 @@
     <!-- Hero -->
     <div class="w-full h-screen bg-cover bg-center flex flex-col relative overflow-hidden"
         style="background-image: url('/assets/bg/bg.jpg')">
-        <!-- Overlay gelap gradasi -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/15 to-transparent z-0"></div>
 
         <div class="h-[15%] w-full flex items-center justify-center relative z-10"></div>
 
         <div class="h-[42%] w-full flex items-center justify-center relative z-10">
             <div class="flex flex-col items-center justify-center text-center space-y-10">
-                <!-- Text + Maskot -->
                 <div class="flex pl-6 items-center justify-end text-right">
                     <div
                         class="text-white flex flex-col space-y-2 text-xl lg:text-3xl font-bold leading-relaxed h-[5.5rem] lg:h-[7rem] min-w-[22rem] max-w-[22rem] overflow-hidden whitespace-nowrap">
                         <span id="typing-line-1" class="typing-text caret-active"></span>
                         <span id="typing-line-2" class="text-base lg:text-3xl leading-[2rem] typing-text"></span>
-
                     </div>
                     <img src="/assets/icon/maskot.png" alt="Illustration" class="pb-6 w-24 h-24 object-contain" />
                 </div>
 
-
-
-
-
-                <!-- Searchbar -->
                 <div
                     class="backdrop-blur-sm bg-white/20 border border-white/70 w-full max-w-md rounded-full px-4 py-3 flex items-center justify-between">
                     <input type="text" placeholder="Kobo Kanaeru"
@@ -136,7 +128,6 @@
             </div>
         </div>
 
-        <!-- Awan bawah -->
         <div class="h-[43vh] flex items-end justify-between relative z-10">
             <img src="/assets/bg/awankiri.png" alt="Gambar Kiri" class="h-64 object-cover object-bottom" />
             <div class="flex items-center justify-center">
@@ -145,57 +136,89 @@
                         class="w-6 h-6 object-contain animate-bounce-scroll" />
                 </div>
             </div>
-
-
             <img src="/assets/bg/awankanan.png" alt="Gambar Kanan" class="h-64 object-cover object-bottom" />
         </div>
     </div>
 
-    <!-- Section 2 (fix: putih tapi terdeteksi juga) -->
     <div
-        class="putih-section w-full h-screen bg-gradient-to-b from-white to-gray-100 flex items-center justify-center text-gray-800 text-3xl font-bold">
+        class="light-section w-full h-screen bg-gradient-to-b from-white to-gray-100 flex items-center justify-center text-gray-800 text-3xl font-bold">
         Section 2
     </div>
 
-    <!-- Section 3 -->
-    <div class="w-full h-screen bg-gray-100 flex items-center justify-center text-gray-900 text-3xl font-bold">
+    <div class="light-section w-full h-screen bg-gray-100 flex items-center justify-center text-gray-900 text-3xl font-bold">
         Section 3
     </div>
 
     <x-footer />
 
-
     <script>
         const navbar = document.getElementById('navbar');
         const loginBtn = document.getElementById('loginBtn');
-        const whiteSections = document.querySelectorAll('.bg-white, .bg-gray-100, .putih-section');
+        const lightSections = document.querySelectorAll('.light-section');
         const iconExplore = document.querySelector('#navbar img[src*="launch"]');
 
         let isLoggedIn = false;
 
-        window.addEventListener('scroll', () => {
-            let masukPutih = false;
+        function typeWithCaret(elId, text, speed = 50, callback = null) {
+            const el = document.getElementById(elId);
+            let i = 0;
+            el.textContent = '';
 
-            whiteSections.forEach(section => {
+            function typeNext() {
+                if (i <= text.length) {
+                    el.textContent = text.slice(0, i);
+                    i++;
+                    setTimeout(typeNext, speed + Math.random() * 25);
+                } else {
+                    el.classList.add('caret-active');
+                    if (callback) callback();
+                }
+            }
+
+            typeNext();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const line1 = document.getElementById('typing-line-1');
+            const line2 = document.getElementById('typing-line-2');
+
+            typeWithCaret('typing-line-1', 'Support Creators,', 50, () => {
+                line1.classList.remove('caret-active');
+                line2.classList.add('caret-active');
+
+                setTimeout(() => {
+                    typeWithCaret('typing-line-2', 'Inspire More Creations', 50);
+                }, 300);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let shouldBeDark = false;
+
+            // Check if navbar is over light sections
+            lightSections.forEach(section => {
                 const rect = section.getBoundingClientRect();
                 if (rect.top <= 80 && rect.bottom >= 80) {
-                    masukPutih = true;
+                    shouldBeDark = true;
                 }
             });
 
+            // Check if navbar is over white cloud images
             const gambarPutihKiri = document.querySelector('img[alt="Gambar Kiri"]');
             const gambarPutihKanan = document.querySelector('img[alt="Gambar Kanan"]');
+            const scrollIcon = document.querySelector('.bg-white.rounded-t-full');
 
-            [gambarPutihKiri, gambarPutihKanan].forEach(img => {
-                if (img) {
-                    const rect = img.getBoundingClientRect();
+            [gambarPutihKiri, gambarPutihKanan, scrollIcon].forEach(element => {
+                if (element) {
+                    const rect = element.getBoundingClientRect();
                     if (rect.top <= 80 && rect.bottom >= 80) {
-                        masukPutih = true;
+                        shouldBeDark = true;
                     }
                 }
             });
 
-            if (masukPutih) {
+            if (shouldBeDark) {
+                // Dark theme (for light backgrounds)
                 navbar.classList.remove('text-white');
                 navbar.classList.add('text-gray-800');
 
@@ -212,6 +235,7 @@
                 }
 
             } else {
+                // Light theme (for dark backgrounds)
                 navbar.classList.add('text-white');
                 navbar.classList.remove('text-gray-800');
 
@@ -228,58 +252,18 @@
                 }
             }
         });
-    </script>
-
-    <script>
-        function typeWithCaret(elId, text, speed = 50, callback = null) {
-            const el = document.getElementById(elId);
-            let i = 0;
-            el.textContent = ''; // reset text
-
-            function typeNext() {
-                if (i <= text.length) {
-                    el.textContent = text.slice(0, i);
-                    i++;
-                    setTimeout(typeNext, speed + Math.random() * 25); // smooth typing
-                } else {
-                    // Pastikan caret tetep nyala setelah selesai ngetik
-                    el.classList.add('caret-active');
-                    if (callback) callback();
-                }
-            }
-
-            typeNext();
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const line1 = document.getElementById('typing-line-1');
-            const line2 = document.getElementById('typing-line-2');
-
-            typeWithCaret('typing-line-1', 'Support Creators,', 50, () => {
-                // Pindah caret ke line 2
-                line1.classList.remove('caret-active');
-                line2.classList.add('caret-active');
-
-                setTimeout(() => {
-                    typeWithCaret('typing-line-2', 'Inspire More Creations', 50);
-                }, 300);
-            });
-        });
 
         // Fungsi tombol login
-        document.getElementById('loginBtn').addEventListener('click', function() {
+        loginBtn?.addEventListener('click', function() {
             window.location.href = "{{ route('login') }}";
         });
 
-        // Fungsi tombol explore (ganti href-nya)
+        // Fungsi tombol explore (ganti href-nya, backup just in case)
         const exploreLink = document.querySelector('#navbar a[href="#explore"]');
         if (exploreLink) {
             exploreLink.setAttribute('href', "{{ route('explorer-public') }}");
         }
     </script>
-
-
-
 
 </body>
 
