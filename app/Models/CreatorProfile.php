@@ -22,8 +22,7 @@ class CreatorProfile extends Model
         'facebook_url',
         'twitter_url',
         'instagram_url',
-        'goal_amount',
-        'current_amount',
+        'total_income',
     ];
 
     /* --- relasi ke tabel users --- */
