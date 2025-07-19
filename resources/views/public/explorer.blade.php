@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Pass data dari Blade ke JavaScript menggunakan meta tag -->
+    <meta name="has-more-pages" content="{{ $creators->hasMorePages() ? '1' : '0' }}">
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -46,13 +50,14 @@
         <!-- Searchbar -->
         <div class="mt-6 max-w-xl mx-auto">
             <input type="text" id="searchInput" placeholder="Cari Kreator Favoritmu"
-            class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none" />
+                class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none" />
         </div>
 
         <!-- Filter Buttons -->
         <div id="filterGroup" class="mt-4 flex flex-wrap justify-center gap-2 sm:gap-3">
             <button
-                class="filter-btn active px-5 py-2 rounded-full bg-blue-600 text-white text-sm font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300">
+                class="filter-btn active px-5 py-2 rounded-full bg-blue-600 text-white text-sm font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300"
+                data-role="all">
                 All
             </button>
             <button
@@ -109,6 +114,9 @@
         const filterButtons = document.querySelectorAll(".filter-btn");
         const searchInput = document.getElementById("searchInput");
 
+        // Ambil data dari meta tag
+        const hasMorePages = document.querySelector('meta[name="has-more-pages"]').content === '1';
+
         function fetchCreators(page = 1, job = 'all', search = '') {
             const params = new URLSearchParams({
                 page,
@@ -134,6 +142,9 @@
                     } else {
                         loadMoreBtn.style.display = "inline-flex";
                     }
+                })
+                .catch(error => {
+                    console.error('Error fetching creators:', error);
                 });
         }
 
@@ -159,7 +170,7 @@
 
                     currentPage = 1;
                     currentJob = btn.dataset.role || 'all';
-                    fetchCreators(currentPage, currentJob);
+                    fetchCreators(currentPage, currentJob, currentSearch);
                 });
             });
 
@@ -171,10 +182,10 @@
                 });
             }
 
-            // Init state for Load More
-            @if (!$creators->hasMorePages())
+            // Initialize Load More button state
+            if (!hasMorePages && loadMoreBtn) {
                 loadMoreBtn.style.display = "none";
-            @endif
+            }
         });
     </script>
 
