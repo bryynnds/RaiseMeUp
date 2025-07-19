@@ -10,7 +10,7 @@
             </a>
 
             <div class="flex space-x-6 items-center">
-                <a href="{{ route('explorer') }}"
+                <a href="{{ route('explorer-public') }}"
                     class="explore-link font-bold px-2 lg:px-4 text-gray-800 transition-all duration-300">
                     <div class="explore-wrapper flex items-center gap-2 transition-all duration-300">
                         <img src="/assets/icon/launch.png" alt="icon"

@@ -33,11 +33,13 @@ Route::get('/home-public', function () {
     return view('public.landing');
 })->name('landing');;
 
+Route::get('/explorer-public', [ExplorerController::class, 'index'])->name('explorer-public');
 
+Route::get('/creator/{id}', [CreatorProfileController::class, 'show'])->name('creator.public.profile');
 
-Route::get('/profile', function () {
-    return view('public.profil');
-});
+// Route::get('/profile', function () {
+//     return view('public.profil');
+// });
 
 
 // Route Supporter

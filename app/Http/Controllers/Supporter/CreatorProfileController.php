@@ -16,7 +16,7 @@ class CreatorProfileController extends Controller
         // Hitung jumlah like berdasarkan creator_id
         $likeCount = \App\Models\Like::where('creator_id', $id)->count();
 
-        return view('supporter.profile', [
+        return view('public.profil', [
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini
