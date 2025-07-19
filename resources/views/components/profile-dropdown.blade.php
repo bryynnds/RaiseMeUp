@@ -1,8 +1,24 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+    $user = Auth::user();
+
+    $role = $user->role ?? null;
+
+    // Tentukan URL foto profil
+    $ppUrl = '/default-avatar.png'; // fallback kalau tidak ada
+
+    if ($role === 'kreator' && $user->creatorProfile) {
+        $ppUrl = $user->creatorProfile->pp_url ?? $ppUrl;
+    } elseif ($role === 'supporter' && $user->supporterProfile) {
+        $ppUrl = $user->supporterProfile->pp_url ?? $ppUrl;
+    }
+@endphp
+
 <div x-data="{ open: false }" class="relative">
     <button @click="open = !open"
         class="relative group w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-0.5 hover:scale-105 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:ring-offset-2">
         <div class="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
-            <img src="https://via.placeholder.com/40x40?text=U" alt="Profile"
+            <img src="{{ $ppUrl }}" alt="Profile Picture"
                 class="w-full h-full rounded-full object-cover" />
         </div>
         <!-- Online indicator -->
@@ -23,13 +39,13 @@
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-0.5">
                     <div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
-                        <img src="https://via.placeholder.com/40x40?text=U" alt="Profile"
+                        <img src="{{ $ppUrl }}" alt="Profile"
                             class="w-full h-full rounded-full object-cover" />
                     </div>
                 </div>
                 <div class="flex-1 min-w-0">
-                    <p class="not-navbar-color text-sm font-semibold text-gray-900 truncate">User Name</p>
-                    <p class="not-navbar-color text-xs text-gray-500 truncate">user@example.com</p>
+                    <p class="not-navbar-color text-sm font-semibold text-gray-900 truncate">{{ Auth::user()->name ?? 'Guest' }}</p>
+                    <p class="not-navbar-color text-xs text-gray-500 truncate">{{ Auth::user()->email ?? 'guest@example.com' }}</p>
                 </div>
             </div>
         </div>
