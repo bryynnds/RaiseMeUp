@@ -36,7 +36,10 @@ Route::get('/home-public', function () {
 
 Route::get('/explorer-public', [ExplorerController::class, 'index'])->name('explorer-public');
 
+Route::get('/explorer-creator', [ExplorerController::class, 'creatorIndex'])->name('explorer-creator');
+
 Route::get('/creator/{id}', [CreatorProfileController::class, 'show'])->name('creator.public.profile');
+
 
 // Route::get('/profile', function () {
 //     return view('public.profil');
@@ -55,6 +58,8 @@ Route::get('/explorer-supporter', function () {
 Route::get('/profile-supporter', function () {
     return view('supporter.profile');
 })->name('profile_supporter');
+
+Route::get('/explorer-supporter', [ExplorerController::class, 'supporterIndex'])->name('explorer_supporter');
 
 // Route Register Supporter
 // Route::get('/register/supporter', function () {
@@ -82,13 +87,11 @@ Route::get('/home-creator', function () {
     return view('creator.landing');
 })->name('home_creator');
 
-Route::get('/explorer-creator', function () {
-    return view('creator.explorer');
-})->name('explorer_creator');
 
 Route::get('/profile-creator', function () {
     return view('creator.profile');
 })->name('profile_creator');
+
 
 //Route Register Creator
 Route::get('/register/creator', [CreatorRegisterController::class, 'showForm'])
@@ -135,6 +138,10 @@ Route::get('/login', function () {
 
 Route::get('/role', function () {
     return view('public.role');
+});
+
+Route::get('/afterlogin', function () {
+    return view('public.afterlogin');
 });
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);

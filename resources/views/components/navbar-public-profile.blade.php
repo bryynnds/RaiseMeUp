@@ -2,13 +2,11 @@
 <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-gray-800">
     <div class="inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-14">
         <div class="navbar-content flex justify-between items-center h-20">
-            <div class="flex items-center">
+            <a href="{{ route('landing') }}" class="flex items-center">
                 <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
-                    class="logo w-8 h-8 mr-2 hidden md:block" />
-                <span class="brand-text text-xl sm:text-2xl lg:px-12 font-protest font-medium">
-                    RaiseMeUp
-                </span>
-            </div>
+                    class="logo w-8 h-8 mr-2 hidden md:block transition-all duration-300" />
+                <span class="brand-text text-2xl lg:px-12 font-protest font-medium transition-all duration-300">RaiseMeUp</span>
+            </a>
 
             <div class="flex space-x-3 sm:space-x-6 items-center">
                 <a href="#explore"

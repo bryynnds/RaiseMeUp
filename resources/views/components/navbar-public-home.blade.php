@@ -1,3 +1,16 @@
+<!-- Navbar Component with Styles -->
+<style>
+    #navbar a,
+    #navbar span,
+    #loginBtn {
+        transition: all 0.3s ease;
+    }
+
+    .nav-icon {
+        transition: filter 0.3s ease;
+    }
+</style>
+
 <nav id="navbar" class="fixed left-0 w-full bg-transparent z-50 text-white">
     <div class="max-w-7xl py-4 mx-auto px-8 sm:px-6 lg:px-14">
         <div class="flex justify-between items-center h-20">
@@ -20,39 +33,44 @@
             </div>
         </div>
     </div>
+</nav>
 
-    {{-- Script langsung dimasukin di bawah navbar --}}
-    <script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.getElementById('navbar');
         const loginBtn = document.getElementById('loginBtn');
-        const whiteSections = document.querySelectorAll('.bg-white, .bg-gray-100, .putih-section');
+        const lightSections = document.querySelectorAll('.light-section');
         const iconExplore = document.querySelector('#navbar img[src*="launch"]');
 
         let isLoggedIn = false;
 
         window.addEventListener('scroll', () => {
-            let masukPutih = false;
+            let shouldBeDark = false;
 
-            whiteSections.forEach(section => {
+            // Check if navbar is over light sections
+            lightSections.forEach(section => {
                 const rect = section.getBoundingClientRect();
                 if (rect.top <= 80 && rect.bottom >= 80) {
-                    masukPutih = true;
+                    shouldBeDark = true;
                 }
             });
 
+            // Check if navbar is over white cloud images
             const gambarPutihKiri = document.querySelector('img[alt="Gambar Kiri"]');
             const gambarPutihKanan = document.querySelector('img[alt="Gambar Kanan"]');
+            const scrollIcon = document.querySelector('.bg-white.rounded-t-full');
 
-            [gambarPutihKiri, gambarPutihKanan].forEach(img => {
-                if (img) {
-                    const rect = img.getBoundingClientRect();
+            [gambarPutihKiri, gambarPutihKanan, scrollIcon].forEach(element => {
+                if (element) {
+                    const rect = element.getBoundingClientRect();
                     if (rect.top <= 80 && rect.bottom >= 80) {
-                        masukPutih = true;
+                        shouldBeDark = true;
                     }
                 }
             });
 
-            if (masukPutih) {
+            if (shouldBeDark) {
+                // Dark theme (for light backgrounds)
                 navbar.classList.remove('text-white');
                 navbar.classList.add('text-gray-800');
 
@@ -69,6 +87,7 @@
                 }
 
             } else {
+                // Light theme (for dark backgrounds)
                 navbar.classList.add('text-white');
                 navbar.classList.remove('text-gray-800');
 
@@ -87,7 +106,7 @@
         });
 
         // Fungsi tombol login
-        loginBtn?.addEventListener('click', function () {
+        loginBtn?.addEventListener('click', function() {
             window.location.href = "{{ route('login') }}";
         });
 
@@ -96,5 +115,5 @@
         if (exploreLink) {
             exploreLink.setAttribute('href', "{{ route('explorer-public') }}");
         }
-    </script>
-</nav>
+    });
+</script>

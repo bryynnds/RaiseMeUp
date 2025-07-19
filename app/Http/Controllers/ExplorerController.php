@@ -10,26 +10,21 @@ class ExplorerController extends Controller
 {
     public function index(Request $request)
     {
-        // $creators = CreatorProfile::latest()->get();
-
         $search = $request->query('search');
-
-        // Ambil parameter role jika ada
         $job = $request->query('job');
+
         $query = CreatorProfile::query();
 
         if ($job && strtolower($job) !== 'all') {
             $query->where('job', $job);
         }
 
-        // Filter berdasarkan nickname jika ada
         if ($search) {
             $query->where('nickname', 'like', '%' . $search . '%');
         }
 
-        $creators = $query->latest()->paginate(3); // untuk test
+        $creators = $query->latest()->paginate(3);
 
-        // AJAX: kembalikan view + info pagination
         if ($request->ajax()) {
             return response()->json([
                 'html' => view('components.creator-cards', compact('creators'))->render(),
@@ -38,5 +33,66 @@ class ExplorerController extends Controller
         }
 
         return view('public.explorer', compact('creators'));
+    }
+
+    public function creatorIndex(Request $request)
+    {
+        $search = $request->query('search');
+        $job = $request->query('job');
+
+        $query = CreatorProfile::query();
+
+        if ($job && strtolower($job) !== 'all') {
+            $query->where('job', $job);
+        }
+
+        if ($search) {
+            $query->where('nickname', 'like', '%' . $search . '%');
+        }
+
+        $creators = $query->latest()->paginate(3);
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('components.creator-cards', compact('creators'))->render(),
+                'hasMore' => $creators->hasMorePages(),
+            ]);
+        }
+
+        return view('creator.explorer', compact('creators'));
+    }
+
+    // Add this new method for supporter explorer
+    public function supporterIndex(Request $request)
+    {
+        $search = $request->query('search');
+        $job = $request->query('job');
+
+        $query = CreatorProfile::query();
+
+        if ($job && strtolower($job) !== 'all') {
+            $query->where('job', $job);
+        }
+
+        if ($search) {
+            $query->where('nickname', 'like', '%' . $search . '%');
+        }
+
+        $creators = $query->latest()->paginate(9); // More items for supporter view
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('components.creator-cards', compact('creators'))->render(),
+                'hasMore' => $creators->hasMorePages(),
+            ]);
+        }
+
+        return view('supporter.explorer', compact('creators'));
+    }
+
+    // Optional: Separate method for AJAX if you want different logic
+    public function supporterAjax(Request $request)
+    {
+        return $this->supporterIndex($request);
     }
 }
