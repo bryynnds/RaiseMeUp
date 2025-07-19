@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Supporter;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\CreatorProfile;
 use App\Models\User;
 use App\Models\Donation;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CreatorProfileController extends Controller
 {
@@ -19,10 +22,10 @@ class CreatorProfileController extends Controller
 
 
         $jumlahSupport = Donation::where('creator_id', $id)
-        ->whereHas('transactions', function ($query) {
-            $query->where('status', 'settlement');
-        })
-        ->count();
+            ->whereHas('transactions', function ($query) {
+                $query->where('status', 'settlement');
+            })
+            ->count();
 
         return view('public.profil', [
             'creator' => $creatorProfile,
@@ -30,5 +33,32 @@ class CreatorProfileController extends Controller
             'likeCount' => $likeCount, // <- Tambahkan ini
             'jumlahSupport' => $jumlahSupport
         ]);
+    }
+
+    public function updateAfterLogin(Request $request)
+    {
+        $request->validate([
+            'bio' => 'required|string',
+            'deskripsi' => 'required|string',
+            'pp_url' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'fotosampul_url' => 'required|image|mimes:jpg,jpeg,png|max:4096',
+        ]);
+
+        $user = Auth::user();
+        $profile = $user->creatorProfile;
+
+        // Simpan file
+        $ppPath = $request->file('pp_url')->store('profile_pictures', 'public');
+        $sampulPath = $request->file('fotosampul_url')->store('cover_pictures', 'public');
+
+        // Update profil
+        $profile->update([
+            'bio' => $request->bio,
+            'deskripsi' => $request->deskripsi,
+            'pp_url' => Storage::url($ppPath),
+            'fotosampul_url' => Storage::url($sampulPath),
+        ]);
+
+        return redirect('/home-creator');
     }
 }

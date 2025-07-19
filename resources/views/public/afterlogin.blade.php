@@ -30,7 +30,7 @@
             background: url('/assets/bg/bg.jpg') center/cover no-repeat;
             position: relative;
         }
-     
+
         .floating-shapes {
             position: absolute;
             top: 0;
@@ -73,9 +73,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg);
             }
+
             50% {
                 transform: translateY(-20px) rotate(180deg);
             }
@@ -97,6 +100,7 @@
                 opacity: 0;
                 transform: translateY(60px) scale(0.95);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -207,8 +211,9 @@
                 margin: 10px;
                 padding: 24px 20px;
             }
-            
-            .modern-input, .upload-area {
+
+            .modern-input,
+            .upload-area {
                 padding: 12px;
                 font-size: 14px;
             }
@@ -228,7 +233,7 @@
     <div class="min-h-screen flex items-center justify-center p-4 relative z-10">
         <div class="glass-morphism rounded-3xl w-full max-w-md form-container">
             <div class="px-6 py-6">
-                
+
                 <!-- Step Indicator -->
                 <div class="step-indicator">
                     <div class="step active"></div>
@@ -238,9 +243,10 @@
 
                 <!-- Logo Section -->
                 <div class="text-center mb-5">
-                    
-                    
-                    <h1 style="font-family: 'Protest Riot', cursive;" class="text-xl font-bold text-white mb-1 tracking-wide">
+
+
+                    <h1 style="font-family: 'Protest Riot', cursive;"
+                        class="text-xl font-bold text-white mb-1 tracking-wide">
                         RaiseMeUp
                     </h1>
                     <p class="text-white/80 text-xs font-light">
@@ -249,8 +255,10 @@
                 </div>
 
                 <!-- Form -->
-                <form class="space-y-4" autocomplete="off">
-                    
+                <form class="space-y-4" autocomplete="off" action="{{ route('creator.afterlogin.update') }}"
+                    method="POST" enctype="multipart/form-data">
+                    @csrf
+
                     <!-- Upload Section -->
                     <div class="grid grid-cols-2 gap-3">
                         <div>
@@ -258,18 +266,18 @@
                                 <i class="fas fa-image mr-1"></i>Foto Sampul
                             </label>
                             <div class="upload-area p-3 text-center">
-                                <input type="file" accept="image/*" />
+                                <input type="file" name="fotosampul_url" accept="image/*" />
                                 <i class="fas fa-cloud-upload-alt text-white/60 text-lg mb-1"></i>
                                 <p class="text-white/60 text-xs">Upload</p>
                             </div>
                         </div>
-                        
+
                         <div>
                             <label class="text-white/90 text-xs font-medium block mb-2">
                                 <i class="fas fa-user-circle mr-1"></i>Foto Profil
                             </label>
                             <div class="upload-area p-3 text-center">
-                                <input type="file" accept="image/*" />
+                                <input type="file" name="pp_url" accept="image/*" required />
                                 <i class="fas fa-camera text-white/60 text-lg mb-1"></i>
                                 <p class="text-white/60 text-xs">Upload</p>
                             </div>
@@ -281,12 +289,8 @@
                         <label class="text-white/90 text-xs font-medium block mb-2">
                             <i class="fas fa-quote-left mr-1"></i>Bio Singkat
                         </label>
-                        <input 
-                            type="text" 
-                            placeholder="Ceritakan tentang dirimu..." 
-                            class="modern-input w-full px-3 py-2.5 rounded-lg text-xs"
-                            maxlength="100"
-                        />
+                        <input type="text" name="bio" required placeholder="Ceritakan tentang dirimu..."
+                            class="modern-input w-full px-3 py-2.5 rounded-lg text-xs" maxlength="100" />
                     </div>
 
                     <!-- Description Section -->
@@ -294,26 +298,20 @@
                         <label class="text-white/90 text-xs font-medium block mb-2">
                             <i class="fas fa-align-left mr-1"></i>Deskripsi
                         </label>
-                        <textarea 
-                            rows="2" 
-                            placeholder="Bagikan lebih banyak tentang dirimu..."
-                            class="modern-input w-full px-3 py-2.5 rounded-lg text-xs resize-none"
-                            maxlength="300"
-                        ></textarea>
+                        <textarea name="deskripsi" required rows="2" placeholder="Bagikan lebih banyak tentang dirimu..."
+                            class="modern-input w-full px-3 py-2.5 rounded-lg text-xs resize-none" maxlength="300"></textarea>
                     </div>
 
                     <!-- Action Button -->
-                    <button 
-                        type="button" 
-                        class="cta-button w-full py-3 rounded-lg text-white font-semibold text-sm relative overflow-hidden"
-                    >
+                    <button type="submit"
+                        class="cta-button w-full py-3 rounded-lg text-white font-semibold text-sm relative overflow-hidden">
                         <span class="relative z-10 flex items-center justify-center">
                             <span>Simpan & Lanjutkan</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </span>
                     </button>
 
-                    
+
 
                 </form>
             </div>
@@ -343,21 +341,21 @@
             // Character count for textarea
             const textarea = document.querySelector('textarea');
             const bioInput = document.querySelector('input[type="text"]');
-            
+
             function addCharacterCount(element, maxLength) {
                 const container = element.parentNode;
                 const counter = document.createElement('div');
                 counter.className = 'text-white/50 text-xs text-right mt-1';
                 counter.textContent = `0/${maxLength}`;
                 container.appendChild(counter);
-                
+
                 element.addEventListener('input', function() {
                     const length = this.value.length;
                     counter.textContent = `${length}/${maxLength}`;
                     counter.style.color = length > maxLength * 0.9 ? '#f87171' : 'rgba(255, 255, 255, 0.5)';
                 });
             }
-            
+
             addCharacterCount(textarea, 300);
             addCharacterCount(bioInput, 100);
         });

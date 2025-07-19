@@ -141,8 +141,11 @@ Route::get('/role', function () {
 });
 
 Route::get('/afterlogin', function () {
-    return view('public.afterlogin');
-});
+    return view('public.afterlogin'); // pastikan file-nya resources/views/afterlogin.blade.php
+})->name('creator.afterlogin');
+
+Route::post('/afterlogin', [CreatorProfileController::class, 'updateAfterLogin'])->name('creator.afterlogin.update');
+
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

@@ -20,11 +20,26 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
+
             switch ($user->role) {
                 case 'kreator':
+                    $profile = $user->creatorProfile;
+
+                    // Cek apakah profil belum lengkap
+                    if (
+                        is_null($profile->pp_url) ||
+                        is_null($profile->fotosampul_url) ||
+                        is_null($profile->bio) ||
+                        is_null($profile->deskripsi)
+                    ) {
+                        return redirect('/afterlogin');
+                    }
+
                     return redirect('/home-creator');
+
                 case 'supporter':
                     return redirect('/home-supporter');
+
                 default:
                     return redirect('/home-public');
             }
