@@ -30,7 +30,7 @@ Route::get('/home-public', function () {
     return view('public.landing');
 })->name('landing');;
 
-Route::get('/explorer', function () {
+Route::get('/explorer-public', function () {
     return view('public.explorer');
 });
 Route::get('/explorer', [ExplorerController::class, 'index'])->name('explorer');

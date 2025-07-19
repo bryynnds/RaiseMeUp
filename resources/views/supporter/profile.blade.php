@@ -173,10 +173,11 @@
                         </div>
                     </a>
 
-                    <button onclick="window.location.href='{{ route('profile_supporter') }}'" id="userIcon"
+                    <button data-route="{{ route('profile_supporter') }}" id="userIcon"
                         class="w-full px-1 py-3 bg-white rounded-xl flex items-center justify-center">
                         <img src="/assets/icon/user.svg" alt="User" class="w-4 h-4" />
                     </button>
+
                 </div>
             </div>
         </div>
@@ -331,6 +332,13 @@
     <x-donate />
 
     <x-footer />
+
+
+    <script>
+        document.getElementById('userIcon').addEventListener('click', function() {
+            window.location.href = this.dataset.route;
+        });
+    </script>
 
     <!-- Script Scroll Navbar -->
     <script>
