@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\CreatorRegisterController;
 use App\Http\Controllers\SupporterRegisterController;
 use App\Http\Controllers\LikeController;
@@ -145,3 +146,8 @@ Route::get('/logout', function () {
     session()->flush(); // Bersihin session
     return redirect('/login'); // Arahkan ke halaman login
 })->name('logout');
+
+//Route Login Admin Filament
+Route::prefix('admin')->middleware('web')->group(function () {
+    Route::post('/login', [AdminLoginController::class, 'login']);
+});

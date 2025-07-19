@@ -29,9 +29,9 @@ class CreatorAdminResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationLabel = 'Halaman Kreator';
+    protected static ?string $navigationLabel = 'Data';
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    protected static ?string $navigationGroup = 'Data Kreator';
+    protected static ?string $navigationGroup = 'Kreator';
 
     public static function getEloquentQuery(): Builder
     {
