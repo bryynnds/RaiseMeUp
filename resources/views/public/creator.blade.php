@@ -78,7 +78,7 @@
         </div> --}}
 
         <a href="{{ route('landing') }}" class="flex justify-center mb-4">
-            <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
+            <img src="/assets/icon/logo.png" alt="Logo"
                 class="w-16 h-16 rounded-full shadow-lg ring-4 ring-white/40" />
         </a>
 
