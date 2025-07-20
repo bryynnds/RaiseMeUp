@@ -2,7 +2,7 @@
 <div id="editProfileModal"
     class="fixed inset-0 bg-black/70 backdrop-blur-md z-[999] flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
     <div
-        class="bg-white/95 backdrop-blur-sm w-full max-w-4xl h-[85vh] rounded-2xl shadow-2xl relative overflow-hidden transform scale-95 transition-all duration-300">
+        class="bg-white/95 backdrop-blur-sm w-full max-w-4xl h-[90vh] rounded-2xl shadow-2xl relative overflow-hidden transform scale-95 transition-all duration-300">
         <!-- Header -->
         <div class="bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-6 py-4 relative">
             <button onclick="toggleEditProfileModal()"
@@ -47,7 +47,7 @@
                     <div>
                         <label class="block text-xs font-medium text-gray-600 mb-1">Upload File</label>
                         <div
-                            class="relative border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-purple-300 transition-all bg-gray-50/50 hover:bg-purple-50/50">
+                            class="relative border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-purple-300 transition-all bg-gray-50/50 hover:bg-purple-50/50">
                             <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                             <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -69,14 +69,14 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
-                        <!-- Modern Custom Dropdown -->
+                        <!-- Modern Custom Dropdown Category -->
                         <div>
                             <label class="block text-xs font-medium text-gray-600 mb-1">Category</label>
                             <div class="dropdown-container">
                                 <button type="button"
                                     class="dropdown-button w-full px-3 py-2 text-sm text-left rounded-lg flex items-center justify-between"
-                                    onclick="toggleDropdown()">
-                                    <span id="selectedOption" class="text-gray-500">Select category</span>
+                                    onclick="toggleDropdown('category')">
+                                    <span id="selectedCategoryOption" class="text-gray-500">Select category</span>
                                     <svg class="chevron w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -84,45 +84,45 @@
                                     </svg>
                                 </button>
 
-                                <div id="dropdownMenu"
+                                <div id="categoryDropdownMenu"
                                     class="dropdown-menu absolute bottom-full left-0 right-0 mt-1 py-1 rounded-lg z-10">
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('🎨 Digital Art')">
+                                        onclick="selectOption('category', '🎨 Digital Art')">
                                         <span class="text-lg">🎨</span>
                                         <span class="text-sm">Digital Art</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('🎵 Music')">
+                                        onclick="selectOption('category', '🎵 Music')">
                                         <span class="text-lg">🎵</span>
                                         <span class="text-sm">Music</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('🎭 3D Art')">
+                                        onclick="selectOption('category', '🎭 3D Art')">
                                         <span class="text-lg">🎭</span>
                                         <span class="text-sm">3D Art</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('💻 Web Dev')">
+                                        onclick="selectOption('category', '💻 Web Dev')">
                                         <span class="text-lg">💻</span>
                                         <span class="text-sm">Web Development</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('✍️ Writer')">
+                                        onclick="selectOption('category', '✍️ Writer')">
                                         <span class="text-lg">✍️</span>
                                         <span class="text-sm">Writing</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('📸 Photo')">
+                                        onclick="selectOption('category', '📸 Photo')">
                                         <span class="text-lg">📸</span>
                                         <span class="text-sm">Photography</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('🎬 Animation')">
+                                        onclick="selectOption('category', '🎬 Animation')">
                                         <span class="text-lg">🎬</span>
                                         <span class="text-sm">Animation</span>
                                     </div>
                                     <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('📱 UI/UX')">
+                                        onclick="selectOption('category', '📱 UI/UX')">
                                         <span class="text-lg">📱</span>
                                         <span class="text-sm">UI/UX Design</span>
                                     </div>
@@ -173,19 +173,65 @@
                         <label class="block text-xs font-medium text-gray-600 mb-1">Bio</label>
                         <textarea
                             class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
-                            rows="3" placeholder="Tell us about yourself..."></textarea>
+                            rows="1" placeholder="Tell us about yourself..."></textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">New Password</label>
-                        <div class="relative">
-                            <input type="password"
-                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all pr-8"
-                                placeholder="••••••••">
+                    <div class="mt-3">
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Deskripsi</label>
+                        <textarea
+                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
+                            rows="1" placeholder="Tell us about job..."></textarea>
+                    </div>
+
+                    <!-- Ganti URL + Dropdown JOB (1 baris) -->
+                    <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:gap-3">
+                        <!-- Button Ganti URL (tinggi lebih kecil) -->
+                        <button onclick="openUrlModal()"
+                            class="w-full sm:w-auto px-9 py-4 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 active:scale-[0.98] transition-all duration-200">
+                            Ganti Social Media
+                        </button>
+
+
+                        <!-- Dropdown JOB dengan Padding & Icon Diperbaiki -->
+                        <div class="relative w-full sm:w-auto mt-2 sm:mt-0">
+                            <div class="dropdown-container">
+                                <button type="button"
+                                    class="dropdown-button w-full sm:min-w-[200px] px-5 py-3 text-xs font-semibold text-left rounded-lg flex items-center justify-between"
+                                    onclick="toggleDropdown('job')">
+                                    <span id="selectedJobOption" class="text-gray-500">Pilih Job</span>
+                                    <svg class="chevron w-5 h-5 text-gray-400 ml-2" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+
+                                <div id="jobDropdownMenu"
+                                    class="dropdown-menu absolute bottom-full left-0 right-0 mt-1 py-1 rounded-lg z-10 bg-white shadow-lg">
+                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                        onclick="selectOption('job', 'Illustrator')">
+                                        <span class="text-sm">Illustrator</span>
+                                    </div>
+                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                        onclick="selectOption('job', 'Musisi')">
+                                        <span class="text-sm">Musisi</span>
+                                    </div>
+                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                        onclick="selectOption('job', 'Streamer')">
+                                        <span class="text-sm">Streamer</span>
+                                    </div>
+                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                        onclick="selectOption('job', 'Penulis')">
+                                        <span class="text-sm">Penulis</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
 
-                    <div class="flex justify-end gap-3 pt-4">
+                    <div class="flex justify-end gap-3 pt-6">
                         <button onclick="toggleEditProfileModal()"
                             class="px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
                             Cancel
@@ -195,12 +241,14 @@
                             Save
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<x-url />
+
 
 <style>
     /* Custom dropdown styles */
@@ -347,22 +395,38 @@
         }
     }
 
-    function toggleDropdown() {
-        const menu = document.getElementById('dropdownMenu');
-        const chevron = document.querySelector('.chevron');
+    function toggleDropdown(type) {
+        const menu = document.getElementById(type + 'DropdownMenu');
+        const button = menu.parentElement.querySelector('.dropdown-button');
+        const chevron = button.querySelector('.chevron');
 
+        // Close other dropdown if open
+        const otherType = type === 'category' ? 'job' : 'category';
+        const otherMenu = document.getElementById(otherType + 'DropdownMenu');
+        const otherButton = otherMenu.parentElement.querySelector('.dropdown-button');
+        const otherChevron = otherButton.querySelector('.chevron');
+
+        if (otherMenu.classList.contains('open')) {
+            otherMenu.classList.remove('open');
+            otherChevron.classList.remove('rotate');
+        }
+
+        // Toggle current dropdown
         menu.classList.toggle('open');
         chevron.classList.toggle('rotate');
     }
 
-    function selectOption(value) {
-        document.getElementById('selectedOption').textContent = value;
-        document.getElementById('selectedOption').classList.remove('text-gray-500');
-        document.getElementById('selectedOption').classList.add('text-gray-800');
+    function selectOption(type, value) {
+        const selectedElement = document.getElementById('selected' + type.charAt(0).toUpperCase() + type.slice(1) + 'Option');
+        selectedElement.textContent = value;
+        selectedElement.classList.remove('text-gray-500');
+        selectedElement.classList.add('text-gray-800');
 
         // Close dropdown
-        document.getElementById('dropdownMenu').classList.remove('open');
-        document.querySelector('.chevron').classList.remove('rotate');
+        const menu = document.getElementById(type + 'DropdownMenu');
+        const chevron = menu.parentElement.querySelector('.chevron');
+        menu.classList.remove('open');
+        chevron.classList.remove('rotate');
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -380,11 +444,17 @@
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function (event) {
-            const dropdown = document.querySelector('.dropdown-container');
-            if (dropdown && !dropdown.contains(event.target)) {
-                document.getElementById('dropdownMenu').classList.remove('open');
-                document.querySelector('.chevron').classList.remove('rotate');
-            }
+            const dropdownContainers = document.querySelectorAll('.dropdown-container');
+            dropdownContainers.forEach(container => {
+                if (!container.contains(event.target)) {
+                    const menu = container.querySelector('.dropdown-menu');
+                    const chevron = container.querySelector('.chevron');
+                    if (menu && menu.classList.contains('open')) {
+                        menu.classList.remove('open');
+                        chevron.classList.remove('rotate');
+                    }
+                }
+            });
         });
 
         // File upload feedback
@@ -409,12 +479,14 @@
             if (!document.getElementById('editProfileModal').classList.contains('hidden')) {
                 toggleEditProfileModal();
             }
-            // Close dropdown
-            const menu = document.getElementById('dropdownMenu');
-            if (menu && menu.classList.contains('open')) {
+            // Close dropdowns
+            const menus = document.querySelectorAll('.dropdown-menu.open');
+            menus.forEach(menu => {
+                const chevron = menu.parentElement.querySelector('.chevron');
                 menu.classList.remove('open');
-                document.querySelector('.chevron').classList.remove('rotate');
-            }
+                chevron.classList.remove('rotate');
+            });
         }
     });
+
 </script>
