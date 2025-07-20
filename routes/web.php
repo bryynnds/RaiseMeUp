@@ -11,6 +11,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ExplorerController;
 use App\Http\Controllers\Supporter\CreatorProfileController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\Supporter\SupporterController;
+use App\Http\Controllers\Creator\CreatorController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -59,9 +61,14 @@ Route::get('/explorer-supporter', function () {
     return view('supporter.explorer');
 })->name('explorer_supporter');
 
-Route::get('/profile-supporter', function () {
-    return view('supporter.profile');
-})->name('profile_supporter');
+// Route::get('/profile-supporter', function () {
+//     return view('supporter.profile');
+// })->name('profile_supporter');
+
+Route::middleware(['auth', 'role:supporter'])->group(function () {
+    Route::get('/profile-supporter', [SupporterController::class, 'profile'])->name('profile_supporter');
+});
+
 
 Route::get('/explorer-supporter', [ExplorerController::class, 'supporterIndex'])->name('explorer_supporter');
 
@@ -90,9 +97,6 @@ Route::post('/register/otp/supporter/resend', [SupporterRegisterController::clas
 // Route::get('/home-creator', function () {
 //     return view('creator.landing');
 // })->name('home_creator');
-
-
-use App\Http\Controllers\Creator\CreatorController;
 
 Route::middleware(['auth', 'role:kreator'])->group(function () {
     Route::get('/profile-creator', [CreatorController::class, 'profile'])->name('profile_creator');

@@ -155,7 +155,7 @@
         </div>
     </section>
 
-    <x-portfolio-card />
+    {{-- <x-portfolio-card /> --}}
 
     {{-- Komponen dummy biar ga error --}}
     <div id="donateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
