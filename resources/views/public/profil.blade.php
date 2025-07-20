@@ -55,7 +55,7 @@
     <!-- Sampul -->
     <section class="relative">
         <div class="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] bg-gray-300">
-            <img src="{{ $creator->fotosampul_url ? asset('storage/' . $creator->fotosampul_url) : asset('assets/sampul.jpg') }}"
+            <img src="{{ $creator->fotosampul_url}}"
                 alt="Cover Image" class="w-full h-full object-cover" />
         </div>
     </section>
@@ -73,7 +73,7 @@
                     <!-- Kiri: Foto & Identitas -->
                     <div class="flex items-start gap-5">
                         <!-- Foto Profil -->
-                        <img src="{{ $creator->pp_url ? asset('storage/' . $creator->pp_url) : asset('assets/pp.png') }}"
+                        <img src="{{ $creator->pp_url }}"
                             alt="Profile Picture"
                             class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
 
@@ -84,9 +84,9 @@
                             <h1 class="text-2xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                             <!-- Stats -->
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
-                                <span>2K Like</span>
+                                <span>{{ $likeCount  }} Like</span>
                                 <span>&bull;</span>
-                                <span>278 Supports</span>
+                                <span>{{ $jumlahSupport }} Supports</span>
                             </div>
                         </div>
                     </div>
@@ -149,21 +149,21 @@
                 <!-- Profile Section -->
                 <div class="flex flex-col items-center text-center">
                     <!-- Foto Profil -->
-                    <img src="{{ $creator->pp_url ? asset('storage/' . $creator->pp_url) : asset('assets/pp.png') }}"
+                    <img src="{{ $creator->pp_url}}"
                         alt="Profile Picture"
                         class="profile-image-mobile rounded-full border-4 border-white object-cover mb-3" />
 
                     <!-- Identitas -->
                     <div class="flex flex-col gap-1 mb-4">
                         <!-- Username -->
-                        <span class="text-gray-700 text-xs">@Nayla_Cutelyn</span>
+                        <span class="text-gray-700 text-xs">{{$user->name}}</span>
                         <!-- Nama -->
-                        <h1 class="text-xl font-bold text-gray-900">Nayla Evelyn</h1>
+                        <h1 class="text-xl font-bold text-gray-900">{{$creator->nickname}}</h1>
                         <!-- Stats -->
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
-                            <span>2k Like</span>
+                            <span>{{$likeCount}} Like</span>
                             <span>&bull;</span>
-                            <span>278 Supports</span>
+                            <span>{{$jumlahSupport}} Supports</span>
                         </div>
                     </div>
 
@@ -188,8 +188,7 @@
                             <button
                                 class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
                             <p class="text-sm text-gray-500 px-2">
-                                "I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ
-                                <)♡" </p>
+                                "{{$creator->bio}}" </p>
                         </div>
                     </div>
 

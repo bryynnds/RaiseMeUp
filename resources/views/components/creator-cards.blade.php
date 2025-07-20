@@ -1,8 +1,10 @@
 @foreach ($creators as $creator)
+    @php
+        $isSupporter = Auth::check() && Auth::user()->role === 'supporter';
+    @endphp
     <div class="rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300">
         <div class="relative">
-            <img src="{{ $creator->fotosampul_url }}" alt="{{ $creator->nickname }}"
-                class="w-full h-24 object-cover" />
+            <img src="{{ $creator->fotosampul_url }}" alt="{{ $creator->nickname }}" class="w-full h-24 object-cover" />
             <div class="absolute inset-x-0 -bottom-8 flex justify-center">
                 <img src="{{ $creator->pp_url }}" alt="{{ $creator->nickname }}"
                     class="bg-blue-500 w-16 h-16 rounded-full border-4 border-white object-cover shadow-md" />
@@ -14,7 +16,11 @@
             </span>
             <h3 class="text-sm font-semibold text-gray-800">{{ $creator->nickname }}</h3>
             <p class="text-xs text-gray-600 mt-1">{{ $creator->bio }}</p>
-            <a href="{{ route('supporter.creator.profil', ['id' => $creator->creator_id]) }}">
+            {{-- <a href="{{ route('supporter.creator.profil', ['id' => $creator->creator_id]) }}"> --}}
+            <a
+                href="{{ $isSupporter
+                    ? route('supporter.creator.profile', ['id' => $creator->creator_id])
+                    : route('public.creator.profile', ['id' => $creator->creator_id]) }}">
                 <button
                     class="mt-4 text-xs font-semibold bg-blue-500 hover:bg-blue-600 text-white py-2 px-5 rounded-full transition-all duration-300">
                     View

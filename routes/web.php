@@ -114,8 +114,10 @@ Route::post('/register/otp/creator/resend', [CreatorRegisterController::class, '
     ->name('creator.otp.resend');
 
 
-//Route ngambil data ke profile creator
-// Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'show'])->name('supporter.creator.profile');
+// Route ngambil data ke profile creator
+Route::get('/public/creator/{id}', [CreatorProfileController::class, 'show'])
+    ->name('public.creator.profile');
+
 
 //Route Like Logic
 Route::post('/like/{creatorId}', [LikeController::class, 'store'])->name('like.creator')->middleware('auth');

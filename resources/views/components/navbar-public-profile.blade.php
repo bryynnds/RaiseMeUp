@@ -9,7 +9,7 @@
             </a>
 
             <div class="flex space-x-3 sm:space-x-6 items-center">
-                <a href="#explore"
+                <a href="{{ route('explorer-public') }}"
                     class="explore-link font-bold px-2 lg:px-4 text-gray-800">
                     <div class="explore-wrapper flex items-center gap-1 sm:gap-2">
                         <img src="/assets/icon/launch.png" alt="icon"
@@ -139,6 +139,10 @@
             }
             isScrolling = false;
         }
+
+        loginBtn?.addEventListener('click', function() {
+            window.location.href = "{{ route('login') }}";
+        });
 
         window.addEventListener("scroll", () => {
             if (!isScrolling) {
