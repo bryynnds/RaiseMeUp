@@ -55,8 +55,7 @@
     <!-- Sampul -->
     <section class="relative">
         <div class="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] bg-gray-300">
-            <img src="{{ $creator->fotosampul_url}}"
-                alt="Cover Image" class="w-full h-full object-cover" />
+            <img src="{{ $creator->fotosampul_url }}" alt="Cover Image" class="w-full h-full object-cover" />
         </div>
     </section>
 
@@ -73,8 +72,7 @@
                     <!-- Kiri: Foto & Identitas -->
                     <div class="flex items-start gap-5">
                         <!-- Foto Profil -->
-                        <img src="{{ $creator->pp_url }}"
-                            alt="Profile Picture"
+                        <img src="{{ $creator->pp_url }}" alt="Profile Picture"
                             class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
 
                         <div class="flex flex-col -mt-4 gap-1">
@@ -84,7 +82,7 @@
                             <h1 class="text-2xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                             <!-- Stats -->
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
-                                <span>{{ $likeCount  }} Like</span>
+                                <span>{{ $likeCount }} Like</span>
                                 <span>&bull;</span>
                                 <span>{{ $jumlahSupport }} Supports</span>
                             </div>
@@ -94,7 +92,7 @@
                     <!-- Kanan: Tombol -->
                     <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
                         <!-- Like Button -->
-                        <button
+                        <button id="likeBtn"
                             class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
                rounded-full px-8 py-3 text-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
                hover:-translate-y-1 flex items-center gap-2">
@@ -149,27 +147,26 @@
                 <!-- Profile Section -->
                 <div class="flex flex-col items-center text-center">
                     <!-- Foto Profil -->
-                    <img src="{{ $creator->pp_url}}"
-                        alt="Profile Picture"
+                    <img src="{{ $creator->pp_url }}" alt="Profile Picture"
                         class="profile-image-mobile rounded-full border-4 border-white object-cover mb-3" />
 
                     <!-- Identitas -->
                     <div class="flex flex-col gap-1 mb-4">
                         <!-- Username -->
-                        <span class="text-gray-700 text-xs">{{$user->name}}</span>
+                        <span class="text-gray-700 text-xs">{{ $user->name }}</span>
                         <!-- Nama -->
-                        <h1 class="text-xl font-bold text-gray-900">{{$creator->nickname}}</h1>
+                        <h1 class="text-xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                         <!-- Stats -->
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
-                            <span>{{$likeCount}} Like</span>
+                            <span>{{ $likeCount }} Like</span>
                             <span>&bull;</span>
-                            <span>{{$jumlahSupport}} Supports</span>
+                            <span>{{ $jumlahSupport }} Supports</span>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="flex gap-3 w-full max-w-sm mb-4">
-                        <button
+                        <button id="likeBtnMobile"
                             class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full text-gray-700 bg-[#F2F4FC] hover:bg-[#e6e9f6] transition text-sm">
                             <img src="/assets/icon/like.png" alt="Like Icon" class="w-5 h-5" />
                             Like Me
@@ -188,7 +185,7 @@
                             <button
                                 class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
                             <p class="text-sm text-gray-500 px-2">
-                                "{{$creator->bio}}" </p>
+                                "{{ $creator->bio }}" </p>
                         </div>
                     </div>
 
@@ -212,7 +209,7 @@
     <x-footer />
 
     <!-- Donate Modal Script -->
-    <script>
+    {{-- <script>
         // Open donate modal
         document.addEventListener('DOMContentLoaded', function() {
             const donateBtn = document.getElementById('donateBtn');
@@ -232,7 +229,50 @@
                 donateBtnMobile.addEventListener('click', openDonateModal);
             }
         });
-    </script>
+    </script> --}}
+
+    @guest
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const likeBtn = document.getElementById('likeBtn');
+                const likeBtnMobile = document.getElementById('likeBtnMobile');
+                const donateBtn = document.getElementById('donateBtn');
+                const donateBtnMobile = document.getElementById('donateBtnMobile');
+
+                if (likeBtn) {
+                    likeBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(
+                            'Kamu belum login, silakan daftar dan login sebagai supporter untuk memberikan Like.');
+                    });
+                }
+
+                if (donateBtn) {
+                    donateBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(
+                            'Kamu belum login, silakan daftar dan login sebagai supporter untuk memberikan Donasi.');
+                    });
+                }
+
+                if (donateBtnMobile) {
+                    donateBtnMobile.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(
+                            'Kamu belum login, silakan daftar dan login sebagai supporter untuk memberikan Donasi.');
+                    });
+                }
+
+                if (likeBtnMobile) {
+                    likeBtnMobile.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(
+                            'Kamu belum login, silakan daftar dan login sebagai supporter untuk memberikan Donasi.');
+                    });
+                }
+            });
+        </script>
+    @endguest
 
 </body>
 
