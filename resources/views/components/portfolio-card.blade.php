@@ -11,14 +11,14 @@
                         </div>
                         <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur opacity-20 animate-pulse"></div>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">Nayla Evelyn</h3>
-                    <p class="text-sm text-indigo-600 font-medium">Digital Artist</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">{{ $creator->nickname }}</h3>
+                    <p class="text-sm text-indigo-600 font-medium">{{ $creator->job }}</p>
                 </div>
 
                 <div class="space-y-4">
                     <div class="text-center">
                         <p class="text-gray-600 text-xs leading-relaxed italic">
-                            "Menciptakan dunia penuh warna melalui seni digital ✨"
+                            "{{ $creator->bio }}"
                         </p>
                     </div>
 
@@ -34,7 +34,7 @@
                             </div>
                             <div class="flex-1">
                                 <div class="font-semibold text-gray-900 text-xs">Twitter</div>
-                                <div class="text-xs text-gray-500">@naylaevelyn_</div>
+                                <div class="text-xs text-gray-500"><span>@</span>{{ $creator->twitter_url ?? "-" }}</div>
                             </div>
                         </a>
 
@@ -46,7 +46,7 @@
                             </div>
                             <div class="flex-1">
                                 <div class="font-semibold text-gray-900 text-xs">Facebook</div>
-                                <div class="text-xs text-gray-500">Nayla Evelyn Art</div>
+                                <div class="text-xs text-gray-500">{{ $creator->facebook_url ?? "-" }}</div>
                             </div>
                         </a>
 
@@ -58,7 +58,7 @@
                             </div>
                             <div class="flex-1">
                                 <div class="font-semibold text-gray-900 text-xs">YouTube</div>
-                                <div class="text-xs text-gray-500">NaylaDraws</div>
+                                <div class="text-xs text-gray-500">{{ $creator->youtube_url ?? "-" }}</div>
                             </div>
                         </a>
 
@@ -70,7 +70,7 @@
                             </div>
                             <div class="flex-1">
                                 <div class="font-semibold text-gray-900 text-xs">Instagram</div>
-                                <div class="text-xs text-gray-500">@nayla.evelyn</div>
+                                <div class="text-xs text-gray-500"><span>@</span>{{ $creator->instagram_url ?? "-" }}</div>
                             </div>
                         </a>
 

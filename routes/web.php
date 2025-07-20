@@ -92,9 +92,12 @@ Route::get('/home-creator', function () {
 })->name('home_creator');
 
 
-Route::get('/profile-creator', function () {
-    return view('creator.profile');
-})->name('profile_creator');
+use App\Http\Controllers\Creator\CreatorController;
+
+Route::middleware(['auth', 'role:kreator'])->group(function () {
+    Route::get('/profile-creator', [CreatorController::class, 'profile'])->name('profile_creator');
+});
+
 
 
 //Route Register Creator

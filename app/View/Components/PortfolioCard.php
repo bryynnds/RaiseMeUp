@@ -11,9 +11,11 @@ class PortfolioCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $creator;
+
+    public function __construct($creator)
     {
-        //
+        $this->creator = $creator;
     }
 
     /**
