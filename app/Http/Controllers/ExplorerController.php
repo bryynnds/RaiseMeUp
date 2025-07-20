@@ -19,7 +19,7 @@ class ExplorerController extends Controller
             $query->where('job', $job);
         }
 
-        if ($search) {
+        if (!is_null($search) && trim($search) !== '') {
             $query->where('nickname', 'like', '%' . $search . '%');
         }
 
@@ -27,7 +27,7 @@ class ExplorerController extends Controller
 
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('components.creator-cards', compact('creators'))->render(),
+                'html' => view('components.creator-cards-public', compact('creators'))->render(),
                 'hasMore' => $creators->hasMorePages(),
             ]);
         }
@@ -54,7 +54,7 @@ class ExplorerController extends Controller
 
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('components.creator-cards', compact('creators'))->render(),
+                'html' => view('components.creator-cards-creator', compact('creators'))->render(),
                 'hasMore' => $creators->hasMorePages(),
             ]);
         }
@@ -82,7 +82,7 @@ class ExplorerController extends Controller
 
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('components.creator-cards', compact('creators'))->render(),
+                'html' => view('components.creator-cards-supporter', compact('creators'))->render(),
                 'hasMore' => $creators->hasMorePages(),
             ]);
         }
