@@ -1,18 +1,32 @@
+@php
+use Illuminate\Support\Facades\Auth;
+use App\Models\Donation;
+
+$donations = Donation::with(['supporter.supporterProfile'])
+    ->where('creator_id', Auth::id())
+    ->whereHas('transactions', function ($query) {
+        $query->where('status', 'settlement');
+    })
+    ->latest()
+    ->take(3)
+    ->get();
+@endphp
+
 <div x-data="{ open: false }" class="relative">
     <!-- Ikon Notif -->
-    <div @click="open = !open" class="cursor-pointer hover:scale-110 transition-transform duration-300 notification-icon relative" id="notificationIcon">
+    <div @click="open = !open"
+        class="cursor-pointer hover:scale-110 transition-transform duration-300 notification-icon relative"
+        id="notificationIcon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="transition-all duration-300">
-            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+            <path
+                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
         </svg>
-        <span class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+        <span
+            class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">{{ $donations->count() }}</span>
     </div>
 
     <!-- Dropdown -->
-    <div
-        x-show="open"
-        x-cloak
-        @click.away="open = false"
-        x-transition:enter="transition ease-out duration-200"
+    <div x-show="open" x-cloak @click.away="open = false" x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 scale-95 translate-y-1"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
         x-transition:leave="transition ease-in duration-150"
@@ -28,21 +42,32 @@
         <!-- Notif List -->
         <div class="max-h-80 overflow-y-auto scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300">
             <div class="divide-y divide-gray-100">
-                <div class="group flex items-center justify-between gap-4 px-5 py-4 hover:bg-gray-50/80 transition-all duration-200 cursor-pointer">
-                    <div class="flex items-center gap-3 flex-1 min-w-0">
-                        <div class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                            <span class="text-sm">🎉</span>
+                @forelse ($donations as $donation)
+                    <div
+                        class="group flex items-center justify-between gap-4 px-5 py-4 hover:bg-gray-50/80 transition-all duration-200 cursor-pointer">
+                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                            <div
+                                class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                <span class="text-sm">🎉</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm text-gray-900 font-medium truncate">
+                                    Mendapatkan Rp{{ number_format($donation->amount, 0, ',', '.') }}
+                                </p>
+                                <p class="text-xs text-gray-500">
+                                    dari {{ $donation->supporter->supporterProfile->nickname ?? 'Anonim' }}
+                                    • {{ $donation->created_at->diffForHumans() }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <p class="text-sm text-gray-900 font-medium truncate">Mendapatkan Rp 20.000</p>
-                            <p class="text-xs text-gray-500">dari User A</p>
-                        </div>
+                        <a href="#"
+                            class="not-navbar-color flex-shrink-0 text-xs font-medium text-blue-600 hover:text-blue-800 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200">
+                            Lihat
+                        </a>
                     </div>
-                    <!-- Dikasih class pengecualian -->
-                    <a href="#" class="not-navbar-color flex-shrink-0 text-xs font-medium text-blue-600 hover:text-blue-800 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200">
-                        Lihat
-                    </a>
-                </div>
+                @empty
+                    <div class="px-5 py-4 text-sm text-gray-500">Belum ada donasi masuk</div>
+                @endforelse
             </div>
         </div>
     </div>
@@ -57,5 +82,4 @@
         color: #2563eb !important;
 
     }
-
 </style>

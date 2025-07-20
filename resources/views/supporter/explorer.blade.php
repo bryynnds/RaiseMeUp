@@ -46,6 +46,7 @@
         <!-- Searchbar -->
         <div class="mt-6 max-w-xl mx-auto">
             <input type="text" id="searchInput" placeholder="Cari Kreator Favoritmu"
+                value="{{ request()->has('search') ? request('search') : '' }}"
                 class="w-full px-5 py-3 rounded-full placeholder-gray-400 text-gray-700 text-sm font-medium focus:outline-none" />
         </div>
 
@@ -112,6 +113,11 @@
         const filterButtons = document.querySelectorAll(".filter-btn");
         const searchInput = document.getElementById("searchInput");
 
+        const urlParams = new URLSearchParams(window.location.search);
+        currentSearch = urlParams.get('search') || '';
+        currentJob = urlParams.get('job') ?? 'all';
+
+
         // Ambil data dari meta tag
         const hasMorePages = document.querySelector('meta[name="has-more-pages"]').content === '1';
 
@@ -122,7 +128,7 @@
                 search
             });
 
-            fetch(`/explorer-creator?${params.toString()}`, {
+            fetch(`/explorer-supporter?${params.toString()}`, {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
                     }
