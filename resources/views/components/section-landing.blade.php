@@ -63,7 +63,7 @@
         <!-- Header -->
         <div class="text-center mb-12">
             <div
-                class="inline-flex items-center bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full text-xs font-medium mb-4">
+                class="inline-flex items-center bg-blue-50 text-blue-600 px-3 py-3 rounded-full text-xs font-medium mb-8 mt-4">
                 <svg class="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -84,8 +84,8 @@
             <div class="flex flex-col items-center text-center group step-line">
                 <div class="relative mb-4">
                     <div
-                        class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-500 floating-animation">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-500 floating-animation">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
@@ -104,9 +104,9 @@
             <!-- Step 2 -->
             <div class="flex flex-col items-center text-center group step-line">
                 <div class="relative mb-4">
-                    <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-500 floating-animation"
+                    <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-500 floating-animation"
                         style="animation-delay: 2s">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
@@ -125,9 +125,9 @@
             <!-- Step 3 -->
             <div class="flex flex-col items-center text-center group">
                 <div class="relative mb-4">
-                    <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-500 floating-animation"
+                    <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-500 floating-animation"
                         style="animation-delay: 4s">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
@@ -148,27 +148,27 @@
     </div>
 </section>
 
-<div class="px-12">
-    <div class="w-full h-px bg-gray-300 my-6"></div>
+<div class="px-16">
+    <div class="w-full h-px bg-gray-300 mt-6"></div>
 </div>
 
 <!-- Section 3: Why Choose RaiseMeUp -->
 <section class="light-section py-12 lg:py-14 bg-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
-        <div class="text-center mb-12">
+        <div class="text-center mt-4">
             <div
-                class="inline-flex items-center bg-violet-50 text-violet-600 px-3 py-1.5 rounded-full text-xs font-medium mb-4">
+                class="inline-flex items-center bg-violet-50 text-violet-600 px-3 py-3 rounded-full text-xs font-medium mb-10">
                 <svg class="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Keunggulan Platform
             </div>
-            <h2 class="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 mb-3">
+            <h2 class="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 mb-6">
                 Kenapa Pilih <span class="gradient-text">RaiseMeUp</span>?
             </h2>
-            <p class="text-base text-gray-600 max-w-xl mx-auto leading-relaxed">
+            <p class="text-base text-gray-600 max-w-xl mx-auto leading-relaxed mb-6">
                 Platform donasi terpercaya dengan fitur lengkap untuk mendukung ekosistem kreator Indonesia
             </p>
         </div>

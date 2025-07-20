@@ -59,7 +59,8 @@
 
     <!-- Konten Profil -->
     <section class="relative z-20 -mt-6 sm:-mt-10 md:-mt-20">
-        <div class="bg-white border-b border-gray-300 w-full px-4 sm:px-6 md:px-10 lg:px-32 py-4 sm:py-6 md:py-8 rounded-none">
+        <div
+            class="bg-white border-b border-gray-300 w-full px-4 sm:px-6 md:px-10 lg:px-32 py-4 sm:py-6 md:py-8 rounded-none">
 
             <!-- Desktop -->
             <div class="hidden md:block">
@@ -73,32 +74,33 @@
                             <h1 class="text-2xl font-bold text-gray-900">{{ $supporter->nickname }}</h1>
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
                                 <span>Supporter</span>
-                                
+
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col -mt-12 gap-3 items-start md:items-end ml-auto">
-                        <button class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
-        rounded-full px-8 py-3 text-gray-700 font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
+                        <button id="editBtn" class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
+        rounded-full px-8 py-3.5 text-gray-700 font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
         hover:-translate-y-1 flex items-center gap-2">
-                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-200/10 to-indigo-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-indigo-200/10 to-indigo-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full">
+                            </div>
                             <div class="relative z-10 flex items-center gap-2 text-sm">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
+                                <img src="{{ asset('assets/icon/edit.svg') }}" alt="edit" class="w-5 h-5">
                                 Edit Data
                             </div>
                         </button>
 
-                        
+
                     </div>
                 </div>
 
                 <!-- Bio -->
                 <div class="mt-2">
                     <div class="flex items-center gap-3">
-                        <button class="px-4 py-1 border rounded-full text-sm font-medium bg-gray-100 text-gray-600">Bio</button>
+                        <button
+                            class="px-4 py-1 border rounded-full text-sm font-medium bg-gray-100 text-gray-600">Bio</button>
                         <p class="text-sm text-gray-500">"{{ $supporter->bio }}"</p>
                     </div>
                 </div>
@@ -106,7 +108,7 @@
                 <!-- Tab -->
                 <div class="mt-8 border-b border-gray-300 flex gap-10 text-sm font-medium text-gray-500">
                     <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Riwayat</button>
-                    
+
                 </div>
             </div>
 
@@ -127,12 +129,14 @@
                     </div>
 
                     <div class="flex gap-3 w-full max-w-sm mb-4">
-                        <button class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full text-gray-700 bg-[#F2F4FC] hover:bg-[#e6e9f6] transition text-sm">
+                        <button
+                            class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full text-gray-700 bg-[#F2F4FC] hover:bg-[#e6e9f6] transition text-sm">
                             <img src="/assets/icon/like.png" alt="Like Icon" class="w-5 h-5" />
                             Like Me
                         </button>
 
-                        <button id="donateBtnMobile" class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition font-semibold text-sm">
+                        <button id="donateBtnMobile"
+                            class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition font-semibold text-sm">
                             <img src="/assets/icon/donate.png" alt="Donate Icon" class="w-5 h-5" />
                             Donate
                         </button>
@@ -140,12 +144,15 @@
 
                     <div class="w-full">
                         <div class="flex flex-col gap-2 text-center">
-                            <button class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
-                            <p class="text-sm text-gray-500 px-2">"I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ<)♡"< /p>
+                            <button
+                                class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
+                            <p class="text-sm text-gray-500 px-2">"I'm digital artist who draws cute girls & soft vibes~
+                                Let's make magic together~ (๑>ᴗ<)♡"< /p>
                         </div>
                     </div>
 
-                    <div class="mt-6 border-b border-gray-300 flex gap-8 text-sm font-medium text-gray-500 w-full justify-center">
+                    <div
+                        class="mt-6 border-b border-gray-300 flex gap-8 text-sm font-medium text-gray-500 w-full justify-center">
                         <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Portofolio</button>
                         <button class="hover:text-indigo-600 transition">About</button>
                     </div>
@@ -162,17 +169,22 @@
         <div class="bg-white p-6 rounded-lg max-w-md w-full">
             <h2 class="text-xl font-semibold mb-4">Donate to Nayla Evelyn</h2>
             <p class="text-sm text-gray-500 mb-4">Fitur ini akan segera hadir~ makasih ya udah support ♡</p>
-            <button onclick="document.getElementById('donateModal').classList.add('hidden'); document.body.style.overflow = 'auto';"
+            <button
+                onclick="document.getElementById('donateModal').classList.add('hidden'); document.body.style.overflow = 'auto';"
                 class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">
                 Close
             </button>
         </div>
     </div>
 
+    <x-riwayat />
+
     <x-footer />
 
+    <x-edit-profile-supporter />
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const donateBtn = document.getElementById('donateBtn');
             const donateBtnMobile = document.getElementById('donateBtnMobile');
             const donateModal = document.getElementById('donateModal');
