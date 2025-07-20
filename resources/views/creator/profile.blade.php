@@ -166,7 +166,7 @@
         </div>
     </section>
 
-    <div class="w-full h-56 bg-blue-50 py-4 text-center"></div>
+    <x-portfolio-card />
 
     {{-- Komponen dummy biar ga error --}}
     <div id="donateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">

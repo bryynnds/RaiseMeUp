@@ -205,9 +205,8 @@
         </div>
     </section>
 
-    <div class="w-full h-56 bg-blue-50 py-4 text-center">
+    <x-portfolio-card />
 
-    </div>
 
     <x-donate :creator="$creator" />
 

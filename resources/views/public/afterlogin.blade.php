@@ -27,7 +27,7 @@
             font-family: 'Inter', sans-serif;
             height: 100vh;
             overflow: hidden;
-            background: url('/assets/bg/bg.jpg') center/cover no-repeat;
+            background: url('/assets/bg/afterlogin.jpg') center/cover no-repeat;
             position: relative;
         }
 
@@ -231,92 +231,108 @@
 
     <!-- Main Container -->
     <div class="min-h-screen flex items-center justify-center p-4 relative z-10">
-        <div class="glass-morphism rounded-3xl w-full max-w-md form-container">
-            <div class="px-6 py-6">
+        <div class="glass-morphism rounded-2xl w-full max-w-sm form-container">
+            <div class="px-8 py-7">
 
                 <!-- Step Indicator -->
-                <div class="step-indicator">
+                <div class="step-indicator mb-4">
                     <div class="step active"></div>
                     <div class="step"></div>
                     <div class="step"></div>
                 </div>
 
                 <!-- Logo Section -->
-                <div class="text-center mb-5">
-
-
-                    <h1 style="font-family: 'Protest Riot', cursive;"
-                        class="text-xl font-bold text-white mb-1 tracking-wide">
+                <div class="text-center mb-4">
+                    <h1 style="font-family: 'Protest Riot', cursive;" class="text-lg font-bold text-white mb-1 tracking-wide">
                         RaiseMeUp
                     </h1>
-                    <p class="text-white/80 text-xs font-light">
+                    <p class="text-white/80 text-[11px] font-light">
                         Ayo lengkapi profil kamu ✨
                     </p>
                 </div>
 
                 <!-- Form -->
-                <form class="space-y-4" autocomplete="off" action="{{ route('creator.afterlogin.update') }}"
+                <form class="space-y-3" autocomplete="off" action="{{ route('creator.afterlogin.update') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Upload Section -->
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="text-white/90 text-xs font-medium block mb-2">
+                            <label class="text-white/90 text-[11px] font-medium block mb-1">
                                 <i class="fas fa-image mr-1"></i>Foto Sampul
                             </label>
-                            <div class="upload-area p-3 text-center">
-                                <input type="file" name="fotosampul_url" accept="image/*" />
-                                <i class="fas fa-cloud-upload-alt text-white/60 text-lg mb-1"></i>
-                                <p class="text-white/60 text-xs">Upload</p>
+                            <div class="upload-area p-2 text-center">
+                                <input type="file" name="fotosampul_url" accept="image/*" required/>
+                                <i class="fas fa-cloud-upload-alt text-white/60 text-base mb-1"></i>
+                                <p class="text-white/60 text-[11px]">Upload</p>
                             </div>
                         </div>
 
                         <div>
-                            <label class="text-white/90 text-xs font-medium block mb-2">
+                            <label class="text-white/90 text-[11px] font-medium block mb-1">
                                 <i class="fas fa-user-circle mr-1"></i>Foto Profil
                             </label>
-                            <div class="upload-area p-3 text-center">
+                            <div class="upload-area p-2 text-center">
                                 <input type="file" name="pp_url" accept="image/*" required />
-                                <i class="fas fa-camera text-white/60 text-lg mb-1"></i>
-                                <p class="text-white/60 text-xs">Upload</p>
+                                <i class="fas fa-camera text-white/60 text-base mb-1"></i>
+                                <p class="text-white/60 text-[11px]">Upload</p>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Nickname Section -->
+                    <div class="input-group">
+                        <label class="text-white/90 text-[11px] font-medium block mb-1">
+                            <i class="fas fa-id-badge mr-1"></i>Nickname <span class="text-white/50 text-[10px]">(Nama yang akan di-display di profil)</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Contoh: Nayla Evelyn"
+                            class="modern-input w-full px-2.5 py-2 rounded-md text-[12px]"
+                            maxlength="40" />
                     </div>
 
                     <!-- Bio Section -->
                     <div class="input-group">
-                        <label class="text-white/90 text-xs font-medium block mb-2">
+                        <label class="text-white/90 text-[11px] font-medium block mb-1">
                             <i class="fas fa-quote-left mr-1"></i>Bio Singkat
                         </label>
-                        <input type="text" name="bio" required placeholder="Ceritakan tentang dirimu..."
-                            class="modern-input w-full px-3 py-2.5 rounded-lg text-xs" maxlength="100" />
+                        <input
+                            type="text"
+                            name="bio" required
+                            placeholder="Ceritakan tentang dirimu..."
+                            class="modern-input w-full px-2.5 py-2 rounded-md text-[12px]"
+                            maxlength="100" />
                     </div>
 
                     <!-- Description Section -->
                     <div class="input-group">
-                        <label class="text-white/90 text-xs font-medium block mb-2">
+                        <label class="text-white/90 text-[11px] font-medium block mb-1">
                             <i class="fas fa-align-left mr-1"></i>Deskripsi
                         </label>
-                        <textarea name="deskripsi" required rows="2" placeholder="Bagikan lebih banyak tentang dirimu..."
-                            class="modern-input w-full px-3 py-2.5 rounded-lg text-xs resize-none" maxlength="300"></textarea>
+                        <textarea
+                            name="deskripsi" required
+                            rows="2"
+                            placeholder="Bagikan lebih banyak tentang dirimu..."
+                            class="modern-input w-full px-2.5 py-2 rounded-md text-[12px] resize-none"
+                            maxlength="300"></textarea>
                     </div>
 
                     <!-- Action Button -->
-                    <button type="submit"
-                        class="cta-button w-full py-3 rounded-lg text-white font-semibold text-sm relative overflow-hidden">
+                    <button
+                        type="submit"
+                        class="cta-button w-full py-2.5 rounded-md text-white font-semibold text-sm relative overflow-hidden">
                         <span class="relative z-10 flex items-center justify-center">
                             <span>Simpan & Lanjutkan</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            <i class="fas fa-arrow-right ml-2 text-xs"></i>
                         </span>
                     </button>
-
-
-
                 </form>
             </div>
         </div>
     </div>
+
 
     <script>
         // Add some interactive behavior
@@ -356,8 +372,7 @@
                 });
             }
 
-            addCharacterCount(textarea, 300);
-            addCharacterCount(bioInput, 100);
+            
         });
     </script>
 </body>
