@@ -26,7 +26,7 @@
             <!-- Left: Logo + Notif -->
             <div class="flex items-center space-x-4">
                 <a href="{{ route('home_supporter') }}" class="flex items-center">
-                    <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
+                    <img src="/assets/icon/logo.png" alt="Logo"
                         class="w-8 h-8 mr-8 hidden md:block" />
                     <span class="text-2xl font-protest font-medium mr-2">RaiseMeUp</span>
                 </a>

@@ -27,6 +27,7 @@ class LoginController extends Controller
 
                     // Cek apakah profil belum lengkap
                     if (
+                        is_null($profile->nickname) ||
                         is_null($profile->pp_url) ||
                         is_null($profile->fotosampul_url) ||
                         is_null($profile->bio) ||

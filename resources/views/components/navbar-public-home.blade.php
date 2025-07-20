@@ -15,7 +15,7 @@
     <div class="max-w-7xl py-4 mx-auto px-8 sm:px-6 lg:px-14">
         <div class="flex justify-between items-center h-20">
             <a href="{{ route('landing') }}" class="flex items-center">
-                <img src="https://via.placeholder.com/32x32?text=R" alt="Logo"
+                <img src="/assets/icon/logo.png" alt="Logo"
                     class="w-8 h-8 mr-2 hidden md:block" />
                 <span class="text-2xl lg:px-12 font-protest font-medium">RaiseMeUp</span>
             </a>

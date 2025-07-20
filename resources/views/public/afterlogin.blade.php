@@ -288,6 +288,7 @@
                         </label>
                         <input
                             type="text"
+                            name="nickname" required
                             placeholder="Contoh: Nayla Evelyn"
                             class="modern-input w-full px-2.5 py-2 rounded-md text-[12px]"
                             maxlength="40" />

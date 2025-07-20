@@ -38,6 +38,7 @@ class CreatorProfileController extends Controller
     public function updateAfterLogin(Request $request)
     {
         $request->validate([
+            'nickname' => 'required|string',
             'bio' => 'required|string',
             'deskripsi' => 'required|string',
             'pp_url' => 'required|image|mimes:jpg,jpeg,png|max:2048',
@@ -53,6 +54,7 @@ class CreatorProfileController extends Controller
 
         // Update profil
         $profile->update([
+            'nickname' => $request->nickname,
             'bio' => $request->bio,
             'deskripsi' => $request->deskripsi,
             'pp_url' => Storage::url($ppPath),
