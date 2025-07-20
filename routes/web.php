@@ -51,9 +51,9 @@ Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'profile
 
 
 // Route Supporter
-Route::get('/home-supporter', function () {
-    return view('supporter.landing');
-})->name('home_supporter');
+// Route::get('/home-supporter', function () {
+//     return view('supporter.landing');
+// })->name('home_supporter');
 
 Route::get('/explorer-supporter', function () {
     return view('supporter.explorer');
@@ -87,9 +87,9 @@ Route::post('/register/otp/supporter/resend', [SupporterRegisterController::clas
 
 
 // Route Creator
-Route::get('/home-creator', function () {
-    return view('creator.landing');
-})->name('home_creator');
+// Route::get('/home-creator', function () {
+//     return view('creator.landing');
+// })->name('home_creator');
 
 
 use App\Http\Controllers\Creator\CreatorController;
@@ -153,7 +153,28 @@ Route::get('/afterlogin', function () {
     return view('public.afterlogin'); // pastikan file-nya resources/views/afterlogin.blade.php
 })->name('creator.afterlogin');
 
-Route::post('/afterlogin', [CreatorProfileController::class, 'updateAfterLogin'])->name('creator.afterlogin.update');
+Route::post('/afterlogin-creator', [CreatorProfileController::class, 'updateAfterLoginCreator'])->name('creator.afterlogin.updateCreator');
+Route::post('/afterlogin-supporter', [CreatorProfileController::class, 'updateAfterLoginSupporter'])->name('creator.afterlogin.updateSupporter');
+
+// Afterlogin kreator
+Route::get('/afterlogin-creator', function () {
+    return view('public.afterlogin-creator');
+})->name('afterlogin.creator')->middleware(['auth', 'role:kreator']);
+
+// Afterlogin supporter
+Route::get('/afterlogin-supporter', function () {
+    return view('public.afterlogin-supporter');
+})->name('afterlogin.supporter')->middleware(['auth', 'role:supporter']);
+
+// Home masing-masing
+Route::get('/home-creator', function () {
+    return view('creator.landing');
+})->name('home_creator')->middleware(['auth', 'role:kreator']);
+
+Route::get('/home-supporter', function () {
+    return view('supporter.landing');
+})->name('home_supporter')->middleware(['auth', 'role:supporter']);
+
 
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Supporter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CreatorProfile;
+use App\Models\SupporterProfile;
 use App\Models\User;
 use App\Models\Donation;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,7 @@ class CreatorProfileController extends Controller
         ]);
     }
 
-    public function updateAfterLogin(Request $request)
+    public function updateAfterLoginCreator(Request $request)
     {
         $request->validate([
             'nickname' => 'required|string',
@@ -67,14 +68,20 @@ class CreatorProfileController extends Controller
         ]);
 
         $user = Auth::user();
-        $profile = $user->creatorProfile;
+        // Cek apakah creator profile sudah ada
+        $profileCreator = $user->creatorProfile;
+        if (!$profileCreator) {
+            $profileCreator = CreatorProfile::create([
+                'creator_id' => $user->id,
+            ]);
+        }
 
         // Simpan file
         $ppPath = $request->file('pp_url')->store('profile_pictures', 'public');
         $sampulPath = $request->file('fotosampul_url')->store('cover_pictures', 'public');
 
         // Update profil
-        $profile->update([
+        $profileCreator->update([
             'nickname' => $request->nickname,
             'bio' => $request->bio,
             'deskripsi' => $request->deskripsi,
@@ -83,5 +90,40 @@ class CreatorProfileController extends Controller
         ]);
 
         return redirect('/home-creator');
+    }
+
+    public function updateAfterLoginSupporter(Request $request)
+    {
+        $request->validate([
+            'nickname' => 'required|string',
+            'bio' => 'required|string',
+            'deskripsi' => 'required|string',
+            'pp_url' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'fotosampul_url' => 'required|image|mimes:jpg,jpeg,png|max:4096',
+        ]);
+
+        $user = Auth::user();
+        $profileSupporter = $user->supporterProfile;
+
+        if (!$profileSupporter) {
+            $profileSupporter = SupporterProfile::create([
+                'supporter_id' => $user->id,
+            ]);
+        }
+
+        // Simpan file
+        $ppPath = $request->file('pp_url')->store('profile_pictures', 'public');
+        $sampulPath = $request->file('fotosampul_url')->store('cover_pictures', 'public');
+
+        // Update profil
+        $profileSupporter->update([
+            'nickname' => $request->nickname,
+            'bio' => $request->bio,
+            'deskripsi' => $request->deskripsi,
+            'pp_url' => Storage::url($ppPath),
+            'fotosampul_url' => Storage::url($sampulPath),
+        ]);
+
+        return redirect('/home-supporter');
     }
 }

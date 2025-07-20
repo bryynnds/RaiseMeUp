@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SupporterProfile extends Model
 {
-    protected $fillable = ['supporter_id', 'nickname', 'bio','pp_url','fotosampul_url'];
+    protected $fillable = ['supporter_id', 'nickname', 'bio', 'deskripsi','pp_url','fotosampul_url'];
 
     public function user(): BelongsTo
     {

@@ -252,7 +252,7 @@
                 </div>
 
                 <!-- Form -->
-                <form class="space-y-3" autocomplete="off" action="{{ route('creator.afterlogin.update') }}"
+                <form class="space-y-3" autocomplete="off" action="{{ route('creator.afterlogin.updateSupporter') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
 
