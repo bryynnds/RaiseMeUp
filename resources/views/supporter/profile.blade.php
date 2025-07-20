@@ -53,7 +53,7 @@
     <!-- Sampul -->
     <section class="relative">
         <div class="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] bg-gray-300">
-            <img src="{{ asset('assets/sampul.jpg') }}" alt="Cover Image" class="w-full h-full object-cover" />
+            <img src="{{ $supporter->fotosampul_url  }}" alt="Cover Image" class="w-full h-full object-cover" />
         </div>
     </section>
 
@@ -65,12 +65,12 @@
             <div class="hidden md:block">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div class="flex items-start gap-5">
-                        <img src="{{ asset('assets/pp.png') }}" alt="Profile Picture"
+                        <img src="{{ $supporter->pp_url }}" alt="Profile Picture"
                             class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
 
                         <div class="flex flex-col -mt-4 gap-1">
-                            <span class="text-gray-700 text-xs">@Nayla_Cutelyn</span>
-                            <h1 class="text-2xl font-bold text-gray-900">Rania Arunika</h1>
+                            <span class="text-gray-700 text-xs"><span>@</span>{{ $supporter->user->name }}</span>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ $supporter->nickname }}</h1>
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
                                 <span>Supporter</span>
                                 
@@ -99,7 +99,7 @@
                 <div class="mt-2">
                     <div class="flex items-center gap-3">
                         <button class="px-4 py-1 border rounded-full text-sm font-medium bg-gray-100 text-gray-600">Bio</button>
-                        <p class="text-sm text-gray-500">"Aku suka gambar cewek-cewek lucu dan dreamy vibes (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)"</p>
+                        <p class="text-sm text-gray-500">"{{ $supporter->bio }}"</p>
                     </div>
                 </div>
 
@@ -113,12 +113,12 @@
             <!-- Mobile -->
             <div class="block md:hidden">
                 <div class="flex flex-col items-center text-center">
-                    <img src="{{ asset('assets/pp.png') }}" alt="Profile Picture"
+                    <img src="{{ $supporter->pp_url }}" alt="Profile Picture"
                         class="profile-image-mobile rounded-full border-4 border-white object-cover mb-3" />
 
                     <div class="flex flex-col gap-1 mb-4">
-                        <span class="text-gray-700 text-xs">@Nayla_Cutelyn</span>
-                        <h1 class="text-xl font-bold text-gray-900">Nayla Evelyn</h1>
+                        <span class="text-gray-700 text-xs"><span>@</span>{ $supporter->user->name }}</span>
+                        <h1 class="text-xl font-bold text-gray-900">{{ $supporter->nickname }}</h1>
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
                             <span>2k Like</span>
                             <span>&bull;</span>

@@ -55,13 +55,13 @@
 
         <!-- Logo -->
         {{-- <div class="flex justify-center mb-4">
-            <img src="https://via.placeholder.com/70x70?text=R" alt="RaiseMeUp Logo"
-                class="w-16 h-16 rounded-full shadow-lg ring-4 ring-white/40" />
+            <img src="/assets/icon/logo.png" alt="Logo"
+                class="w-16 h-16" />
         </div> --}}
 
         <a href="{{ route('landing') }}" class="flex justify-center mb-4">
             <img src="/assets/icon/logo.png" alt="Logo"
-                class="w-16 h-16 rounded-full shadow-lg ring-4 ring-white/40" />
+                class="w-16 h-16" />
         </a>
 
         <!-- Judul -->
