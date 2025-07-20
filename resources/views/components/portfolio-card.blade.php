@@ -1,5 +1,5 @@
 <section class="w-full bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-8 sm:px-16 lg:px-24 xl:px-32">
-    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         <!-- About Me & Social Media - 1 kolom -->
         <div class="lg:col-span-1">
@@ -31,7 +31,7 @@
                         <h4 class="text-xs font-semibold text-gray-800 mb-3">Mari Terhubung</h4>
 
                         <a href="#"
-                            class="flex items-center gap-3 p-2 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group border border-blue-100">
+                            class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group border border-blue-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
                         </a>
 
                         <a href="#"
-                            class="flex items-center gap-3 p-2 rounded-lg bg-gradient-to-r from-indigo-50 to-indigo-100 hover:from-indigo-100 hover:to-indigo-200 transition-all duration-300 group border border-indigo-100">
+                            class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-indigo-50 to-indigo-100 hover:from-indigo-100 hover:to-indigo-200 transition-all duration-300 group border border-indigo-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -62,7 +62,7 @@
                         </a>
 
                         <a href="#"
-                            class="flex items-center gap-3 p-2 rounded-lg bg-gradient-to-r from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 transition-all duration-300 group border border-red-100">
+                            class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 transition-all duration-300 group border border-red-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@
                         </a>
 
                         <a href="#"
-                            class="flex items-center gap-3 p-2 rounded-lg bg-gradient-to-r from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200 transition-all duration-300 group border border-pink-100">
+                            class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200 transition-all duration-300 group border border-pink-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -98,9 +98,20 @@
             </div>
         </div>
 
+
+
         <!-- Featured Portfolio & Stats - 2 kolom -->
         <div class="lg:col-span-2 space-y-6">
-
+            <!-- Box Info: Belum Ada Portofolio -->
+            <div
+                class="bg-white/80 backdrop-blur-sm rounded-2xl border border-dashed border-gray-300 p-6 shadow-sm hover:shadow-md transition-all duration-300 min-h-[300px] flex items-center justify-center text-center">
+                <div class="flex flex-col items-center justify-center space-y-3">
+                    <h3 class="text-gray-800 font-semibold text-base">Belum ada portofolio</h3>
+                    <p class="text-sm text-gray-500 max-w-xs mx-auto">
+                        Pengguna ini belum menambahkan karya apapun ke dalam portofolionya.
+                    </p>
+                </div>
+            </div>
             <!-- Featured Work -->
             <div
                 class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 overflow-hidden hover:shadow-xl transition-all duration-500">
