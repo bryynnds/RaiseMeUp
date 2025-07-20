@@ -40,6 +40,10 @@ Route::get('/explorer-creator', [ExplorerController::class, 'creatorIndex'])->na
 
 Route::get('/creator/{id}', [CreatorProfileController::class, 'show'])->name('creator.public.profile');
 
+Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'profileDonate'])
+    ->name('supporter.creator.profil');
+
+
 
 // Route::get('/profile', function () {
 //     return view('public.profil');
@@ -111,7 +115,7 @@ Route::post('/register/otp/creator/resend', [CreatorRegisterController::class, '
 
 
 //Route ngambil data ke profile creator
-Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'show'])->name('supporter.creator.profile');
+// Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'show'])->name('supporter.creator.profile');
 
 //Route Like Logic
 Route::post('/like/{creatorId}', [LikeController::class, 'store'])->name('like.creator')->middleware('auth');

@@ -35,6 +35,27 @@ class CreatorProfileController extends Controller
         ]);
     }
 
+    public function profileDonate($id)
+    {
+        $creatorProfile = CreatorProfile::with('user')->where('creator_id', $id)->firstOrFail();
+
+        $likeCount = \App\Models\Like::where('creator_id', $id)->count();
+
+
+        $jumlahSupport = Donation::where('creator_id', $id)
+            ->whereHas('transactions', function ($query) {
+                $query->where('status', 'settlement');
+            })
+            ->count();
+
+        return view('supporter.profile-donate', [
+            'creator' => $creatorProfile,
+            'user' => $creatorProfile->user,
+            'likeCount' => $likeCount, // <- Tambahkan ini
+            'jumlahSupport' => $jumlahSupport
+        ]);
+    }
+
     public function updateAfterLogin(Request $request)
     {
         $request->validate([

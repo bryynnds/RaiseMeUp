@@ -14,7 +14,7 @@
             </span>
             <h3 class="text-sm font-semibold text-gray-800">{{ $creator->nickname }}</h3>
             <p class="text-xs text-gray-600 mt-1">{{ $creator->bio }}</p>
-            <a href="{{ route('creator.public.profile', ['id' => $creator->creator_id]) }}">
+            <a href="{{ route('supporter.creator.profil', ['id' => $creator->creator_id]) }}">
                 <button
                     class="mt-4 text-xs font-semibold bg-blue-500 hover:bg-blue-600 text-white py-2 px-5 rounded-full transition-all duration-300">
                     View
