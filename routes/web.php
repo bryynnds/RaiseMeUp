@@ -40,10 +40,12 @@ Route::get('/explorer-public', [ExplorerController::class, 'index'])->name('expl
 
 Route::get('/explorer-creator', [ExplorerController::class, 'creatorIndex'])->name('explorer-creator');
 
-Route::get('/creator/{id}', [CreatorProfileController::class, 'show'])->name('creator.public.profile');
+Route::get('/creator/{id}', [CreatorProfileController::class, 'profileCreator'])->name('creator.creator-profile');
 
 Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'profileDonate'])
     ->name('supporter.creator.profil');
+
+
 
 
 

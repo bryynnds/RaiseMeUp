@@ -81,7 +81,7 @@
     <section class="px-4 pb-20">
         <div id="creatorContainer"
             class="max-w-4xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8 md:gap-x-4">
-            @include('components.creator-cards', ['creators' => $creators])
+            @include('components.creator-cards-supporter', ['creators' => $creators])
         </div>
 
         <div class="flex justify-center mt-10">
