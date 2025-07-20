@@ -90,9 +90,9 @@
 
                 <div
                     class="backdrop-blur-sm bg-white/20 border border-white/70 w-full max-w-md rounded-full px-4 py-3 flex items-center justify-between">
-                    <input type="text" placeholder="Kobo Kanaeru"
+                    <input id="landingSearchInput" type="text" placeholder="Kobo Kanaeru"
                         class="bg-transparent text-sm text-white placeholder-white/70 font-semibold w-full focus:outline-none px-2" />
-                    <span
+                    <span id="landingSearchButton"
                         class="bg-blue-500 hover:bg-blue-800 text-sm px-4 py-2 rounded-full text-white font-bold cursor-pointer backdrop-blur-md transition">
                         Cari
                     </span>
@@ -155,6 +155,19 @@
                     typeWithCaret('typing-line-2', 'Inspire More Creations', 50);
                 }, 300);
             });
+        });
+    </script>
+
+    <script>
+        document.getElementById('landingSearchButton').addEventListener('click', function() {
+            const keyword = document.getElementById('landingSearchInput').value.trim();
+            if (keyword) {
+                // Redirect ke route explorer-public dengan query search
+                window.location.href = `/explorer-creator?search=${encodeURIComponent(keyword)}`;
+            } else {
+                // Redirect tetap ke explorer jika kosong
+                window.location.href = `/explorer-creator`;
+            }
         });
     </script>
 

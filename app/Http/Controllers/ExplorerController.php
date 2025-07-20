@@ -46,7 +46,7 @@ class ExplorerController extends Controller
             $query->where('job', $job);
         }
 
-        if ($search) {
+        if (!is_null($search) && trim($search) !== '') {
             $query->where('nickname', 'like', '%' . $search . '%');
         }
 
@@ -74,7 +74,7 @@ class ExplorerController extends Controller
             $query->where('job', $job);
         }
 
-        if ($search) {
+        if (!is_null($search) && trim($search) !== '') {
             $query->where('nickname', 'like', '%' . $search . '%');
         }
 
