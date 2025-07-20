@@ -105,8 +105,8 @@
 
                 <!-- Tab -->
                 <div class="mt-8 border-b border-gray-300 flex gap-10 text-sm font-medium text-gray-500">
-                    <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Portofolio</button>
-                    <button class="hover:text-indigo-600 transition">About</button>
+                    <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Riwayat</button>
+                    
                 </div>
             </div>
 

@@ -43,6 +43,93 @@
                 margin-top: -2.5rem;
             }
         }
+
+        /* Floating Button Styles */
+        .floating-btn {
+            position: fixed;
+            bottom: 4rem;
+            right: 6rem;
+            z-index: 1000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            outline: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .floating-btn:active {
+            transform: translateY(-1px) scale(1.05);
+        }
+
+        .floating-btn svg {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-btn:hover svg {
+            transform: rotate(360deg);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .floating-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 56px;
+                height: 56px;
+            }
+            
+            .floating-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* Pulse effect when page loads */
+        .floating-btn.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            }
+        }
     </style>
 </head>
 
@@ -152,7 +239,7 @@
                     <div class="w-full">
                         <div class="flex flex-col gap-2 text-center">
                             <button class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
-                            <p class="text-sm text-gray-500 px-2">"I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ<)♡"< /p>
+                            <p class="text-sm text-gray-500 px-2">"I'm digital artist who draws cute girls & soft vibes~ Let's make magic together~ (๑>ᴗ<)♡"</p>
                         </div>
                     </div>
 
@@ -188,6 +275,7 @@
             const donateBtnMobile = document.getElementById('donateBtnMobile');
             const donateModal = document.getElementById('donateModal');
 
+
             function openDonateModal() {
                 donateModal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
@@ -195,7 +283,7 @@
 
             if (donateBtn) donateBtn.addEventListener('click', openDonateModal);
             if (donateBtnMobile) donateBtnMobile.addEventListener('click', openDonateModal);
-        });
+
     </script>
 
 </body>

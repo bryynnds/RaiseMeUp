@@ -112,14 +112,7 @@
         </div>
     </div>
 
-    <div
-        class="light-section w-full h-screen bg-gradient-to-b from-white to-gray-100 flex items-center justify-center text-gray-800 text-3xl font-bold">
-        Section 2
-    </div>
-
-    <div class="light-section w-full h-screen bg-gray-100 flex items-center justify-center text-gray-900 text-3xl font-bold">
-        Section 3
-    </div>
+    <x-section-landing />
 
     <x-footer />
 
