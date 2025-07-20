@@ -57,14 +57,7 @@
                             rows="3" placeholder="Tell us about yourself..."></textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">New Password</label>
-                        <div class="relative">
-                            <input type="password"
-                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all pr-8"
-                                placeholder="••••••••">
-                        </div>
-                    </div>
+                    
 
                     <div class="flex justify-end gap-3 pt-6">
                         <button onclick="toggleEditProfileModal()"
