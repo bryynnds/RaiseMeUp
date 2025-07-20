@@ -1,3 +1,4 @@
+@if ($creators->count() > 0)
 @foreach ($creators as $creator)
     <div class="rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300">
         <div class="relative">
@@ -22,3 +23,8 @@
         </div>
     </div>
 @endforeach
+@else
+    <div class="text-center col-span-3 text-gray-500 text-sm py-10">
+        No creators found.
+    </div>
+@endif
