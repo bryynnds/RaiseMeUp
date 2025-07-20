@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class, 'creator_id'); // jika like ditujukan ke user
     }
 
+    public function portfolio(): HasMany
+    {
+        return $this->hasMany(Portfolio::class, 'creator_id');
+    }
+
     public function getRoleNameAttribute()
     {
         return $this->attributes['role'];
