@@ -161,7 +161,7 @@
             <!-- Ganti URL + Dropdown JOB (1 baris) -->
             <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:gap-3">
                 <!-- Button Ganti URL (tinggi lebih kecil) -->
-                <button onclick="openUrlModal()"
+                <button onclick="openUrlModal()" type="button"
                     class="w-full sm:w-auto px-9 py-4 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 active:scale-[0.98] transition-all duration-200">
                     Ganti Social Media
                 </button>
@@ -210,11 +210,11 @@
         </div>
     </div>
 </div>
-</form>
+
 </div>
 </div>
 
-<x-url />
+<x-url :creator="$creator"/>
 
 
 <style>

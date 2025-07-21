@@ -1,5 +1,29 @@
 @props(['creator', 'portfolio'])
 
+@php
+    use Illuminate\Support\Str;
+
+    $youtube = $creator->youtube_url;
+    if ($youtube && !Str::startsWith($youtube, ['http://youtube.com/', 'https://youtube.com/'])) {
+        $youtube = 'https://youtube.com/' . $youtube;
+    }
+
+    $instagram = $creator->instagram_url;
+    if ($instagram && !Str::startsWith($instagram, ['http://instagram.com/', 'https://instagram.com/'])) {
+        $instagram = 'https://instagram.com/' . $instagram;
+    }
+
+    $facebook = $creator->facebook_url;
+    if ($facebook && !Str::startsWith($facebook, ['http://facebook.com/', 'https://facebook.com/'])) {
+        $facebook = 'https://facebook.com/' . $facebook;
+    }
+
+    $twitter = $creator->twitter_url;
+    if ($twitter && !Str::startsWith($twitter, ['http://x.com/', 'https://x.com/'])) {
+        $twitter = 'https://x.com/' . $twitter;
+    }
+@endphp
+
 <section class="w-full bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-8 sm:px-16 lg:px-24 xl:px-32">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
@@ -32,7 +56,7 @@
                     <div class="space-y-2 pt-4 border-t border-gray-100">
                         <h4 class="text-xs font-semibold text-gray-800 mb-3">Mari Terhubung</h4>
 
-                        <a href="#"
+                        <a href="{{ $twitter }}" target="_blank"
                             class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group border border-blue-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
@@ -43,12 +67,12 @@
                             </div>
                             <div class="flex-1">
                                 <div class="font-semibold text-gray-900 text-xs">Twitter</div>
-                                <div class="text-xs text-gray-500"><span>@</span>{{ $creator->twitter_url ?? '-' }}
+                                <div class="text-xs text-gray-500"><span></span>{{ $creator->twitter_url ?? '-' }}
                                 </div>
                             </div>
                         </a>
 
-                        <a href="#"
+                        <a href="{{ $facebook }}" target="_blank"
                             class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-indigo-50 to-indigo-100 hover:from-indigo-100 hover:to-indigo-200 transition-all duration-300 group border border-indigo-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
@@ -63,7 +87,7 @@
                             </div>
                         </a>
 
-                        <a href="#"
+                        <a href="{{ $youtube }}" target="_blank"
                             class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 transition-all duration-300 group border border-red-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
@@ -78,7 +102,7 @@
                             </div>
                         </a>
 
-                        <a href="#"
+                        <a href="{{ $instagram }}" target="_blank"
                             class="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200 transition-all duration-300 group border border-pink-100">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">

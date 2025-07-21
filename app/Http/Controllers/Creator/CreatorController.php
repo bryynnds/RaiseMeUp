@@ -8,9 +8,37 @@ use Illuminate\Http\Request;
 use App\Models\Donation;
 use App\Models\Portfolio;
 use App\Models\CreatorProfile;
+use App\Models\User;
+
 
 class CreatorController extends Controller
 {
+    public function updateSocialUrl(Request $request)
+    {
+        $request->validate([
+            'twitter_url' => 'nullable|string',
+            'facebook_url' => 'nullable|string',
+            'youtube_url' => 'nullable|string',
+            'instagram_url' => 'nullable|string',
+        ]);
+
+        $user = Auth::user();
+
+        if (!$user->creatorProfile) {
+            return redirect()->back()->withErrors(['error' => 'Profil kreator tidak ditemukan.']);
+        }
+
+        $user->creatorProfile->update([
+            'twitter_url' => $request->twitter_url,
+            'facebook_url' => $request->facebook_url,
+            'youtube_url' => $request->youtube_url,
+            'instagram_url' => $request->instagram_url,
+        ]);
+
+        return redirect()->route('profile_creator')->with('success', 'Social media berhasil diperbarui.');
+    }
+
+
     public function profile()
     {
         $user = Auth::user();

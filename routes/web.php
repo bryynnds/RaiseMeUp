@@ -106,6 +106,9 @@ Route::middleware(['auth', 'role:kreator'])->group(function () {
     Route::get('/profile-creator', [CreatorController::class, 'profile'])->name('profile_creator');
 });
 
+Route::post('/creator/update-social-url', [CreatorController::class, 'updateSocialUrl'])
+    ->middleware('auth')
+    ->name('creator.updateSocialUrl');
 
 
 //Route Register Creator
