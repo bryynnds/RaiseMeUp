@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Portfolio extends Model
 {
-    use HasFactory;
+
+    protected $table = 'portfolio';
 
     protected $fillable = [
         'creator_id',

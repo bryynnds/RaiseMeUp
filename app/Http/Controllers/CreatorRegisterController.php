@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\OtpMail;
 use App\Models\User;
 use App\Models\CreatorProfile;
+use App\Models\Portfolio;
 
 class CreatorRegisterController extends Controller
 {
@@ -30,9 +31,9 @@ class CreatorRegisterController extends Controller
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
             'job'      => 'nullable|string|max:255',
-            
+
         ]);
-        
+
         $data['role'] = 'kreator'; // tambahkan
 
 
@@ -124,6 +125,10 @@ class CreatorRegisterController extends Controller
         CreatorProfile::create([
             'creator_id' => $user->id,
             'job'        => $data['job'],
+        ]);
+
+        Portfolio::create([
+            'creator_id' => $user->id,
         ]);
 
         // bersihkan semua session OTP

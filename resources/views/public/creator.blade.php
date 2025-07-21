@@ -63,8 +63,8 @@
             Streamer</li>
         <li onclick="selectOption('Penulis')" class="px-4 py-2 hover:bg-white/70 hover:text-black cursor-pointer">
             Penulis</li>
-        <li onclick="selectOption('Lainnya')" class="px-4 py-2 hover:bg-white/70 hover:text-black cursor-pointer">
-            Lainnya</li>
+        {{-- <li onclick="selectOption('Lainnya')" class="px-4 py-2 hover:bg-white/70 hover:text-black cursor-pointer">
+            Lainnya</li> --}}
     </ul>
 
     <!-- Form Container -->
