@@ -44,7 +44,7 @@
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
-                        <p class="text-sm font-medium text-gray-700">Click to upload profile photo</p>
+                        <p class="text-sm font-medium text-gray-700">Click to upload profile SUpportr photo</p>
                         <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
                     </div>
                     <input type="file" accept="image/*"

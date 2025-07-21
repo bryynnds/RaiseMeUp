@@ -174,7 +174,7 @@
 
     <x-edit-profile-supporter :supporter="$supporter" />
 
-    <x-pp />
+    <x-pp-supporter :supporter="$supporter"/>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

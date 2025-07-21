@@ -13,6 +13,7 @@ use App\Http\Controllers\Supporter\CreatorProfileController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\Supporter\SupporterController;
 use App\Http\Controllers\Creator\CreatorController;
+use App\Http\Controllers\Supporter\ProfilePhotoController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -127,6 +128,10 @@ Route::post('/register/otp/creator/resend', [CreatorRegisterController::class, '
 Route::get('/public/creator/{id}', [CreatorProfileController::class, 'show'])
     ->name('public.creator.profile');
 
+//Route Edit PP dan Foto sampul supporter
+Route::post('/supporter/update-photos', [ProfilePhotoController::class, 'updatePhotos'])
+    ->middleware('auth')
+    ->name('supporter.updatePhotos');
 
 //Route Like Logic
 Route::post('/like/{creatorId}', [LikeController::class, 'store'])->name('like.creator')->middleware('auth');
