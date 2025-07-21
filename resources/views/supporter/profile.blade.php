@@ -119,42 +119,25 @@
                         class="profile-image-mobile rounded-full border-4 border-white object-cover mb-3" />
 
                     <div class="flex flex-col gap-1 mb-4">
-                        <span class="text-gray-700 text-xs"><span>@</span>{ $supporter->user->name }}</span>
+                        <span class="text-gray-700 text-xs"><span>@</span>{{ $supporter->user->name }}</span>
                         <h1 class="text-xl font-bold text-gray-900">{{ $supporter->nickname }}</h1>
                         <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1 justify-center">
-                            <span>2k Like</span>
-                            <span>&bull;</span>
-                            <span>278 Supports</span>
+                            <span>Supporter</span>
+                            
                         </div>
-                    </div>
-
-                    <div class="flex gap-3 w-full max-w-sm mb-4">
-                        <button
-                            class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full text-gray-700 bg-[#F2F4FC] hover:bg-[#e6e9f6] transition text-sm">
-                            <img src="/assets/icon/like.png" alt="Like Icon" class="w-5 h-5" />
-                            Like Me
-                        </button>
-
-                        <button id="donateBtnMobile"
-                            class="flex items-center justify-center gap-2 flex-1 py-2.5 px-4 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition font-semibold text-sm">
-                            <img src="/assets/icon/donate.png" alt="Donate Icon" class="w-5 h-5" />
-                            Donate
-                        </button>
                     </div>
 
                     <div class="w-full">
                         <div class="flex flex-col gap-2 text-center">
                             <button
                                 class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
-                            <p class="text-sm text-gray-500 px-2">"I'm digital artist who draws cute girls & soft vibes~
-                                Let's make magic together~ (๑>ᴗ<)♡"< /p>
+                            <p class="text-sm text-gray-500 px-2">"{{ $supporter->bio }}"</p>
                         </div>
                     </div>
 
                     <div
                         class="mt-6 border-b border-gray-300 flex gap-8 text-sm font-medium text-gray-500 w-full justify-center">
-                        <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Portofolio</button>
-                        <button class="hover:text-indigo-600 transition">About</button>
+                        <button class="text-indigo-600 border-b-2 border-green-400 pb-2">Riwayat</button>
                     </div>
                 </div>
             </div>
@@ -177,7 +160,7 @@
         </div>
     </div>
 
-    <x-riwayat />
+    <x-riwayat :riwayat="$riwayatDonasi" />
 
     <x-footer />
 
