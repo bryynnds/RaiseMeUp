@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -173,7 +172,7 @@
 
     <x-footer />
 
-    <x-edit-profile-supporter />
+    <x-edit-profile-supporter :supporter="$supporter" />
 
     <x-pp />
 

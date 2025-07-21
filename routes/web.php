@@ -141,7 +141,12 @@ Route::post('/donate/snap-token', [\App\Http\Controllers\DonationController::cla
 
 Route::post('/donate/confirm-payment', [DonationController::class, 'handleSuccessTransaction']);
 
+//Route Edit Profil Supporter Logic
+use App\Http\Controllers\Supporter\EditProfileSupporterController;
 
+Route::patch('/supporter/update-profile', [EditProfileSupporterController::class, 'update'])
+    ->name('supporter.profile.update')
+    ->middleware(['auth']);
 
 
 // Route Login logic
@@ -180,7 +185,6 @@ Route::get('/home-creator', function () {
 Route::get('/home-supporter', function () {
     return view('supporter.landing');
 })->name('home_supporter')->middleware(['auth', 'role:supporter']);
-
 
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);

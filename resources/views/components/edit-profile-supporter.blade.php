@@ -1,3 +1,4 @@
+@props(['supporter'])
 <div id="editProfileModal"
     class="fixed inset-0 bg-black/70 backdrop-blur-md z-[999] flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
     <div
@@ -35,41 +36,45 @@
                     <h3 class="font-semibold text-gray-800 text-sm">Account Info</h3>
                 </div>
 
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Username</label>
-                        <input type="text"
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
-                            placeholder="your_username">
-                    </div>
+                <form action="{{ route('supporter.profile.update') }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Username</label>
+                            <input type="text" name="username" value="{{ old('username', $supporter->user->name) }}"
+                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                                placeholder="your_username">
+                        </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Display Name</label>
-                        <input type="text"
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
-                            placeholder="Your Name">
-                    </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Display Name</label>
+                            <input type="text" name="display_name" value="{{ old('display_name', $supporter->nickname) }}"
+                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                                placeholder="your nickname">
+                        </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Bio</label>
-                        <textarea
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
-                            rows="3" placeholder="Tell us about yourself..."></textarea>
-                    </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Bio</label>
+                            <textarea name="bio"
+                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
+                                rows="3" placeholder="Tell us about yourself...">{{ old('bio', $supporter->bio) }}</textarea>
+                        </div>
 
-                    
 
-                    <div class="flex justify-end gap-3 pt-6">
-                        <button onclick="toggleEditProfileModal()"
-                            class="px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
-                            Cancel
-                        </button>
-                        <button
-                            class="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 rounded-lg hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                            Save
-                        </button>
+
+                        <div class="flex justify-end gap-3 pt-6">
+                            <button onclick="toggleEditProfileModal()" type="button"
+                                class="px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
+                                Cancel
+                            </button>
+                            <button type="submit"
+                                class="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 rounded-lg hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                Save
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -123,14 +128,14 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const editBtn = document.querySelector('button:has(img[src*="edit.svg"])');
         if (editBtn) {
             editBtn.addEventListener('click', toggleEditProfileModal);
         }
 
         // Close modal on outside click
-        document.getElementById('editProfileModal').addEventListener('click', function (e) {
+        document.getElementById('editProfileModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 toggleEditProfileModal();
             }
@@ -138,7 +143,7 @@
     });
 
     // ESC key to close modal
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             // Close modal
             if (!document.getElementById('editProfileModal').classList.contains('hidden')) {
