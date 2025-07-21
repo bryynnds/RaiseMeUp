@@ -89,6 +89,59 @@
             </button>
         </form>
 
+        <script>
+            // Ambil email & otp dari query string URL
+            const params = new URLSearchParams(window.location.search);
+            const email = params.get('email');
+            const otp = localStorage.getItem('reset_otp');
+
+            const form = document.getElementById('form');
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const password = document.getElementById('new').value;
+                const password_confirmation = document.getElementById('confirm').value;
+
+                if (!email || !otp) {
+                    alert("Data tidak lengkap. Silakan ulangi proses reset.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/change-password', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            otp: otp,
+                            password: password,
+                            password_confirmation: password_confirmation
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(data.message);
+                        localStorage.removeItem('reset_email');
+                        localStorage.removeItem('reset_otp');
+                        window.location.href = '/login';
+                        
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Terjadi kesalahan:', error);
+                    alert('Gagal mengubah password. Coba lagi nanti.');
+                }
+            });
+        </script>
+
+
         <p class="text-xs text-center mt-4 text-white/80">
             Sudah ingat password? <a href="login.html" class="text-white underline hover:text-blue-200">Kembali ke
                 Login</a>
@@ -99,7 +152,8 @@
             class="hidden bg-green-500/20 border border-green-500/30 text-green-100 rounded-md p-3 mb-4 text-sm">
             <i class="fas fa-check-circle mr-2"></i><span id="successText"></span>
         </div>
-        <div id="error" class="hidden bg-red-500/20 border border-red-500/30 text-red-100 rounded-md p-3 mb-4 text-sm">
+        <div id="error"
+            class="hidden bg-red-500/20 border border-red-500/30 text-red-100 rounded-md p-3 mb-4 text-sm">
             <i class="fas fa-exclamation-circle mr-2"></i><span id="errorText"></span>
         </div>
     </div>

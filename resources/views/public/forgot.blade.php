@@ -75,6 +75,41 @@
                 </button>
             </form>
 
+            <script>
+                const emailForm = document.getElementById('emailForm');
+                const emailInput = document.getElementById('emailInput');
+
+                emailForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const email = emailInput.value;
+
+                    try {
+                        const response = await fetch('/send-otp', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify({
+                                email
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok) {
+                            alert(data.message);
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        console.error('Terjadi kesalahan:', error);
+                        alert('Terjadi kesalahan saat mengirim OTP.');
+                    }
+                });
+            </script>
+
             <p class="text-xs text-center mt-4 text-white/80">
                 Sudah ingat password? <a href="login.html" class="text-white underline hover:text-blue-200">Kembali ke
                     Login</a>
@@ -118,6 +153,59 @@
                 </button>
             </div>
         </div>
+        <input type="hidden" id="emailInput" value="isi@email.com">
+        <script>
+            document.getElementById('verifyOtpBtn').addEventListener('click', async function() {
+                const email = document.getElementById('emailInput')
+                    .value; // input email yang tadi dipakai kirim OTP
+
+                // Ambil digit OTP dari input
+                const otp =
+                    document.getElementById('otp1').value +
+                    document.getElementById('otp2').value +
+                    document.getElementById('otp3').value +
+                    document.getElementById('otp4').value +
+                    document.getElementById('otp5').value +
+                    document.getElementById('otp6').value;
+
+                if (otp.length !== 6 || isNaN(otp)) {
+                    alert('Kode OTP harus 6 digit angka.');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/verify-otp', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            otp: otp
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(data.message);
+                        localStorage.setItem('reset_email', email);
+                        localStorage.setItem('reset_otp', otp);
+                        // Redirect ke halaman ganti password sambil bawa email
+                        window.location.href = '/change-password?email=' + encodeURIComponent(email);
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error saat verifikasi OTP:', error);
+                    alert('Terjadi kesalahan. Coba lagi.');
+                }
+            });
+        </script>
+
+
+
 
         <!-- Messages -->
         <div id="successMessage"
@@ -190,7 +278,7 @@
 
         // OTP input handling
         elements.otpInputs.forEach((input, i) => {
-            input.addEventListener('input', function () {
+            input.addEventListener('input', function() {
                 this.value = this.value.replace(/[^0-9]/g, '');
                 if (this.value && i < 5) elements.otpInputs[i + 1].focus();
             });
@@ -240,8 +328,12 @@
 
         const showSuccess = (msg) => showMessage('success', msg);
         const showError = (msg) => showMessage('error', msg);
-        const hideMessages = () => [elements.successMessage, elements.errorMessage].forEach(el => el.classList.add('hidden'));
+        const hideMessages = () => [elements.successMessage, elements.errorMessage].forEach(el => el.classList.add(
+            'hidden'));
     </script>
+
+
+
 </body>
 
 </html>

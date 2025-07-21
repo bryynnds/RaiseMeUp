@@ -37,8 +37,7 @@ Route::get('/', function () {
 
 Route::get('/home-public', function () {
     return view('public.landing');
-})->name('landing');
-;
+})->name('landing');;
 
 Route::get('/explorer-public', [ExplorerController::class, 'index'])->name('explorer-public');
 
@@ -56,6 +55,15 @@ Route::get('/forgot', function () {
 Route::get('/change', function () {
     return view('public.change');
 });
+
+use App\Http\Controllers\ForgotPasswordController;
+
+Route::post('/send-otp', [ForgotPasswordController::class, 'sendOtp']);
+Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOtp']);
+
+Route::get('/change-password', [ForgotPasswordController::class, 'showChangeForm'])->name('public.change');
+
+Route::post('/change-password', [ForgotPasswordController::class, 'resetPassword']);
 
 
 
