@@ -133,6 +133,12 @@ Route::post('/supporter/update-photos', [ProfilePhotoController::class, 'updateP
     ->middleware('auth')
     ->name('supporter.updatePhotos');
 
+//Route Edit PP dan Foto sampul kreator
+Route::post('/creator/update-photos', [App\Http\Controllers\Creator\ProfilePhotoController::class, 'updatePhotos'])
+    ->middleware('auth')
+    ->name('creator.updatePhotos');
+
+
 //Route Like Logic
 Route::post('/like/{creatorId}', [LikeController::class, 'store'])->name('like.creator')->middleware('auth');
 
