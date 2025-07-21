@@ -65,9 +65,18 @@
             <!-- Desktop -->
             <div class="hidden md:block">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                    <div class="flex items-start gap-5">
+                    <div class="flex items-start gap-5 relative">
                         <img src="{{ $supporter->pp_url }}" alt="Profile Picture"
                             class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
+
+                        <button onclick="togglePPModal()"
+                            class="absolute top-8 right-48 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-4 h-4 text-gray-600">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.5 19.213 3 21l1.788-4.5L16.862 3.487z" />
+                            </svg>
+                        </button>
 
                         <div class="flex flex-col -mt-4 gap-1">
                             <span class="text-gray-700 text-xs"><span>@</span>{{ $supporter->user->name }}</span>
@@ -165,6 +174,8 @@
     <x-footer />
 
     <x-edit-profile-supporter />
+
+    <x-pp />
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

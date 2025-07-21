@@ -208,6 +208,7 @@
 
     <x-footer />
 
+
     <!-- Donate Modal Script -->
     {{-- <script>
         // Open donate modal
