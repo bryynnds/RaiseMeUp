@@ -115,13 +115,13 @@
         </p>
 
         <!-- Login dengan Google -->
-        <div class="mt-3">
+        {{-- <div class="mt-3">
             <a href="/auth/google"
                 class="w-full flex items-center justify-center gap-2 border border-white/30 py-2 rounded-md hover:bg-white/10 transition duration-300 text-white text-sm">
                 <i class="fab fa-google text-red-400"></i>
                 <span class="font-medium">Login dengan Google</span>
             </a>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Toggle Password Script -->

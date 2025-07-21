@@ -158,7 +158,7 @@
 
                     <!-- Featured Image -->
                     <div class="relative overflow-hidden aspect-[16/10] mx-6 rounded-xl">
-                        <img src="{{ $portfolio->img }}" alt="Sakura Dreams"
+                        <img src="{{ $portfolio->img ?: asset('assets/bg/bg.jpg') }}" alt="{{ $portfolio->judul ?? 'Judul belum diisi' }}"
                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent">
                         </div>
@@ -166,16 +166,16 @@
 
                     <!-- Content -->
                     <div class="p-6 pt-4">
-                        <h3 class="font-bold text-gray-900 text-lg mb-2">{{ $portfolio->judul }}</h3>
+                        <h3 class="font-bold text-gray-900 text-lg mb-2">{{ $portfolio->judul ?? 'Judul belum diisi' }}</h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                            {{ $portfolio->deskripsi }}
+                            {{ $portfolio->deskripsi ?? 'Belum ada Deskripsi' }}
                         </p>
                         <div class="border-t border-gray-200 my-2"></div>
                         <div class="flex items-center justify-between pt-2 border-gray-100">
                             <div class="flex items-center gap-4 text-sm text-gray-500">
                                 <span
                                     class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-medium text-gray-400 bg-gray-100 hover:shadow-md transition-shadow duration-300">
-                                    #{{ $portfolio->tag }}
+                                    #{{ $portfolio->tag ?? 'Tag'}}
                                 </span>
                             </div>
 

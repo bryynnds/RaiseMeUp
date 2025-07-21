@@ -123,7 +123,7 @@
                 <span class="text-xs text-gray-500 font-normal">(Optional)</span>
             </h3>
             <div class="relative">
-                <textarea id="donationMessage" rows="3" placeholder="Tulis pesan semangat untuk Nayla..."
+                <textarea id="donationMessage" rows="3" placeholder="Tulis pesan semangat untuk {{ $creator->nickname }}..."
                     class="w-full px-3 py-3 bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-200/50 rounded-xl text-sm focus:ring-2 focus:ring-violet-500 focus:border-violet-400 outline-none transition-all duration-300 resize-none placeholder-gray-400"></textarea>
                 <div class="absolute bottom-2 right-2 text-gray-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
