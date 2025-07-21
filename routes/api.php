@@ -24,13 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // 📦 DONATIONS
-Route::apiResource('donations', DonationController::class);
+// Route::apiResource('donations', DonationController::class);
 
-// 💳 TRANSACTIONS
-Route::apiResource('transactions', TransactionController::class);
+// // 💳 TRANSACTIONS
+// Route::apiResource('transactions', TransactionController::class);
 
-// 🤝 SUPPORTER PROFILES
-Route::apiResource('supporter-profiles', SupporterProfileController::class);
+// // 🤝 SUPPORTER PROFILES
+// Route::apiResource('supporter-profiles', SupporterProfileController::class);
 
-// 🎨 CREATOR PROFILES
-Route::apiResource('creator-profiles', CreatorProfileController::class);
+// // 🎨 CREATOR PROFILES
+// Route::apiResource('creator-profiles', CreatorProfileController::class);

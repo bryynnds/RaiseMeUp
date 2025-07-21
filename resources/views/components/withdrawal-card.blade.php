@@ -40,13 +40,15 @@
         </div>
 
         <!-- Form -->
-        <form id="withdrawalForm" class="space-y-4">
+        <form id="withdrawalForm" class="space-y-4" method="POST" action="{{ route('withdraw.store') }}">
             <!-- Balance Display -->
+            @csrf
             <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border border-indigo-100">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs font-medium text-gray-600 mb-1">Saldo Tersedia</p>
-                        <p class="text-2xl font-bold text-gray-900" id="currentBalance">Rp 120.000</p>
+                        <p class="text-2xl font-bold text-gray-900" id="currentBalance">Rp
+                            {{ number_format($creator->total_income ?? 0, 0, ',', '.') }}</p>
                     </div>
                     <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
                         <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,6 +62,7 @@
 
             <!-- Withdrawal Amount -->
             <div>
+                <input type="hidden" name="jumlah_penarikan" id="jumlahFix">
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Jumlah Penarikan</label>
                 <div class="relative">
                     <span
@@ -81,7 +84,7 @@
                 <label class="block text-sm font-semibold text-gray-700 mb-3">Metode Pembayaran</label>
                 <div class="grid grid-cols-3 gap-3">
                     <label class="cursor-pointer group">
-                        <input type="radio" name="metode" value="gopay" class="hidden peer" />
+                        <input type="radio" name="metode_penarikan" value="gopay" class="hidden peer" />
                         <div
                             class="border-2 border-gray-200 rounded-lg p-3 hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-all duration-200 group-hover:shadow-md">
                             <div class="flex flex-col items-center gap-2">
@@ -95,7 +98,7 @@
                     </label>
 
                     <label class="cursor-pointer group">
-                        <input type="radio" name="metode" value="dana" class="hidden peer" />
+                        <input type="radio" name="metode_penarikan" value="dana" class="hidden peer" />
                         <div
                             class="border-2 border-gray-200 rounded-lg p-3 hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-all duration-200 group-hover:shadow-md">
                             <div class="flex flex-col items-center gap-2">
@@ -108,7 +111,7 @@
                     </label>
 
                     <label class="cursor-pointer group">
-                        <input type="radio" name="metode" value="ovo" class="hidden peer" />
+                        <input type="radio" name="metode_penarikan" value="ovo" class="hidden peer" />
                         <div
                             class="border-2 border-gray-200 rounded-lg p-3 hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-all duration-200 group-hover:shadow-md">
                             <div class="flex flex-col items-center gap-2">
@@ -171,7 +174,8 @@
             <div class="text-center">
                 <div class="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                        </path>
                     </svg>
                 </div>
                 <h3 class="text-lg font-bold text-gray-900 mb-2">Penarikan Berhasil!</h3>
@@ -190,7 +194,8 @@
 </div>
 
 <script>
-    let currentBalanceAmount = 120000; // Saldo awal
+    let currentBalanceAmount = {{ $creator->total_income ?? 0 }}; // Saldo awal
+    let maxBalanceAmount = 120000;
 
     function toggleWithdrawalModal() {
         const modal = document.getElementById('withdrawalModal');
@@ -222,7 +227,7 @@
 
     function setMaxAmount() {
         const input = document.getElementById('withdrawAmount');
-        input.value = formatNumber(currentBalanceAmount);
+        input.value = formatNumber(maxBalanceAmount);
     }
 
     function formatNumber(num) {
@@ -266,7 +271,11 @@
 
 
     // Form submission handler
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('withdrawalForm').addEventListener('submit', function(e) {
+            const rawAmount = parseNumber(document.getElementById('withdrawAmount').value);
+            document.getElementById('jumlahFix').value = rawAmount;
+        });
         updateBalanceDisplay();
 
         const withdrawalBtn = document.getElementById('withdrawalBtn');
@@ -275,50 +284,50 @@
         }
 
         // Handle form submission
-        document.getElementById('withdrawalForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        // document.getElementById('withdrawalForm').addEventListener('submit', function (e) {
+        //     e.preventDefault();
 
-            const amountStr = document.getElementById('withdrawAmount').value;
-            const amount = parseNumber(amountStr);
-            const selectedMethod = document.querySelector('input[name="metode"]:checked');
+        //     const amountStr = document.getElementById('withdrawAmount').value;
+        //     const amount = parseNumber(amountStr);
+        //     const selectedMethod = document.querySelector('input[name="metode"]:checked');
 
-            if (!amount || amount < 10000) {
-                alert('Jumlah minimal penarikan adalah Rp 10.000');
-                return;
-            }
+        //     if (!amount || amount < 10000) {
+        //         alert('Jumlah minimal penarikan adalah Rp 10.000');
+        //         return;
+        //     }
 
-            if (amount > currentBalanceAmount) {
-                alert('Jumlah penarikan melebihi saldo yang tersedia');
-                return;
-            }
+        //     if (amount > currentBalanceAmount) {
+        //         alert('Jumlah penarikan melebihi saldo yang tersedia');
+        //         return;
+        //     }
 
-            if (!selectedMethod) {
-                alert('Silakan pilih metode pembayaran');
-                return;
-            }
+        //     if (!selectedMethod) {
+        //         alert('Silakan pilih metode pembayaran');
+        //         return;
+        //     }
 
-            // Simulasi loading
-            const submitBtn = document.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Memproses...';
-            submitBtn.disabled = true;
+        //     // Simulasi loading
+        //     const submitBtn = document.querySelector('button[type="submit"]');
+        //     submitBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Memproses...';
+        //     submitBtn.disabled = true;
 
-            setTimeout(() => {
-                // Tambahin scrollTop biar modal ke atas
-                const modalContent = document.querySelector('.modal-content');
-                if (modalContent) modalContent.scrollTop = 0;
+        //     setTimeout(() => {
+        //         // Tambahin scrollTop biar modal ke atas
+        //         const modalContent = document.querySelector('.modal-content');
+        //         if (modalContent) modalContent.scrollTop = 0;
 
-                showSuccessModal(amount);
+        //         showSuccessModal(amount);
 
-                submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg> Tarik Saldo Sekarang';
-                submitBtn.disabled = false;
+        //         submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg> Tarik Saldo Sekarang';
+        //         submitBtn.disabled = false;
 
-                document.getElementById('withdrawalForm').reset();
-            }, 2000);
+        //         document.getElementById('withdrawalForm').reset();
+        //     }, 2000);
 
-        });
+        // });
 
         // Format input amount with better handling
-        document.getElementById('withdrawAmount').addEventListener('input', function (e) {
+        document.getElementById('withdrawAmount').addEventListener('input', function(e) {
             let value = e.target.value.replace(/[^\d]/g, ''); // Only keep numbers
             if (value) {
                 const numValue = parseInt(value);
@@ -327,7 +336,7 @@
         });
 
         // Handle paste events
-        document.getElementById('withdrawAmount').addEventListener('paste', function (e) {
+        document.getElementById('withdrawAmount').addEventListener('paste', function(e) {
             e.preventDefault();
             const paste = (e.clipboardData || window.clipboardData).getData('text');
             const numValue = parseInt(paste.replace(/[^\d]/g, ''));
@@ -338,7 +347,7 @@
     });
 
     // Close modal when clicking outside
-    document.getElementById('withdrawalModal').addEventListener('click', function (e) {
+    document.getElementById('withdrawalModal').addEventListener('click', function(e) {
         if (e.target === this) {
             toggleWithdrawalModal();
         }

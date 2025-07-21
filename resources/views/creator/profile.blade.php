@@ -184,7 +184,8 @@
 
                     <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
                         <!-- Tombol Edit Data -->
-                        <button id="editBtn" class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
+                        <button id="editBtn"
+                            class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
         rounded-full px-8 py-3.5 text-gray-700 font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
         hover:-translate-y-1 flex items-center gap-2">
                             <div
@@ -197,7 +198,8 @@
                         </button>
 
                         <!-- Tombol Withdrawal -->
-                        <button id="withdrawalBtn" class="group relative overflow-hidden bg-indigo-500 hover:bg-indigo-600 
+                        <button id="withdrawalBtn"
+                            class="group relative overflow-hidden bg-indigo-500 hover:bg-indigo-600 
         rounded-full px-6 py-3.5 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 
         hover:-translate-y-1 flex items-center gap-2">
                             <div
@@ -297,13 +299,13 @@
 
     <x-edit-profile :creator="$creator" :portfolio="$portfolio" :tagList="$tagList" :jobList="$jobList" />
 
-    <x-withdrawl-card />
+    <x-withdrawal-card :creator="$creator" />
 
-    <x-pp-creator :creator="$creator"/>
+    <x-pp-creator :creator="$creator" />
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const donateBtn = document.getElementById('donateBtn');
             const donateBtnMobile = document.getElementById('donateBtnMobile');
             const donateModal = document.getElementById('donateModal');
@@ -316,8 +318,10 @@
 
             if (donateBtn) donateBtn.addEventListener('click', openDonateModal);
             if (donateBtnMobile) donateBtnMobile.addEventListener('click', openDonateModal);
-        
-    </script>
+
+
+        })
+    </script> --}}
 
 
 

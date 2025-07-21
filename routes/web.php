@@ -15,6 +15,7 @@ use App\Http\Controllers\Supporter\SupporterController;
 use App\Http\Controllers\Creator\CreatorController;
 use App\Http\Controllers\Supporter\ProfilePhotoController;
 use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\WithdrawalController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -48,6 +49,9 @@ Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'profile
     ->name('supporter.creator.profil');
 
 
+
+
+Route::post('/withdraw', [WithdrawalController::class, 'store'])->name('withdraw.store')->middleware('role:kreator');
 
 
 
