@@ -36,7 +36,7 @@ class WithdrawalController extends Controller
             'creator_id' => $user->id,
             'metode_penarikan' => $request->metode_penarikan,
             'jumlah_penarikan' => $request->jumlah_penarikan,
-            'status' => 'settlement',
+            'status' => 'success',
         ]);
 
         return redirect(route("profile_creator"))->with('success', 'Penarikan berhasil diajukan.');

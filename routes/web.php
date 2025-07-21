@@ -32,7 +32,7 @@ Route::get('/preview/{folder}/{file}', function ($folder, $file) {
 
 //Route Landing Page dan Halaman Public
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.landing');
 });
 
 Route::get('/home-public', function () {
