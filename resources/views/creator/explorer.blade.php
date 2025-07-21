@@ -58,8 +58,8 @@
             </button>
             <button
                 class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300"
-                data-role="Artist">
-                Artist
+                data-role="Illustrator">
+                Illustrator
             </button>
             <button
                 class="filter-btn px-5 py-2 rounded-full bg-white text-gray-500 text-xs font-semibold shadow hover:shadow-md hover:text-gray-800 transition-all duration-300"

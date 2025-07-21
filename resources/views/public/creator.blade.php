@@ -55,7 +55,7 @@
     <!-- Dropdown -->
     <ul id="dropdownList"
         class="fixed left-1/2 top-[30%] -translate-x-1/2 z-50 w-full max-w-sm hidden bg-white/30 backdrop-blur-md rounded-md shadow-md border border-white/30 text-white text-sm sm:text-base">
-        <li onclick="selectOption('Artist')" class="px-4 py-2 hover:bg-white/70 hover:text-black cursor-pointer">Artist
+        <li onclick="selectOption('Illustrator')" class="px-4 py-2 hover:bg-white/70 hover:text-black cursor-pointer">Illustrator
         </li>
         <li onclick="selectOption('Musisi')" class="px-4 py-2 hover:bg-white/70 hover:text-black cursor-pointer">Musisi
         </li>

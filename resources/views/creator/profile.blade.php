@@ -264,7 +264,7 @@
                         <div class="flex flex-col gap-2 text-center">
                             <button
                                 class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
-                            <p class="text-sm text-gray-500 px-2">"I'm digital artist who draws cute girls & soft vibes~
+                            <p class="text-sm text-gray-500 px-2">"I'm digital Illustrator who draws cute girls & soft vibes~
                                 Let's make magic together~ (๑>ᴗ<)♡"< /p>
                         </div>
                     </div>
