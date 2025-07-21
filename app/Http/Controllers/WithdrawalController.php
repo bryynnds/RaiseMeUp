@@ -19,13 +19,13 @@ class WithdrawalController extends Controller
         $user = Auth::user();
 
         if (!$user || !$user->creatorProfile) {
-            return back()->with('error', 'Hanya kreator yang dapat melakukan penarikan.');
+            return response()->json(['message' => 'Hanya kreator yang dapat melakukan penarikan.'], 403);
         }
 
         $saldo = $user->creatorProfile->total_income;
 
         if ($request->jumlah_penarikan > $saldo) {
-            return back()->with('error', 'Saldo tidak mencukupi.');
+            return response()->json(['message' => 'Saldo tidak mencukupi.'], 422);
         }
 
         // Kurangi saldo
@@ -39,6 +39,9 @@ class WithdrawalController extends Controller
             'status' => 'success',
         ]);
 
-        return redirect(route("profile_creator"))->with('success', 'Penarikan berhasil diajukan.');
+        return response()->json([
+            'message' => 'Penarikan berhasil diajukan.',
+            'sisa_saldo' => $saldo - $request->jumlah_penarikan,
+        ]);
     }
 }

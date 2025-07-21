@@ -40,7 +40,8 @@
         </div>
 
         <!-- Form -->
-        <form id="withdrawalForm" class="space-y-4" method="POST" action="{{ route('withdraw.store') }}">
+        <form id="withdrawalForm" class="space-y-4" method="POST" action="{{ route('withdraw.store') }}"
+            onsubmit="return false;">
             <!-- Balance Display -->
             @csrf
             <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border border-indigo-100">
@@ -198,6 +199,9 @@
     let maxBalanceAmount = 120000;
 
     function toggleWithdrawalModal() {
+        document.getElementById('withdrawalForm').reset();
+
+        // Buka modalnya
         const modal = document.getElementById('withdrawalModal');
         const modalContent = modal.querySelector('.modal-content');
 
@@ -283,48 +287,46 @@
             withdrawalBtn.addEventListener('click', toggleWithdrawalModal);
         }
 
-        // Handle form submission
-        // document.getElementById('withdrawalForm').addEventListener('submit', function (e) {
-        //     e.preventDefault();
+        document.getElementById('withdrawalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        //     const amountStr = document.getElementById('withdrawAmount').value;
-        //     const amount = parseNumber(amountStr);
-        //     const selectedMethod = document.querySelector('input[name="metode"]:checked');
+            const amount = parseNumber(document.getElementById('withdrawAmount').value);
+            const metode = document.querySelector('input[name="metode_penarikan"]:checked');
 
-        //     if (!amount || amount < 10000) {
-        //         alert('Jumlah minimal penarikan adalah Rp 10.000');
-        //         return;
-        //     }
+            if (!amount || amount < 10000) {
+                alert('Jumlah minimal penarikan adalah Rp 10.000');
+                return;
+            }
 
-        //     if (amount > currentBalanceAmount) {
-        //         alert('Jumlah penarikan melebihi saldo yang tersedia');
-        //         return;
-        //     }
+            if (!metode) {
+                alert('Silakan pilih metode pembayaran');
+                return;
+            }
 
-        //     if (!selectedMethod) {
-        //         alert('Silakan pilih metode pembayaran');
-        //         return;
-        //     }
+            fetch("{{ route('withdraw.store') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        jumlah_penarikan: amount,
+                        metode_penarikan: metode.value
+                    })
+                })
+                .then(res => {
+                    if (!res.ok) return res.json().then(data => Promise.reject(data));
+                    return res.json();
+                })
+                .then(data => {
+                    showSuccessModal(amount); // tampilkan modal sukses
+                })
+                .catch(err => {
+                    alert(err.message || "Terjadi kesalahan. Coba lagi.");
+                });
+        });
 
-        //     // Simulasi loading
-        //     const submitBtn = document.querySelector('button[type="submit"]');
-        //     submitBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Memproses...';
-        //     submitBtn.disabled = true;
-
-        //     setTimeout(() => {
-        //         // Tambahin scrollTop biar modal ke atas
-        //         const modalContent = document.querySelector('.modal-content');
-        //         if (modalContent) modalContent.scrollTop = 0;
-
-        //         showSuccessModal(amount);
-
-        //         submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg> Tarik Saldo Sekarang';
-        //         submitBtn.disabled = false;
-
-        //         document.getElementById('withdrawalForm').reset();
-        //     }, 2000);
-
-        // });
 
         // Format input amount with better handling
         document.getElementById('withdrawAmount').addEventListener('input', function(e) {
