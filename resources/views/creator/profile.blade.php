@@ -295,7 +295,7 @@
 
     <x-footer />
 
-    <x-edit-profile />
+    <x-edit-profile :creator="$creator" :portfolio="$portfolio" :tagList="$tagList" :jobList="$jobList" />
 
     <x-withdrawl-card />
 
@@ -316,7 +316,7 @@
 
             if (donateBtn) donateBtn.addEventListener('click', openDonateModal);
             if (donateBtnMobile) donateBtnMobile.addEventListener('click', openDonateModal);
-
+        
     </script>
 
 

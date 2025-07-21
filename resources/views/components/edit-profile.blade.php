@@ -1,4 +1,7 @@
 <!-- Compact Modern Edit Profile Modal -->
+@props(['creator', 'portfolio', 'tagList', 'jobList'])
+
+
 <div id="editProfileModal"
     class="fixed inset-0 bg-black/70 backdrop-blur-md z-[999] flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
     <div
@@ -22,229 +25,193 @@
         </div>
 
         <!-- Content -->
-        <div class="flex h-[calc(85vh-140px)]">
-            <!-- Left Side - Portfolio -->
-            <div class="flex-1 p-6 space-y-4">
-                <div class="flex items-center gap-2 mb-4">
-                    <div
-                        class="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-gray-800 text-sm">Add Portfolio</h3>
-                </div>
-
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Project Name</label>
-                        <input type="text"
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                            placeholder="My Awesome Project">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Upload File</label>
+        <form action="{{ route('profile.portfolio.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="flex h-[calc(85vh-140px)]">
+                <!-- Left Side - Portfolio -->
+                <div class="flex-1 p-6 space-y-4">
+                    <div class="flex items-center gap-2 mb-4">
                         <div
-                            class="relative border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-purple-300 transition-all bg-gray-50/50 hover:bg-purple-50/50">
-                            <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                            <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
+                            class="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                             </svg>
-                            <div class="text-xs text-gray-600">
-                                <span class="text-purple-600 font-medium">Click</span> or drag files
-                            </div>
-                            <p class="text-xs text-gray-400 mt-1">PNG, JPG, PDF • Max 10MB</p>
                         </div>
+                        <h3 class="font-semibold text-gray-800 text-sm">Add Portfolio</h3>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Description</label>
-                        <textarea
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
-                            rows="3" placeholder="Describe your project..."></textarea>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <!-- Modern Custom Dropdown Category -->
+                    <div class="space-y-3">
                         <div>
-                            <label class="block text-xs font-medium text-gray-600 mb-1">Category</label>
-                            <div class="dropdown-container">
-                                <button type="button"
-                                    class="dropdown-button w-full px-3 py-2 text-sm text-left rounded-lg flex items-center justify-between"
-                                    onclick="toggleDropdown('category')">
-                                    <span id="selectedCategoryOption" class="text-gray-500">Select category</span>
-                                    <svg class="chevron w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Project Name</label>
+                            <input type="text" name="judul" value="{{ old('judul', $portfolio->judul ?? '') }}"
+                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                placeholder="My Awesome Project">
+                        </div>
 
-                                <div id="categoryDropdownMenu"
-                                    class="dropdown-menu absolute bottom-full left-0 right-0 mt-1 py-1 rounded-lg z-10">
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '🎨 Digital Art')">
-                                        <span class="text-lg">🎨</span>
-                                        <span class="text-sm">Digital Art</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '🎵 Music')">
-                                        <span class="text-lg">🎵</span>
-                                        <span class="text-sm">Music</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '🎭 3D Art')">
-                                        <span class="text-lg">🎭</span>
-                                        <span class="text-sm">3D Art</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '💻 Web Dev')">
-                                        <span class="text-lg">💻</span>
-                                        <span class="text-sm">Web Development</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '✍️ Writer')">
-                                        <span class="text-lg">✍️</span>
-                                        <span class="text-sm">Writing</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '📸 Photo')">
-                                        <span class="text-lg">📸</span>
-                                        <span class="text-sm">Photography</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '🎬 Animation')">
-                                        <span class="text-lg">🎬</span>
-                                        <span class="text-sm">Animation</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2"
-                                        onclick="selectOption('category', '📱 UI/UX')">
-                                        <span class="text-lg">📱</span>
-                                        <span class="text-sm">UI/UX Design</span>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Upload File</label>
+                            <div
+                                class="relative border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-purple-300 transition-all bg-gray-50/50 hover:bg-purple-50/50">
+                                <input type="file" name="img" accept="image/*"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                                <div class="text-xs text-gray-600">
+                                    <span class="text-purple-600 font-medium">Click</span> or drag files
+                                </div>
+                                <p class="text-xs text-gray-400 mt-1">PNG, JPG, PDF • Max 10MB</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Description</label>
+                            <textarea name="deskripsi_portfolio"
+                                class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+                                rows="3" placeholder="Describe your project...">{{ old('deskripsi_portfolio', $portfolio->deskripsi ?? '') }}</textarea>
+                        </div>
+
+                        <input type="hidden" name="tag" id="categoryInput" value="{{ $portfolio->tag ?? '' }}">
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <!-- Modern Custom Dropdown Category -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Category</label>
+                                <div class="dropdown-container">
+                                    <button type="button" onclick="toggleDropdown('category')"
+                                        class="dropdown-button w-full px-3 py-2 text-sm text-left rounded-lg flex items-center justify-between"
+                                        onclick="toggleDropdown('category')">
+                                        <span id="selectedCategoryOption"
+                                            class="{{ $portfolio->tag ? 'text-gray-800' : 'text-gray-500' }}">{{ $portfolio->tag ?? 'Pilih Kategori' }}</span>
+                                        <svg class="chevron w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+
+                                    <div id="categoryDropdownMenu"
+                                        class="dropdown-menu absolute bottom-full left-0 right-0 mt-1 py-1 rounded-lg z-10">
+                                        @foreach ($tagList as $tag)
+                                            <div onclick="selectOption('category', '{{ $tag }}')"
+                                                class="dropdown-option px-3 py-2 cursor-pointer flex items-center space-x-2">
+                                                {{ $tag }}
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-600 mb-1">Demo URL</label>
-                            <input type="url" class="input-field w-full px-3 py-2 text-sm rounded-lg"
-                                placeholder="https://">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Demo URL</label>
+                                <input type="url" name="url" value="{{ old('url', $portfolio->url ?? '') }}"
+                                    class="input-field w-full px-3 py-2 text-sm rounded-lg" placeholder="https://">
+                            </div>
                         </div>
                     </div>
-                </div>
+        </form>
+    </div>
+
+    <!-- Center Divider -->
+    <div class="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent my-6"></div>
+
+    <!-- Right Side - Account Info -->
+    <div class="flex-1 p-6 space-y-4">
+        <div class="flex items-center gap-2 mb-4">
+            <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+            </div>
+            <h3 class="font-semibold text-gray-800 text-sm">Account Info</h3>
+        </div>
+
+        <div class="space-y-3">
+            <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Username</label>
+                <input type="text" name="username" value="{{ old('username', auth()->user()->name) }}"
+                    class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                    placeholder="your_username">
             </div>
 
-            <!-- Center Divider -->
-            <div class="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent my-6"></div>
+            <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Display Name</label>
+                <input type="text" name="nickname" value="{{ old('nickname', $creator->nickname) }}"
+                    class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                    placeholder="Your Name">
+            </div>
 
-            <!-- Right Side - Account Info -->
-            <div class="flex-1 p-6 space-y-4">
-                <div class="flex items-center gap-2 mb-4">
-                    <div
-                        class="w-6 h-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-gray-800 text-sm">Account Info</h3>
-                </div>
+            <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Bio</label>
+                <textarea name="bio"
+                    class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
+                    rows="1" placeholder="Tell us about yourself...">{{ old('bio', $creator->bio) }}</textarea>
+            </div>
 
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Username</label>
-                        <input type="text"
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
-                            placeholder="your_username">
-                    </div>
+            <div class="mt-3">
+                <label class="block text-xs font-medium text-gray-600 mb-1">Deskripsi</label>
+                <textarea name="deskripsi"
+                    class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
+                    rows="1" placeholder="Tell us about job...">{{ old('deskripsi', $creator->deskripsi) }}</textarea>
+            </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Display Name</label>
-                        <input type="text"
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
-                            placeholder="Your Name">
-                    </div>
+            <!-- Ganti URL + Dropdown JOB (1 baris) -->
+            <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:gap-3">
+                <!-- Button Ganti URL (tinggi lebih kecil) -->
+                <button onclick="openUrlModal()"
+                    class="w-full sm:w-auto px-9 py-4 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 active:scale-[0.98] transition-all duration-200">
+                    Ganti Social Media
+                </button>
 
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Bio</label>
-                        <textarea
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
-                            rows="1" placeholder="Tell us about yourself..."></textarea>
-                    </div>
+                <input type="hidden" name="job" id="jobInput" value="{{ $creator->job }}">
 
-                    <div class="mt-3">
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Deskripsi</label>
-                        <textarea
-                            class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
-                            rows="1" placeholder="Tell us about job..."></textarea>
-                    </div>
-
-                    <!-- Ganti URL + Dropdown JOB (1 baris) -->
-                    <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:gap-3">
-                        <!-- Button Ganti URL (tinggi lebih kecil) -->
-                        <button onclick="openUrlModal()"
-                            class="w-full sm:w-auto px-9 py-4 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 active:scale-[0.98] transition-all duration-200">
-                            Ganti Social Media
+                <!-- Dropdown JOB dengan Padding & Icon Diperbaiki -->
+                <div class="relative w-full sm:w-auto mt-2 sm:mt-0">
+                    <div class="dropdown-container">
+                        <button type="button" onclick="toggleDropdown('job')"
+                            class="dropdown-button w-full sm:min-w-[200px] px-5 py-3 text-xs font-semibold text-left rounded-lg flex items-center justify-between"
+                            onclick="toggleDropdown('job')">
+                            <span id="selectedJobOption"
+                                class="{{ $creator->job ? 'text-gray-800' : 'text-gray-500' }}">{{ $creator->job ?? 'Pilih Job' }}</span>
+                            <svg class="chevron w-5 h-5 text-gray-400 ml-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
                         </button>
 
-
-                        <!-- Dropdown JOB dengan Padding & Icon Diperbaiki -->
-                        <div class="relative w-full sm:w-auto mt-2 sm:mt-0">
-                            <div class="dropdown-container">
-                                <button type="button"
-                                    class="dropdown-button w-full sm:min-w-[200px] px-5 py-3 text-xs font-semibold text-left rounded-lg flex items-center justify-between"
-                                    onclick="toggleDropdown('job')">
-                                    <span id="selectedJobOption" class="text-gray-500">Pilih Job</span>
-                                    <svg class="chevron w-5 h-5 text-gray-400 ml-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-
-                                <div id="jobDropdownMenu"
-                                    class="dropdown-menu absolute bottom-full left-0 right-0 mt-1 py-1 rounded-lg z-10 bg-white shadow-lg">
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
-                                        onclick="selectOption('job', 'Illustrator')">
-                                        <span class="text-sm">Illustrator</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
-                                        onclick="selectOption('job', 'Musisi')">
-                                        <span class="text-sm">Musisi</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
-                                        onclick="selectOption('job', 'Streamer')">
-                                        <span class="text-sm">Streamer</span>
-                                    </div>
-                                    <div class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100"
-                                        onclick="selectOption('job', 'Penulis')">
-                                        <span class="text-sm">Penulis</span>
-                                    </div>
+                        <div id="jobDropdownMenu"
+                            class="dropdown-menu absolute bottom-full left-0 right-0 mt-1 py-1 rounded-lg z-10 bg-white shadow-lg">
+                            @foreach ($jobList as $job)
+                                <div onclick="selectOption('job', '{{ $job }}')"
+                                    class="dropdown-option px-3 py-2 cursor-pointer hover:bg-gray-100">
+                                    {{ $job }}
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-
-
-                    </div>
-
-                    <div class="flex justify-end gap-3 pt-6">
-                        <button onclick="toggleEditProfileModal()"
-                            class="px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
-                            Cancel
-                        </button>
-                        <button
-                            class="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 rounded-lg hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                            Save
-                        </button>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="flex justify-end gap-3 pt-6">
+                <button onclick="toggleEditProfileModal()"
+                    class="px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
+                    Cancel
+                </button>
+                <button type="submit"
+                    class="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 rounded-lg hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Save
+                </button>
             </div>
         </div>
     </div>
+</div>
+</form>
+</div>
 </div>
 
 <x-url />
@@ -417,10 +384,14 @@
     }
 
     function selectOption(type, value) {
-        const selectedElement = document.getElementById('selected' + type.charAt(0).toUpperCase() + type.slice(1) + 'Option');
+        const selectedElement = document.getElementById('selected' + type.charAt(0).toUpperCase() + type.slice(1) +
+            'Option');
         selectedElement.textContent = value;
         selectedElement.classList.remove('text-gray-500');
         selectedElement.classList.add('text-gray-800');
+
+        const input = document.getElementById(type === 'category' ? 'categoryInput' : 'jobInput');
+        if (input) input.value = value;
 
         // Close dropdown
         const menu = document.getElementById(type + 'DropdownMenu');
@@ -429,21 +400,21 @@
         chevron.classList.remove('rotate');
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const editBtn = document.querySelector('button:has(img[src*="edit.svg"])');
         if (editBtn) {
             editBtn.addEventListener('click', toggleEditProfileModal);
         }
 
         // Close modal on outside click
-        document.getElementById('editProfileModal').addEventListener('click', function (e) {
+        document.getElementById('editProfileModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 toggleEditProfileModal();
             }
         });
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function(event) {
             const dropdownContainers = document.querySelectorAll('.dropdown-container');
             dropdownContainers.forEach(container => {
                 if (!container.contains(event.target)) {
@@ -460,12 +431,13 @@
         // File upload feedback
         const fileInput = document.querySelector('input[type="file"]');
         if (fileInput) {
-            fileInput.addEventListener('change', function (e) {
+            fileInput.addEventListener('change', function(e) {
                 const fileName = e.target.files[0]?.name;
                 if (fileName) {
                     const uploadArea = e.target.parentElement;
                     const textElement = uploadArea.querySelector('.text-xs');
-                    textElement.innerHTML = `<span class="text-green-600 font-medium">📄 ${fileName}</span>`;
+                    textElement.innerHTML =
+                        `<span class="text-green-600 font-medium">📄 ${fileName}</span>`;
                     uploadArea.classList.add('border-green-300', 'bg-green-50');
                 }
             });
@@ -473,7 +445,7 @@
     });
 
     // ESC key to close modal and dropdown
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             // Close modal
             if (!document.getElementById('editProfileModal').classList.contains('hidden')) {
@@ -488,5 +460,4 @@
             });
         }
     });
-
 </script>

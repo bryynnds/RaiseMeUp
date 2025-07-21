@@ -14,6 +14,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\Supporter\SupporterController;
 use App\Http\Controllers\Creator\CreatorController;
 use App\Http\Controllers\Supporter\ProfilePhotoController;
+use App\Http\Controllers\EditProfileController;
 
 //Ini Boleh dihapus bang nanti, cuman buat preview tailwind doang
 use Illuminate\Support\Facades\File;
@@ -122,6 +123,12 @@ Route::post('/register/otp/creator', [CreatorRegisterController::class, 'verifyO
 
 Route::post('/register/otp/creator/resend', [CreatorRegisterController::class, 'resendOtp'])
     ->name('creator.otp.resend');
+
+//Route Edit Portfolio
+// routes/web.php
+Route::post('/update-profile-portfolio', [EditProfileController::class, 'update'])->name('profile.portfolio.update');
+
+
 
 
 // Route ngambil data ke profile creator
