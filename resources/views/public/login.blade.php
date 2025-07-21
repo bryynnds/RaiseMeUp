@@ -60,8 +60,7 @@
         </div> --}}
 
         <a href="{{ route('landing') }}" class="flex justify-center mb-4">
-            <img src="/assets/icon/logo.png" alt="Logo"
-                class="w-16 h-16" />
+            <img src="/assets/icon/logo.png" alt="Logo" class="w-16 h-16" />
         </a>
 
         <!-- Judul -->
@@ -102,6 +101,14 @@
                 </button>
             </div>
 
+            <!-- Lupa Password -->
+            <div class="text-right">
+                <a href="/forgot" class="text-xs text-white/80 hover:underline">
+                    Lupa Password?
+                </a>
+            </div>
+
+
             <button type="submit"
                 class="w-full bg-blue-500 text-white font-semibold py-2 rounded-md button-hover transition duration-300 text-sm">
                 Login
@@ -123,6 +130,7 @@
             </a>
         </div> --}}
     </div>
+
 
     <!-- Toggle Password Script -->
     <script>

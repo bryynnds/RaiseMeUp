@@ -37,7 +37,8 @@ Route::get('/', function () {
 
 Route::get('/home-public', function () {
     return view('public.landing');
-})->name('landing');;
+})->name('landing');
+;
 
 Route::get('/explorer-public', [ExplorerController::class, 'index'])->name('explorer-public');
 
@@ -47,6 +48,14 @@ Route::get('/creator/{id}', [CreatorProfileController::class, 'profileCreator'])
 
 Route::get('/supporter/creator/{id}', [CreatorProfileController::class, 'profileDonate'])
     ->name('supporter.creator.profil');
+
+Route::get('/forgot', function () {
+    return view('public.forgot');
+});
+
+Route::get('/change', function () {
+    return view('public.change');
+});
 
 
 
