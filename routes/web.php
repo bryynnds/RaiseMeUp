@@ -155,9 +155,9 @@ Route::get('/role', function () {
     return view('public.role');
 });
 
-Route::get('/afterlogin', function () {
-    return view('public.afterlogin'); // pastikan file-nya resources/views/afterlogin.blade.php
-})->name('creator.afterlogin');
+// Route::get('/afterlogin', function () {
+//     return view('public.afterlogin'); // pastikan file-nya resources/views/afterlogin.blade.php
+// })->name('creator.afterlogin');
 
 Route::post('/afterlogin-creator', [CreatorProfileController::class, 'updateAfterLoginCreator'])->name('creator.afterlogin.updateCreator');
 Route::post('/afterlogin-supporter', [CreatorProfileController::class, 'updateAfterLoginSupporter'])->name('creator.afterlogin.updateSupporter');

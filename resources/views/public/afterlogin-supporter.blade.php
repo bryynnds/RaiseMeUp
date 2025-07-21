@@ -308,17 +308,6 @@
                     </div>
 
                     <!-- Description Section -->
-                    <div class="input-group">
-                        <label class="text-white/90 text-[11px] font-medium block mb-1">
-                            <i class="fas fa-align-left mr-1"></i>Deskripsi
-                        </label>
-                        <textarea
-                            name="deskripsi" required
-                            rows="2"
-                            placeholder="Bagikan lebih banyak tentang dirimu..."
-                            class="modern-input w-full px-2.5 py-2 rounded-md text-[12px] resize-none"
-                            maxlength="300"></textarea>
-                    </div>
 
                     <!-- Action Button -->
                     <button

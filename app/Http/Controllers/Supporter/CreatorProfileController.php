@@ -114,11 +114,11 @@ class CreatorProfileController extends Controller
     }
 
     public function updateAfterLoginSupporter(Request $request)
-    {
+    {   
         $request->validate([
             'nickname' => 'required|string',
             'bio' => 'required|string',
-            'deskripsi' => 'required|string',
+            
             'pp_url' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'fotosampul_url' => 'required|image|mimes:jpg,jpeg,png|max:4096',
         ]);
@@ -140,7 +140,7 @@ class CreatorProfileController extends Controller
         $profileSupporter->update([
             'nickname' => $request->nickname,
             'bio' => $request->bio,
-            'deskripsi' => $request->deskripsi,
+            
             'pp_url' => Storage::url($ppPath),
             'fotosampul_url' => Storage::url($sampulPath),
         ]);
