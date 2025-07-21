@@ -158,21 +158,26 @@
             <div class="hidden md:block">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div class="flex items-start gap-5 relative">
-                        <img src="{{ $creator->pp_url }}" alt="Profile Picture"
-                            class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
+                        <!-- Gambar PP + Icon Pensil -->
+                        <div class="relative w-fit">
+                            <img src="{{ $creator->pp_url }}" alt="Profile Picture"
+                                class="w-44 h-44 rounded-full border-8 border-white object-cover -mt-24" />
 
-                        <button onclick="togglePPModal()"
-                            class="absolute top-8 right-48 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="w-4 h-4 text-gray-600">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.5 19.213 3 21l1.788-4.5L16.862 3.487z" />
-                            </svg>
-                        </button>
+                            <button onclick="togglePPModal()"
+                                class="absolute top-8 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-4 h-4 text-gray-600">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.5 19.213 3 21l1.788-4.5L16.862 3.487z" />
+                                </svg>
+                            </button>
+                        </div>
 
-
+                        <!-- Info Creator -->
                         <div class="flex flex-col -mt-4 gap-1">
-                            <span class="text-gray-700 text-xs"><span>@</span>{{ $creator->user->name }}</span>
+                            <span class="text-gray-700 text-xs">
+                                <span>@</span>{{ $creator->user->name }}
+                            </span>
                             <h1 class="text-2xl font-bold text-gray-900">{{ $creator->nickname }}</h1>
                             <div class="flex gap-3 text-sm font-normal text-gray-500 mt-1">
                                 <span>{{ number_format($likeCount) }} Like</span>
@@ -182,10 +187,10 @@
                         </div>
                     </div>
 
+
                     <div class="flex flex-col -mt-1.5 gap-3 items-start md:items-end ml-auto">
                         <!-- Tombol Edit Data -->
-                        <button id="editBtn"
-                            class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
+                        <button id="editBtn" class="group relative overflow-hidden bg-[#F2F4FC] hover:bg-white 
         rounded-full px-8 py-3.5 text-gray-700 font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100 
         hover:-translate-y-1 flex items-center gap-2">
                             <div
@@ -198,8 +203,7 @@
                         </button>
 
                         <!-- Tombol Withdrawal -->
-                        <button id="withdrawalBtn"
-                            class="group relative overflow-hidden bg-indigo-500 hover:bg-indigo-600 
+                        <button id="withdrawalBtn" class="group relative overflow-hidden bg-indigo-500 hover:bg-indigo-600 
         rounded-full px-6 py-3.5 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 
         hover:-translate-y-1 flex items-center gap-2">
                             <div
@@ -264,7 +268,8 @@
                         <div class="flex flex-col gap-2 text-center">
                             <button
                                 class="px-3 py-1 border rounded-full text-xs font-medium bg-gray-100 text-gray-600 self-center">Bio</button>
-                            <p class="text-sm text-gray-500 px-2">"I'm digital Illustrator who draws cute girls & soft vibes~
+                            <p class="text-sm text-gray-500 px-2">"I'm digital Illustrator who draws cute girls & soft
+                                vibes~
                                 Let's make magic together~ (๑>ᴗ<)♡"< /p>
                         </div>
                     </div>
@@ -304,8 +309,9 @@
     <x-pp-creator :creator="$creator" />
 
 
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    {{--
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             const donateBtn = document.getElementById('donateBtn');
             const donateBtnMobile = document.getElementById('donateBtnMobile');
             const donateModal = document.getElementById('donateModal');

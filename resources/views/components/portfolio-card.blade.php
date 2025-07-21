@@ -48,7 +48,7 @@
                 <div class="space-y-4">
                     <div class="text-center">
                         <p class="text-gray-600 text-xs leading-relaxed italic">
-                            "{{ $creator->bio }}"
+                            "{{ $creator->deskripsi }}"
                         </p>
                     </div>
 
