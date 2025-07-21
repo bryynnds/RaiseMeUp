@@ -299,7 +299,7 @@
 
     <x-withdrawl-card />
 
-    <x-pp-creator />
+    <x-pp-creator :creator="$creator"/>
 
 
     <script>
