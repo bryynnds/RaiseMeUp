@@ -48,8 +48,7 @@ class LoginController extends Controller
                         !$profile->nickname ||
                         !$profile->pp_url ||
                         !$profile->fotosampul_url ||
-                        !$profile->bio ||
-                        !$profile->deskripsi
+                        !$profile->bio
                     ) {
                         return redirect('/afterlogin-supporter');
                     }
