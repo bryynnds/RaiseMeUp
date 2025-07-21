@@ -218,7 +218,7 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 Route::get('/logout', function () {
     Auth::logout(); // Logout dari Laravel
     session()->flush(); // Bersihin session
-    return redirect('/login'); // Arahkan ke halaman login
+    return redirect('/home-public'); // Arahkan ke halaman login
 })->name('logout');
 
 //Route Login Admin Filament
