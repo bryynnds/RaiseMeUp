@@ -77,7 +77,7 @@
                         </button>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-1">Min Rp 10.000 - Max Rp 120.000</p>
+                <p class="text-xs text-gray-500 mt-1">Min Rp 10.000 - Max Rp 1.000.000</p>
             </div>
 
             <!-- Payment Method -->
@@ -196,7 +196,7 @@
 
 <script>
     let currentBalanceAmount = {{ $creator->total_income ?? 0 }}; // Saldo awal
-    let maxBalanceAmount = 120000;
+    let maxBalanceAmount = 1000000;
 
     function toggleWithdrawalModal() {
         document.getElementById('withdrawalForm').reset();
