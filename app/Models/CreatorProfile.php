@@ -16,8 +16,6 @@ class CreatorProfile extends Model
         'pp_url',
         'fotosampul_url',
         'job',
-        'portfolio_url',
-        'post_image',
         'youtube_url',
         'facebook_url',
         'twitter_url',
