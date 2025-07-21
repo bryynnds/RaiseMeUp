@@ -202,7 +202,7 @@
         </div>
     </section>
 
-    <x-portfolio-card :creator="$creator" />
+    <x-portfolio-card :creator="$creator" :portfolio="$portfolio" />
 
 
     <x-donate :creator="$creator" />

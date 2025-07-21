@@ -10,17 +10,20 @@ use App\Models\User;
 use App\Models\Donation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Portfolio;
 
 class CreatorProfileController extends Controller
 {
     public function show($id)
-    {
+    {   
+
         // Ambil data creator profile dan user-nya
         $creatorProfile = CreatorProfile::with('user')->where('creator_id', $id)->firstOrFail();
 
         // Hitung jumlah like berdasarkan creator_id
         $likeCount = \App\Models\Like::where('creator_id', $id)->count();
 
+        $portfolio = Portfolio::with('creator')->where('creator_id', $id)->firstOrFail();
 
         $jumlahSupport = Donation::where('creator_id', $id)
             ->whereHas('transactions', function ($query) {
@@ -32,7 +35,9 @@ class CreatorProfileController extends Controller
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini
-            'jumlahSupport' => $jumlahSupport
+            'jumlahSupport' => $jumlahSupport,
+            compact('portfolio'),
+            'portfolio' => $portfolio
         ]);
     }
 
@@ -42,6 +47,7 @@ class CreatorProfileController extends Controller
 
         $likeCount = \App\Models\Like::where('creator_id', $id)->count();
 
+        $portfolio = Portfolio::with('creator')->where('creator_id', $id)->firstOrFail();
 
         $jumlahSupport = Donation::where('creator_id', $id)
             ->whereHas('transactions', function ($query) {
@@ -53,7 +59,9 @@ class CreatorProfileController extends Controller
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini
-            'jumlahSupport' => $jumlahSupport
+            'jumlahSupport' => $jumlahSupport,
+            compact('portfolio'),
+            'portfolio' => $portfolio
         ]);
     }
 
@@ -63,6 +71,7 @@ class CreatorProfileController extends Controller
 
         $likeCount = \App\Models\Like::where('creator_id', $id)->count();
 
+        $portfolio = Portfolio::with('creator')->where('creator_id', $id)->firstOrFail();
 
         $jumlahSupport = Donation::where('creator_id', $id)
             ->whereHas('transactions', function ($query) {
@@ -74,7 +83,9 @@ class CreatorProfileController extends Controller
             'creator' => $creatorProfile,
             'user' => $creatorProfile->user,
             'likeCount' => $likeCount, // <- Tambahkan ini
-            'jumlahSupport' => $jumlahSupport
+            'jumlahSupport' => $jumlahSupport,
+            compact('portfolio'),
+            'portfolio' => $portfolio
         ]);
     }
 

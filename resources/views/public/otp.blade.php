@@ -39,8 +39,8 @@
         class="bg-white/10 backdrop-blur-md shadow-xl rounded-3xl w-full max-w-md p-6 sm:p-8 border border-white/30 text-white text-center">
 
         <!-- Logo -->
-        <img src="https://via.placeholder.com/60x60?text=🔒" alt="OTP Icon"
-            class="mx-auto mb-4 rounded-full shadow-md ring-2 ring-white/50" />
+        {{-- <img src="https://via.placeholder.com/60x60?text=🔒" alt="OTP Icon"
+            class="mx-auto mb-4 rounded-full shadow-md ring-2 ring-white/50" /> --}}
 
         <h1 class="text-2xl font-semibold mb-2">Verifikasi OTP</h1>
         <p class="text-sm mb-6 text-white/80">Kode verifikasi telah dikirim ke email kamu. Masukkan 6 digit kode di
