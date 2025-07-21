@@ -24,7 +24,7 @@ class EditProfileController extends Controller
             'job' => 'nullable|string|max:255',
             'judul' => 'nullable|string|max:255',
             'url' => 'nullable|url|nullable',
-            'img' => 'nullable|image|max:10240', // 10MB
+            'img' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // 10MB
         ]);
 
         // === Update users ===
@@ -49,7 +49,7 @@ class EditProfileController extends Controller
             if ($request->filled('tag')) $portfolio->tag = $request->input('tag');
             if ($request->filled('url')) $portfolio->url = $request->input('url');
 
-            $portfolio->update([                
+            $portfolio->update([
                 'tag' => $request->tag,
             ]);
 
@@ -58,19 +58,14 @@ class EditProfileController extends Controller
             ]);
 
             // Handle file upload
-            if ($request->hasFile('img')) {
-                // Hapus file lama jika ada
-                if ($portfolio->img && Storage::disk('public')->exists($portfolio->img)) {
-                    Storage::disk('public')->delete($portfolio->img);
-                }
-
-                $file = $request->file('img');
-                $filename = 'portfolio/' . Str::uuid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('public', $filename);
-                $portfolio->img = $filename;
-            }
+            $imgPath = $request->file('img')->store('portfolio', 'public');
+            $portfolio->update([
+                'img' => Storage::url($imgPath),
+            ]);
+            
 
             $portfolio->save();
+
         }
 
         return redirect()->back()->with('success', 'Profile updated!');

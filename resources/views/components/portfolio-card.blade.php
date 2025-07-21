@@ -1,3 +1,5 @@
+@props(['creator', 'portfolio'])
+
 <section class="w-full bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-8 sm:px-16 lg:px-24 xl:px-32">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
@@ -125,7 +127,7 @@
 
                 <!-- Featured Image -->
                 <div class="relative overflow-hidden aspect-[16/10] mx-6 rounded-xl">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&auto=format"
+                    <img src="{{ $portfolio->img }}"
                         alt="Sakura Dreams"
                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
 
@@ -133,7 +135,7 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
 
                     <!-- Play button overlay -->
-                    <div
+                    {{-- <div
                         class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                         <div
                             class="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer">
@@ -141,15 +143,14 @@
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Content -->
                 <div class="p-6 pt-4">
-                    <h3 class="font-bold text-gray-900 text-lg mb-2">Sakura Dreams</h3>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">{{ $portfolio->judul }}</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                        Ilustrasi karakter anime dengan tema sakura yang lembut dan dreamy. Menggabungkan teknik digital
-                        painting dengan sentuhan watercolor untuk menciptakan atmosfer yang magical.
+                        {{ $portfolio->deskripsi }}
                     </p>
                     <div class="border-t border-gray-200 my-2"></div>
                     <!-- Actions -->
@@ -159,21 +160,21 @@
     text-gray-400 bg-gray-100  hover:shadow-md
     transition-shadow duration-300">
 
-                                #Digital Artist
+                                #{{ $portfolio->tag }}
                             </span>
                         </div>
 
 
 
                         <!-- Tombol View Full tetap -->
-                        <button
+                        <a href="{{ $portfolio->url }}" target="_blank"
                             class="flex items-center font-semibold gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
                             <span>Open</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
-                        </button>
+                         </a>
                     </div>
 
 
